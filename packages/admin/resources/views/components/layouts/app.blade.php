@@ -1,3 +1,23 @@
+@php
+    switch (config('filament.layout.max_content_width')) {
+        case 'xl':
+            $class = 'max-w-xl';break;
+        case '2xl':
+            $class = 'max-w-2xl';break;
+        case '3xl':
+            $class = 'max-w-3xl';break;
+        case '4xl':
+            $class = 'max-w-4xl';break;
+        case '5xl':
+            $class = 'max-w-5xl';break;
+        case '6xl':
+            $class = 'max-w-6xl';break;
+        case 'full':
+            $class = 'max-w-full';break;
+        default:
+            $class = 'max-w-7xl';break;
+    }
+@endphp
 <x-filament::layouts.base :title="$title">
     <div class="flex min-h-screen w-full filament-app-layout">
         <div
@@ -18,16 +38,7 @@
             ])>
                 <div @class([
                     'flex items-center w-full px-2 mx-auto sm:px-4 md:px-6 lg:px-8',
-                    match (config('filament.layout.max_content_width')) {
-                        'xl' => 'max-w-xl',
-                        '2xl' => 'max-w-2xl',
-                        '3xl' => 'max-w-3xl',
-                        '4xl' => 'max-w-4xl',
-                        '5xl' => 'max-w-5xl',
-                        '6xl' => 'max-w-6xl',
-                        'full' => 'max-w-full',
-                        default => 'max-w-7xl',
-                    },
+                    $class,
                 ])>
                     <button x-data="{}" x-on:click="$store.sidebar.open()" class="shrink-0 flex items-center justify-center w-10 h-10 text-primary-500 rounded-full filament-sidebar-open-button hover:bg-gray-500/5 focus:bg-primary-500/10 focus:outline-none lg:hidden">
                         <x-heroicon-o-menu class="w-6 h-6" />
@@ -45,16 +56,7 @@
 
             <div @class([
                 'flex-1 w-full px-4 mx-auto md:px-6 lg:px-8 filament-main-content',
-                match (config('filament.layout.max_content_width')) {
-                    'xl' => 'max-w-xl',
-                    '2xl' => 'max-w-2xl',
-                    '3xl' => 'max-w-3xl',
-                    '4xl' => 'max-w-4xl',
-                    '5xl' => 'max-w-5xl',
-                    '6xl' => 'max-w-6xl',
-                    'full' => 'max-w-full',
-                    default => 'max-w-7xl',
-                },
+                $class,
             ])>
                 {{ $slot }}
             </div>

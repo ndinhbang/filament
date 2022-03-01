@@ -1,12 +1,19 @@
 @php
-    $stateColor = match ($getStateColor()) {
-        'danger' => 'text-danger-500',
-        'primary' => 'text-primary-500',
-        'success' => 'text-success-500',
-        'warning' => 'text-warning-500',
-        null => \Illuminate\Support\Arr::toCssClasses(['text-gray-700', 'dark:text-gray-200' => config('tables.dark_mode'),]),
-        default => $getStateColor(),
-    };
+    $color = $stateColor = $getStateColor();
+    if (is_null($color)) {
+        $stateColor = \Illuminate\Support\Arr::toCssClasses([
+            'text-gray-700',
+            'dark:text-gray-200' => config('tables.dark_mode'),
+        ]);
+    } elseif ($color === 'danger') {
+        $stateColor = 'text-danger-500';
+    } elseif ($color === 'primary') {
+        $stateColor = 'text-primary-500';
+    } elseif ($color === 'success') {
+        $stateColor = 'text-success-500';
+    } elseif ($color === 'warning') {
+        $stateColor = 'text-warning-500';
+    }
 @endphp
 
 <div {{ $attributes->merge($getExtraAttributes())->class(['px-4 py-3 filament-tables-icon-column']) }}>

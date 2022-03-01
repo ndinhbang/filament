@@ -14,23 +14,33 @@
 
     $getHiddenClasses = function (\Filament\Tables\Columns\Column $column): ?string {
         if ($breakpoint = $column->getHiddenFrom()) {
-            return match ($breakpoint) {
-                'sm' => 'sm:hidden',
-                'md' => 'md:hidden',
-                'lg' => 'lg:hidden',
-                'xl' => 'xl:hidden',
-                '2xl' => '2xl:hidden',
-            };
+            $class = '';
+            switch ($breakpoint) {
+                case 'sm':
+                    $class = 'sm:hidden';break;
+                case 'lg':
+                    $class = 'lg:hidden';break;
+                case 'xl':
+                    $class = 'xl:hidden';break;
+                case '2xl':
+                    $class = '2xl:hidden';break;
+            }
+            return $class;
         }
 
         if ($breakpoint = $column->getVisibleFrom()) {
-            return match ($breakpoint) {
-                'sm' => 'hidden sm:table-cell',
-                'md' => 'hidden md:table-cell',
-                'lg' => 'hidden lg:table-cell',
-                'xl' => 'hidden xl:table-cell',
-                '2xl' => 'hidden 2xl:table-cell',
-            };
+            $class = '';
+            switch ($breakpoint) {
+                case 'sm':
+                    $class = 'hidden sm:table-cell';break;
+                case 'lg':
+                    $class = 'hidden lg:table-cell';break;
+                case 'xl':
+                    $class = 'hidden xl:table-cell';break;
+                case '2xl':
+                    $class = 'hidden 2xl:table-cell';break;
+            }
+            return $class;
         }
 
         return null;

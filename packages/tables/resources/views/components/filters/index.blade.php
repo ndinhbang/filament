@@ -3,6 +3,33 @@
     'width' => 'sm',
 ])
 
+@php
+    switch ($width) {
+        case 'xs':
+            $class = 'max-w-xs';break;
+        case 'md':
+            $class = 'max-w-md';break;
+        case 'lg':
+            $class = 'max-w-lg';break;
+        case 'xl':
+            $class = 'max-w-xl';break;
+        case '2xl':
+            $class = 'max-w-2xl';break;
+        case '3xl':
+            $class = 'max-w-3xl';break;
+        case '4xl':
+            $class = 'max-w-4xl';break;
+        case '5xl':
+            $class = 'max-w-5xl';break;
+        case '6xl':
+            $class = 'max-w-6xl';break;
+        case '7xl':
+            $class = 'max-w-7xl';break;
+        default:
+            $class = 'max-w-sm';break;
+    }
+@endphp
+
 <div
     x-data="{ isOpen: false }"
     {{ $attributes->class(['relative inline-block filament-tables-filters']) }}
@@ -21,19 +48,7 @@
         x-transition:leave-end="opacity-0 translate-y-2"
         @class([
             'absolute right-0 rtl:right-auto rtl:left-0 z-10 w-screen pl-12 rtl:pr-12 mt-2 top-full transition',
-            match ($width) {
-                'xs' => 'max-w-xs',
-                'md' => 'max-w-md',
-                'lg' => 'max-w-lg',
-                'xl' => 'max-w-xl',
-                '2xl' => 'max-w-2xl',
-                '3xl' => 'max-w-3xl',
-                '4xl' => 'max-w-4xl',
-                '5xl' => 'max-w-5xl',
-                '6xl' => 'max-w-6xl',
-                '7xl' => 'max-w-7xl',
-                default => 'max-w-sm',
-            },
+            $class,
         ])
     >
         <div @class([

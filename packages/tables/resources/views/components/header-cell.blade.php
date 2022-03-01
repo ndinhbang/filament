@@ -7,6 +7,19 @@
     'alignment' => null,
 ])
 
+@php
+    switch ($alignment) {
+        case 'left':
+            $class = 'justify-start';break;
+        case 'center':
+            $class = 'justify-center';break;
+        case 'right':
+            $class = 'justify-end';break;
+        default:
+            $class = null;break;
+    }
+@endphp
+
 <th {{ $attributes->merge($extraAttributes)->class([
     'p-0 filament-tables-header-cell',
     'dark:bg-gray-800' => config('tables.dark_mode'),
@@ -20,12 +33,7 @@
             'flex items-center w-full px-4 py-2 whitespace-nowrap space-x-1 rtl:space-x-reverse font-medium text-sm text-gray-600',
             'dark:text-gray-300' => config('tables.dark_mode'),
             'cursor-default' => ! $sortable,
-            match ($alignment) {
-                'left' => 'justify-start',
-                'center' => 'justify-center',
-                'right' => 'justify-end',
-                default => null,
-            },
+            $class,
         ])
     >
         <span>

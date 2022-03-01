@@ -9,16 +9,24 @@
     'url' => null,
 ])
 
+@php
+    switch ($alignment) {
+        case 'left':
+            $class = 'text-left';break;
+        case 'center':
+            $class = 'text-center';break;
+        case 'right':
+            $class = 'text-right';break;
+        default:
+            $class = null;break;
+    }
+@endphp
+
 <td
     {{ $attributes->class([
         'filament-tables-cell',
         'dark:text-white' => config('tables.dark_mode'),
-        match ($alignment) {
-            'left' => 'text-left',
-            'center' => 'text-center',
-            'right' => 'text-right',
-            default => null,
-        },
+        $class,
     ]) }}
 >
     @if ($action || ((! $url) && $recordAction))

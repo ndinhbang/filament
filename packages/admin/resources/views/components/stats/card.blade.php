@@ -10,6 +10,45 @@
     'value' => null,
 ])
 
+@php
+    switch ($descriptionColor) {
+        case 'danger':
+            $descriptionColorClass = 'text-danger-600';break;
+        case 'primary':
+            $descriptionColorClass = 'text-primary-600';break;
+        case 'success':
+            $descriptionColorClass = 'text-success-600';break;
+        case 'warning':
+            $descriptionColorClass = 'text-warning-600';break;
+        default:
+            $descriptionColorClass = 'text-gray-600';break;
+    }
+    switch ($chartColor) {
+        case 'danger':
+            $chartColorClass1 = \Illuminate\Support\Arr::toCssClasses(['text-danger-50', 'dark:text-danger-700' => config('filament.dark_mode')]);break;
+        case 'primary':
+            $chartColorClass1 = \Illuminate\Support\Arr::toCssClasses(['text-primary-50', 'dark:text-primary-700' => config('filament.dark_mode')]);break;
+        case 'success':
+            $chartColorClass1 = \Illuminate\Support\Arr::toCssClasses(['text-success-50', 'dark:text-success-700' => config('filament.dark_mode')]);break;
+        case 'warning':
+            $chartColorClass1 = \Illuminate\Support\Arr::toCssClasses(['text-warning-50', 'dark:text-warning-700' => config('filament.dark_mode')]);break;
+        default:
+            $chartColorClass1 = \Illuminate\Support\Arr::toCssClasses(['text-gray-50', 'dark:text-gray-700' => config('filament.dark_mode')]);break;
+    }
+    switch ($chartColor) {
+        case 'danger':
+            $chartColorClass2 = 'text-danger-400';break;
+        case 'primary':
+            $chartColorClass2 = 'text-primary-400';break;
+        case 'success':
+            $chartColorClass2 = 'text-success-400';break;
+        case 'warning':
+            $chartColorClass2 = 'text-warning-400';break;
+        default:
+            $chartColorClass2 = 'text-gray-400';break;
+    }
+@endphp
+
 <div {{ $attributes->class([
     'relative p-6 rounded-2xl filament-stats-card',
     'bg-white shadow' => ! $flat,
@@ -34,13 +73,7 @@
         @if ($description)
             <div @class([
                 'flex items-center space-x-1 rtl:space-x-reverse text-sm font-medium',
-                match ($descriptionColor) {
-                    'danger' => 'text-danger-600',
-                    'primary' => 'text-primary-600',
-                    'success' => 'text-success-600',
-                    'warning' => 'text-warning-600',
-                    default => 'text-gray-600',
-                },
+                $descriptionColorClass,
             ])>
                 <span>{{ $description }}</span>
 
@@ -107,26 +140,14 @@
                 <span
                     x-ref="backgroundColorElement"
                     @class([
-                        match ($chartColor) {
-                            'danger' => \Illuminate\Support\Arr::toCssClasses(['text-danger-50', 'dark:text-danger-700' => config('filament.dark_mode')]),
-                            'primary' => \Illuminate\Support\Arr::toCssClasses(['text-primary-50', 'dark:text-primary-700' => config('filament.dark_mode')]),
-                            'success' => \Illuminate\Support\Arr::toCssClasses(['text-success-50', 'dark:text-success-700' => config('filament.dark_mode')]),
-                            'warning' => \Illuminate\Support\Arr::toCssClasses(['text-warning-50', 'dark:text-warning-700' => config('filament.dark_mode')]),
-                            default => \Illuminate\Support\Arr::toCssClasses(['text-gray-50', 'dark:text-gray-700' => config('filament.dark_mode')]),
-                        },
+                        $chartColorClass1,
                     ])
                 ></span>
 
                 <span
                     x-ref="borderColorElement"
                     @class([
-                        match ($chartColor) {
-                            'danger' => 'text-danger-400',
-                            'primary' => 'text-primary-400',
-                            'success' => 'text-success-400',
-                            'warning' => 'text-warning-400',
-                            default => 'text-gray-400',
-                        },
+                        $chartColorClass2,
                     ])
                 ></span>
             </canvas>

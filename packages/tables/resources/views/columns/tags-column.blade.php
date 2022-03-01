@@ -1,15 +1,20 @@
 @php
     $state = $getTags();
+    switch ($getAlignment()) {
+        case 'left':
+            $class = 'justify-start';break;
+        case 'center':
+            $class = 'justify-center';break;
+        case 'right':
+            $class = 'justify-end';break;
+        default:
+            $class = null;break;
+    }
 @endphp
 
 <div {{ $attributes->merge($getExtraAttributes())->class([
     'px-4 py-3 flex flex-wrap gap-1 filament-tables-tags-column',
-    match ($getAlignment()) {
-        'left' => 'justify-start',
-        'center' => 'justify-center',
-        'right' => 'justify-end',
-        default => null,
-    },
+    $class,
 ]) }}>
     @foreach ($getTags() as $tag)
         <span @class([
