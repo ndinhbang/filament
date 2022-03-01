@@ -11,41 +11,69 @@ class ImageColumn extends Column
 {
     protected string $view = 'tables::columns.image-column';
 
-    protected string | Closure | null $disk = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $disk = null;
 
-    protected int | string | Closure | null $height = 40;
+    /**
+     * @var \Closure|int|string|null
+     */
+    protected $height = 40;
 
-    protected bool | Closure $isRounded = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $isRounded = false;
 
-    protected int | string | Closure | null $width = null;
+    /**
+     * @var \Closure|int|string|null
+     */
+    protected $width = null;
 
     protected function setUp(): void
     {
         $this->disk(config('tables.default_filesystem_disk'));
     }
 
-    public function disk(string | Closure | null $disk): static
+    /**
+     * @param \Closure|string|null $disk
+     * @return $this
+     */
+    public function disk($disk)
     {
         $this->disk = $disk;
 
         return $this;
     }
 
-    public function height(int | string | Closure | null $height): static
+    /**
+     * @param \Closure|int|string|null $height
+     * @return $this
+     */
+    public function height($height)
     {
         $this->height = $height;
 
         return $this;
     }
 
-    public function rounded(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function rounded($condition = true)
     {
         $this->isRounded = $condition;
 
         return $this;
     }
 
-    public function size(int | string | Closure $size): static
+    /**
+     * @param \Closure|int|string $size
+     * @return $this
+     */
+    public function size($size)
     {
         $this->width($size);
         $this->height($size);
@@ -53,7 +81,11 @@ class ImageColumn extends Column
         return $this;
     }
 
-    public function width(int | string | Closure | null $width): static
+    /**
+     * @param \Closure|int|string|null $width
+     * @return $this
+     */
+    public function width($width)
     {
         $this->width = $width;
 
@@ -107,7 +139,7 @@ class ImageColumn extends Column
         if ($storage->getVisibility($state) === 'private' && $supportsTemporaryUrls) {
             return $storage->temporaryUrl(
                 $state,
-                now()->addMinutes(5),
+                now()->addMinutes(5)
             );
         }
 

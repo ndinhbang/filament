@@ -42,7 +42,10 @@ class Table extends ViewComponent implements Htmlable
 
     protected ?View $header = null;
 
-    protected string | Closure | null $heading = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $heading = null;
 
     protected bool $isPaginationEnabled = true;
 
@@ -57,103 +60,149 @@ class Table extends ViewComponent implements Htmlable
         $this->livewire($livewire);
     }
 
-    public static function make(HasTable $livewire): static
+    /**
+     * @return $this
+     */
+    public static function make(HasTable $livewire)
     {
         return app(static::class, ['livewire' => $livewire]);
     }
 
-    public function description(?string $description): static
+    /**
+     * @return $this
+     */
+    public function description(?string $description)
     {
         $this->description = $description;
 
         return $this;
     }
 
-    public function emptyState(?View $view): static
+    /**
+     * @return $this
+     */
+    public function emptyState(?View $view)
     {
         $this->emptyState = $view;
 
         return $this;
     }
 
-    public function emptyStateDescription(?string $description): static
+    /**
+     * @return $this
+     */
+    public function emptyStateDescription(?string $description)
     {
         $this->emptyStateDescription = $description;
 
         return $this;
     }
 
-    public function emptyStateHeading(?string $heading): static
+    /**
+     * @return $this
+     */
+    public function emptyStateHeading(?string $heading)
     {
         $this->emptyStateHeading = $heading;
 
         return $this;
     }
 
-    public function emptyStateIcon(?string $icon): static
+    /**
+     * @return $this
+     */
+    public function emptyStateIcon(?string $icon)
     {
         $this->emptyStateIcon = $icon;
 
         return $this;
     }
 
-    public function enablePagination(bool $condition = true): static
+    /**
+     * @return $this
+     */
+    public function enablePagination(bool $condition = true)
     {
         $this->isPaginationEnabled = $condition;
 
         return $this;
     }
 
-    public function contentFooter(?View $view): static
+    /**
+     * @return $this
+     */
+    public function contentFooter(?View $view)
     {
         $this->contentFooter = $view;
 
         return $this;
     }
 
-    public function filtersFormWidth(?string $width): static
+    /**
+     * @return $this
+     */
+    public function filtersFormWidth(?string $width)
     {
         $this->filtersFormWidth = $width;
 
         return $this;
     }
 
-    public function recordAction(?string $action): static
+    /**
+     * @return $this
+     */
+    public function recordAction(?string $action)
     {
         $this->recordAction = $action;
 
         return $this;
     }
 
-    public function getRecordUrlUsing(?Closure $callback): static
+    /**
+     * @return $this
+     */
+    public function getRecordUrlUsing(?Closure $callback)
     {
         $this->getRecordUrlUsing = $callback;
 
         return $this;
     }
 
-    public function header(?View $view): static
+    /**
+     * @return $this
+     */
+    public function header(?View $view)
     {
         $this->header = $view;
 
         return $this;
     }
 
-    public function heading(string | Closure | null $heading): static
+    /**
+     * @param \Closure|string|null $heading
+     * @return $this
+     */
+    public function heading($heading)
     {
         $this->heading = $heading;
 
         return $this;
     }
 
-    public function model(string $model): static
+    /**
+     * @return $this
+     */
+    public function model(string $model)
     {
         $this->model = $model;
 
         return $this;
     }
 
-    public function recordsPerPageSelectOptions(array $options): static
+    /**
+     * @return $this
+     */
+    public function recordsPerPageSelectOptions(array $options)
     {
         $this->recordsPerPageSelectOptions = $options;
 
@@ -270,7 +319,10 @@ class Table extends ViewComponent implements Htmlable
         return $this->getLivewire()->getMountedTableBulkActionForm();
     }
 
-    public function getRecords(): Collection | Paginator
+    /**
+     * @return \Illuminate\Contracts\Pagination\Paginator|\Illuminate\Database\Eloquent\Collection
+     */
+    public function getRecords()
     {
         return $this->getLivewire()->getTableRecords();
     }

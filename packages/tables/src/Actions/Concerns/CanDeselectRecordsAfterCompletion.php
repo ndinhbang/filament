@@ -6,9 +6,16 @@ use Closure;
 
 trait CanDeselectRecordsAfterCompletion
 {
-    protected bool | Closure $shouldDeselectRecordsAfterCompletion = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $shouldDeselectRecordsAfterCompletion = false;
 
-    public function deselectRecordsAfterCompletion(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function deselectRecordsAfterCompletion($condition = true)
     {
         $this->shouldDeselectRecordsAfterCompletion = $condition;
 

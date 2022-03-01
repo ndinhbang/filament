@@ -13,7 +13,7 @@ trait EvaluatesClosures
         if ($value instanceof Closure) {
             return app()->call(
                 $value,
-                array_merge($this->getDefaultEvaluationParameters(), $parameters),
+                array_merge($this->getDefaultEvaluationParameters(), $parameters)
             );
         }
 
@@ -28,7 +28,7 @@ trait EvaluatesClosures
                 'livewire' => $this->getLivewire(),
             ],
             ($this instanceof Action ? ['record' => $this->getRecord()] : []),
-            ($this instanceof BulkAction ? ['records' => $this->getRecords()] : []),
+            ($this instanceof BulkAction ? ['records' => $this->getRecords()] : [])
         );
     }
 }

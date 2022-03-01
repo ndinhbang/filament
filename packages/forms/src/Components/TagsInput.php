@@ -13,9 +13,15 @@ class TagsInput extends Field
 
     protected string $view = 'forms::components.tags-input';
 
-    protected string | Closure | null $separator = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $separator = null;
 
-    protected array | Arrayable | Closure | null $suggestions = null;
+    /**
+     * @var mixed[]|\Closure|\Illuminate\Contracts\Support\Arrayable|null
+     */
+    protected $suggestions = null;
 
     protected function setUp(): void
     {
@@ -54,14 +60,22 @@ class TagsInput extends Field
         $this->placeholder(__('forms::components.tags_input.placeholder'));
     }
 
-    public function separator(string | Closure | null $separator = ','): static
+    /**
+     * @param \Closure|string|null $separator
+     * @return $this
+     */
+    public function separator($separator = ',')
     {
         $this->separator = $separator;
 
         return $this;
     }
 
-    public function suggestions(array | Arrayable | Closure $suggestions): static
+    /**
+     * @param mixed[]|\Closure|\Illuminate\Contracts\Support\Arrayable $suggestions
+     * @return $this
+     */
+    public function suggestions($suggestions)
     {
         $this->suggestions = $suggestions;
 

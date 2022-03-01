@@ -48,7 +48,10 @@ trait HasHeader
         return [];
     }
 
-    protected function getTableHeading(): string | Closure | null
+    /**
+     * @return \Closure|string|null
+     */
+    protected function getTableHeading()
     {
         return null;
     }

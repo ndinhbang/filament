@@ -10,24 +10,41 @@ use Livewire\TemporaryUploadedFile;
 
 trait HasFileAttachments
 {
-    protected string | Closure | null $fileAttachmentsDirectory = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $fileAttachmentsDirectory = null;
 
-    protected string | Closure | null $fileAttachmentsDiskName = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $fileAttachmentsDiskName = null;
 
     protected ?Closure $getUploadedAttachmentUrlUsing = null;
 
     protected ?Closure $saveUploadedFileAttachmentsUsing = null;
 
-    protected string | Closure $fileAttachmentsVisibility = 'public';
+    /**
+     * @var \Closure|string
+     */
+    protected $fileAttachmentsVisibility = 'public';
 
-    public function fileAttachmentsDirectory(string | Closure | null $directory): static
+    /**
+     * @param \Closure|string|null $directory
+     * @return $this
+     */
+    public function fileAttachmentsDirectory($directory)
     {
         $this->fileAttachmentsDirectory = $directory;
 
         return $this;
     }
 
-    public function fileAttachmentsDisk(string | Closure | null $name): static
+    /**
+     * @param \Closure|string|null $name
+     * @return $this
+     */
+    public function fileAttachmentsDisk($name)
     {
         $this->fileAttachmentsDiskName = $name;
 
@@ -53,21 +70,33 @@ trait HasFileAttachments
         return $this->handleUploadedAttachmentUrlRetrieval($file);
     }
 
-    public function fileAttachmentsVisibility(string | Closure $visibility): static
+    /**
+     * @param \Closure|string $visibility
+     * @return $this
+     */
+    public function fileAttachmentsVisibility($visibility)
     {
         $this->fileAttachmentsVisibility = $visibility;
 
         return $this;
     }
 
-    public function getUploadedAttachmentUrlUsing(Closure | null $callback): static
+    /**
+     * @param \Closure|null $callback
+     * @return $this
+     */
+    public function getUploadedAttachmentUrlUsing($callback)
     {
         $this->getUploadedAttachmentUrlUsing = $callback;
 
         return $this;
     }
 
-    public function saveUploadedFileAttachmentsUsing(Closure | null $callback): static
+    /**
+     * @param \Closure|null $callback
+     * @return $this
+     */
+    public function saveUploadedFileAttachmentsUsing($callback)
     {
         $this->saveUploadedFileAttachmentsUsing = $callback;
 
@@ -113,7 +142,7 @@ trait HasFileAttachments
         if ($storage->getVisibility($file) === 'private' && $supportsTemporaryUrls) {
             return $storage->temporaryUrl(
                 $file,
-                now()->addMinutes(5),
+                now()->addMinutes(5)
             );
         }
 

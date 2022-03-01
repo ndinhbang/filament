@@ -8,7 +8,10 @@ trait BelongsToParentComponent
 {
     protected ?Component $parentComponent = null;
 
-    public function parentComponent(Component $component): static
+    /**
+     * @return $this
+     */
+    public function parentComponent(Component $component)
     {
         $this->parentComponent = $component;
 

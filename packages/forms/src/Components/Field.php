@@ -18,7 +18,10 @@ class Field extends Component implements Contracts\HasValidationRules
         $this->statePath($name);
     }
 
-    public static function make(string $name): static
+    /**
+     * @return $this
+     */
+    public static function make(string $name)
     {
         $static = app(static::class, ['name' => $name]);
         $static->setUp();

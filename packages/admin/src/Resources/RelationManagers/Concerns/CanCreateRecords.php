@@ -55,7 +55,7 @@ trait CanCreateRecords
 
         if ($another) {
             // Ensure that the form record is anonymized so that relationships aren't loaded.
-            $form->model($record::class);
+            $form->model(get_class($record));
             $this->mountedTableActionRecord = null;
 
             $form->fill();

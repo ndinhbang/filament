@@ -64,7 +64,7 @@ trait HasFilters
             foreach ($this->getCachedTableFilters() as $filter) {
                 $filter->apply(
                     $query,
-                    $data[$filter->getName()] ?? [],
+                    $data[$filter->getName()] ?? []
                 );
             }
         });
@@ -75,7 +75,10 @@ trait HasFilters
         return [];
     }
 
-    protected function getTableFiltersFormColumns(): int | array
+    /**
+     * @return mixed[]|int
+     */
+    protected function getTableFiltersFormColumns()
     {
         return 1;
     }
@@ -86,17 +89,21 @@ trait HasFilters
             fn (Filter $filter) => Forms\Components\Group::make()
                 ->schema($filter->getFormSchema())
                 ->statePath($filter->getName()),
-            $this->getCachedTableFilters(),
+            $this->getCachedTableFilters()
         );
     }
 
     protected function getTableFiltersFormWidth(): ?string
     {
-        return match ($this->getTableFiltersFormColumns()) {
-            2 => '2xl',
-            3 => '4xl',
-            4 => '6xl',
-            default => null,
-        };
+        switch ($this->getTableFiltersFormColumns()) {
+            case 2:
+                return '2xl';
+            case 3:
+                return '4xl';
+            case 4:
+                return '6xl';
+            default:
+                return null;
+        }
     }
 }

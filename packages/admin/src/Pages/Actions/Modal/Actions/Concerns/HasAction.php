@@ -6,14 +6,21 @@ trait HasAction
 {
     protected ?string $action = null;
 
-    public function action(string | null $action): static
+    /**
+     * @param string|null $action
+     * @return $this
+     */
+    public function action($action)
     {
         $this->action = $action;
 
         return $this;
     }
 
-    public function getAction(): string | null
+    /**
+     * @return string|null
+     */
+    public function getAction()
     {
         return $this->action;
     }

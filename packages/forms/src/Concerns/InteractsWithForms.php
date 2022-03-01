@@ -193,7 +193,7 @@ trait InteractsWithForms
             }
         }
 
-        if ($concealingComponent = $componentToFocus?->getConcealingComponent()) {
+        if ($concealingComponent = ($componentToFocus2 = $componentToFocus) ? $componentToFocus2->getConcealingComponent() : null) {
             $this->dispatchBrowserEvent('expand-concealing-component', [
                 'id' => $concealingComponent->getId(),
             ]);
@@ -214,7 +214,10 @@ trait InteractsWithForms
         return $this->cachedForms;
     }
 
-    protected function getFormModel(): Model | string | null
+    /**
+     * @return \Illuminate\Database\Eloquent\Model|string|null
+     */
+    protected function getFormModel()
     {
         return null;
     }

@@ -8,23 +8,37 @@ use Filament\Forms\Components\Field;
 
 trait HasComponents
 {
-    protected array | Closure $components = [];
+    /**
+     * @var mixed[]|\Closure
+     */
+    protected $components = [];
 
-    public function components(array | Closure $components): static
+    /**
+     * @param mixed[]|\Closure $components
+     * @return $this
+     */
+    public function components($components)
     {
         $this->components = $components;
 
         return $this;
     }
 
-    public function schema(array | Closure $components): static
+    /**
+     * @param mixed[]|\Closure $components
+     * @return $this
+     */
+    public function schema($components)
     {
         $this->components($components);
 
         return $this;
     }
 
-    public function getComponent(string | Closure $callback, bool $withHidden = false): ?Component
+    /**
+     * @param \Closure|string $callback
+     */
+    public function getComponent($callback, bool $withHidden = false): ?Component
     {
         $callback = $callback instanceof Closure
              ? $callback
@@ -71,7 +85,7 @@ trait HasComponents
 
         return array_filter(
             $components,
-            fn (Component $component) => ! $component->isHidden(),
+            fn (Component $component) => ! $component->isHidden()
         );
     }
 }

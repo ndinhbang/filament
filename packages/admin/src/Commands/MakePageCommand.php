@@ -57,13 +57,13 @@ class MakePageCommand extends Command
             (string) Str::of($page)
                 ->prepend($resource === null ? 'Filament\\Pages\\' : "Filament\\Resources\\{$resource}\\Pages\\")
                 ->replace('\\', '/')
-                ->append('.php'),
+                ->append('.php')
         );
         $viewPath = resource_path(
             (string) Str::of($view)
                 ->replace('.', '/')
                 ->prepend('views/')
-                ->append('.blade.php'),
+                ->append('.blade.php')
         );
 
         if (! $this->option('force') && $this->checkForCollision([

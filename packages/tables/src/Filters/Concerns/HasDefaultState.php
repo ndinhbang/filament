@@ -6,7 +6,10 @@ trait HasDefaultState
 {
     protected $defaultState = null;
 
-    public function default($state = true): static
+    /**
+     * @return $this
+     */
+    public function default($state = true)
     {
         $this->defaultState = $state;
 

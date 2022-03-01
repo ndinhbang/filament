@@ -57,14 +57,14 @@ class MakeWidgetCommand extends Command
             (string) Str::of($widget)
                 ->prepend($resource === null ? 'Filament\\Widgets\\' : "Filament\\Resources\\{$resource}\\Widgets\\")
                 ->replace('\\', '/')
-                ->append('.php'),
+                ->append('.php')
         );
 
         $viewPath = resource_path(
             (string) Str::of($view)
                 ->replace('.', '/')
                 ->prepend('views/')
-                ->append('.blade.php'),
+                ->append('.blade.php')
         );
 
         if (! $this->option('force') && $this->checkForCollision([
@@ -86,7 +86,7 @@ class MakeWidgetCommand extends Command
                     'Polar area chart',
                     'Radar chart',
                     'Scatter chart',
-                ],
+                ]
             );
 
             $this->copyStubToApp('ChartWidget', $path, [

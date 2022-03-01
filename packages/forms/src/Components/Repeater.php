@@ -14,13 +14,25 @@ class Repeater extends Field
 
     protected string $view = 'forms::components.repeater';
 
-    protected string | Closure | null $createItemButtonLabel = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $createItemButtonLabel = null;
 
-    protected bool | Closure $isItemCreationDisabled = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $isItemCreationDisabled = false;
 
-    protected bool | Closure $isItemDeletionDisabled = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $isItemDeletionDisabled = false;
 
-    protected bool | Closure $isItemMovementDisabled = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $isItemMovementDisabled = false;
 
     protected function setUp(): void
     {
@@ -128,14 +140,22 @@ class Repeater extends Field
         });
     }
 
-    public function createItemButtonLabel(string | Closure | null $label): static
+    /**
+     * @param \Closure|string|null $label
+     * @return $this
+     */
+    public function createItemButtonLabel($label)
     {
         $this->createItemButtonLabel = $label;
 
         return $this;
     }
 
-    public function defaultItems(int | Closure $count): static
+    /**
+     * @param \Closure|int $count
+     * @return $this
+     */
+    public function defaultItems($count)
     {
         $this->default(function (Repeater $component) use ($count): array {
             $items = [];
@@ -156,21 +176,33 @@ class Repeater extends Field
         return $this;
     }
 
-    public function disableItemCreation(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function disableItemCreation($condition = true)
     {
         $this->isItemCreationDisabled = $condition;
 
         return $this;
     }
 
-    public function disableItemDeletion(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function disableItemDeletion($condition = true)
     {
         $this->isItemDeletionDisabled = $condition;
 
         return $this;
     }
 
-    public function disableItemMovement(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function disableItemMovement($condition = true)
     {
         $this->isItemMovementDisabled = $condition;
 

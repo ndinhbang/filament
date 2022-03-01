@@ -11,9 +11,16 @@ class IconColumn extends Column
 
     protected string $view = 'tables::columns.icon-column';
 
-    protected array | Arrayable | Closure $options = [];
+    /**
+     * @var mixed[]|\Closure|\Illuminate\Contracts\Support\Arrayable
+     */
+    protected $options = [];
 
-    public function options(array | Arrayable | Closure $options): static
+    /**
+     * @param mixed[]|\Closure|\Illuminate\Contracts\Support\Arrayable $options
+     * @return $this
+     */
+    public function options($options)
     {
         $this->options = $options;
 

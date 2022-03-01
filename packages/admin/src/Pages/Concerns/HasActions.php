@@ -115,7 +115,10 @@ trait HasActions
         return $this->mountedActionForm;
     }
 
-    protected function getMountedActionFormModel(): Model | string | null
+    /**
+     * @return \Illuminate\Database\Eloquent\Model|string|null
+     */
+    protected function getMountedActionFormModel()
     {
         return null;
     }

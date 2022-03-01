@@ -6,9 +6,16 @@ use Closure;
 
 trait HasExtraAttributes
 {
-    protected array | Closure $extraAttributes = [];
+    /**
+     * @var mixed[]|\Closure
+     */
+    protected $extraAttributes = [];
 
-    public function extraAttributes(array | Closure $attributes): static
+    /**
+     * @param mixed[]|\Closure $attributes
+     * @return $this
+     */
+    public function extraAttributes($attributes)
     {
         $this->extraAttributes = $attributes;
 

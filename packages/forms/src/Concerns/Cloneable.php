@@ -4,7 +4,10 @@ namespace Filament\Forms\Concerns;
 
 trait Cloneable
 {
-    public function cloneComponents(): static
+    /**
+     * @return $this
+     */
+    public function cloneComponents()
     {
         $components = [];
 
@@ -15,7 +18,10 @@ trait Cloneable
         return $this->components($components);
     }
 
-    public function getClone(): static
+    /**
+     * @return $this
+     */
+    public function getClone()
     {
         $clone = clone $this;
         $clone->cloneComponents();

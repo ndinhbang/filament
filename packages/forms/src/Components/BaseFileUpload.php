@@ -14,29 +14,65 @@ use Livewire\TemporaryUploadedFile;
 
 class BaseFileUpload extends Field
 {
-    protected array | Arrayable | Closure | null $acceptedFileTypes = null;
+    /**
+     * @var mixed[]|\Closure|\Illuminate\Contracts\Support\Arrayable|null
+     */
+    protected $acceptedFileTypes = null;
 
-    protected bool | Closure $canReorder = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $canReorder = false;
 
-    protected bool | Closure $canPreview = true;
+    /**
+     * @var bool|\Closure
+     */
+    protected $canPreview = true;
 
-    protected string | Closure | null $directory = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $directory = null;
 
-    protected string | Closure | null $diskName = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $diskName = null;
 
-    protected bool | Closure $isMultiple = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $isMultiple = false;
 
-    protected int | Closure | null $maxSize = null;
+    /**
+     * @var \Closure|int|null
+     */
+    protected $maxSize = null;
 
-    protected int | Closure | null $minSize = null;
+    /**
+     * @var \Closure|int|null
+     */
+    protected $minSize = null;
 
-    protected int | Closure | null $maxFiles = null;
+    /**
+     * @var \Closure|int|null
+     */
+    protected $maxFiles = null;
 
-    protected int | Closure | null $minFiles = null;
+    /**
+     * @var \Closure|int|null
+     */
+    protected $minFiles = null;
 
-    protected bool | Closure $shouldPreserveFilenames = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $shouldPreserveFilenames = false;
 
-    protected string | Closure $visibility = 'public';
+    /**
+     * @var \Closure|string
+     */
+    protected $visibility = 'public';
 
     protected ?Closure $deleteUploadedFileUsing = null;
 
@@ -50,7 +86,7 @@ class BaseFileUpload extends Field
     {
         parent::setUp();
 
-        $this->afterStateHydrated(function (BaseFileUpload $component, string | array | null $state): void {
+        $this->afterStateHydrated(function (BaseFileUpload $component, $state): void {
             if (blank($state)) {
                 $component->state([]);
 
@@ -80,7 +116,7 @@ class BaseFileUpload extends Field
             $component->saveUploadedFiles();
         });
 
-        $this->dehydrateStateUsing(function (BaseFileUpload $component, ?array $state): string | array | null {
+        $this->dehydrateStateUsing(function (BaseFileUpload $component, ?array $state) {
             $files = array_values($state ?? []);
 
             if ($component->isMultiple()) {
@@ -101,7 +137,7 @@ class BaseFileUpload extends Field
             if ($storage->getVisibility($file) === 'private' && $supportsTemporaryUrls) {
                 return $storage->temporaryUrl(
                     $file,
-                    now()->addMinutes(5),
+                    now()->addMinutes(5)
                 );
             }
 
@@ -117,7 +153,11 @@ class BaseFileUpload extends Field
         });
     }
 
-    public function acceptedFileTypes(array | Arrayable | Closure $types): static
+    /**
+     * @param mixed[]|\Closure|\Illuminate\Contracts\Support\Arrayable $types
+     * @return $this
+     */
+    public function acceptedFileTypes($types)
     {
         $this->acceptedFileTypes = $types;
 
@@ -130,42 +170,65 @@ class BaseFileUpload extends Field
         return $this;
     }
 
-    public function directory(string | Closure | null $directory): static
+    /**
+     * @param \Closure|string|null $directory
+     * @return $this
+     */
+    public function directory($directory)
     {
         $this->directory = $directory;
 
         return $this;
     }
 
-    public function disk($name): static
+    /**
+     * @return $this
+     */
+    public function disk($name)
     {
         $this->diskName = $name;
 
         return $this;
     }
 
-    public function enableReordering(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function enableReordering($condition = true)
     {
         $this->canReorder = $condition;
 
         return $this;
     }
 
-    public function disablePreview(bool | Closure $condition = false): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function disablePreview($condition = false)
     {
         $this->canPreview = $condition;
 
         return $this;
     }
 
-    public function preserveFilenames(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function preserveFilenames($condition = true)
     {
         $this->shouldPreserveFilenames = $condition;
 
         return $this;
     }
 
-    public function maxSize(int | Closure | null $size): static
+    /**
+     * @param \Closure|int|null $size
+     * @return $this
+     */
+    public function maxSize($size)
     {
         $this->maxSize = $size;
 
@@ -178,7 +241,11 @@ class BaseFileUpload extends Field
         return $this;
     }
 
-    public function minSize(int | Closure | null $size): static
+    /**
+     * @param \Closure|int|null $size
+     * @return $this
+     */
+    public function minSize($size)
     {
         $this->minSize = $size;
 
@@ -191,56 +258,84 @@ class BaseFileUpload extends Field
         return $this;
     }
 
-    public function maxFiles(int | Closure | null $count): static
+    /**
+     * @param \Closure|int|null $count
+     * @return $this
+     */
+    public function maxFiles($count)
     {
         $this->maxFiles = $count;
 
         return $this;
     }
 
-    public function minFiles(int | Closure | null $count): static
+    /**
+     * @param \Closure|int|null $count
+     * @return $this
+     */
+    public function minFiles($count)
     {
         $this->minFiles = $count;
 
         return $this;
     }
 
-    public function multiple(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function multiple($condition = true)
     {
         $this->isMultiple = $condition;
 
         return $this;
     }
 
-    public function visibility(string | Closure | null $visibility): static
+    /**
+     * @param \Closure|string|null $visibility
+     * @return $this
+     */
+    public function visibility($visibility)
     {
         $this->visibility = $visibility;
 
         return $this;
     }
 
-    public function deleteUploadedFileUsing(?Closure $callback): static
+    /**
+     * @return $this
+     */
+    public function deleteUploadedFileUsing(?Closure $callback)
     {
         $this->deleteUploadedFileUsing = $callback;
 
         return $this;
     }
 
-    public function getUploadedFileUrlUsing(?Closure $callback): static
+    /**
+     * @return $this
+     */
+    public function getUploadedFileUrlUsing(?Closure $callback)
     {
         $this->getUploadedFileUrlUsing = $callback;
 
         return $this;
     }
 
-    public function reorderUploadedFilesUsing(?Closure $callback): static
+    /**
+     * @return $this
+     */
+    public function reorderUploadedFilesUsing(?Closure $callback)
     {
         $this->reorderUploadedFilesUsing = $callback;
 
         return $this;
     }
 
-    public function saveUploadedFileUsing(?Closure $callback): static
+    /**
+     * @return $this
+     */
+    public function saveUploadedFileUsing(?Closure $callback)
     {
         $this->saveUploadedFileUsing = $callback;
 
@@ -319,14 +414,14 @@ class BaseFileUpload extends Field
         }
 
         $rules[] = function (string $attribute, array $value, Closure $fail): void {
-            $files = array_filter($value, fn (TemporaryUploadedFile | string $file): bool => $file instanceof TemporaryUploadedFile);
+            $files = array_filter($value, fn ($file): bool => $file instanceof TemporaryUploadedFile);
 
             $name = $this->getName();
 
             $validator = Validator::make(
-                data: [$name => $files],
-                rules: ["{$name}.*" => array_merge(['file'], parent::getValidationRules())],
-                customAttributes: ["{$name}.*" => $this->getValidationAttribute()],
+                [$name => $files],
+                ["{$name}.*" => array_merge(['file'], parent::getValidationRules())],
+                ["{$name}.*" => $this->getValidationAttribute()]
             );
 
             if (! $validator->fails()) {
@@ -339,7 +434,10 @@ class BaseFileUpload extends Field
         return $rules;
     }
 
-    public function deleteUploadedFile(string $fileKey): static
+    /**
+     * @return $this
+     */
+    public function deleteUploadedFile(string $fileKey)
     {
         $file = $this->removeUploadedFile($fileKey);
 
@@ -360,7 +458,10 @@ class BaseFileUpload extends Field
         return $this;
     }
 
-    public function removeUploadedFile(string $fileKey): string | TemporaryUploadedFile | null
+    /**
+     * @return \Livewire\TemporaryUploadedFile|string|null
+     */
+    public function removeUploadedFile(string $fileKey)
     {
         $files = $this->getState();
         $file = $files[$fileKey] ?? null;
@@ -428,7 +529,7 @@ class BaseFileUpload extends Field
             $this->state([$this->getState()]);
         }
 
-        $state = array_map(function (TemporaryUploadedFile | string $file) {
+        $state = array_map(function ($file) {
             if (! $file instanceof TemporaryUploadedFile) {
                 return $file;
             }

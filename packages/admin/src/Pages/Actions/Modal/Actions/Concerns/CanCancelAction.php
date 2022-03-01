@@ -6,7 +6,10 @@ trait CanCancelAction
 {
     protected bool $canCancelAction = false;
 
-    public function cancel(bool $condition = true): static
+    /**
+     * @return $this
+     */
+    public function cancel(bool $condition = true)
     {
         $this->canCancelAction = $condition;
 

@@ -7,16 +7,27 @@ use Filament\Forms\ComponentContainer;
 
 trait HasChildComponents
 {
-    protected array | Closure $childComponents = [];
+    /**
+     * @var mixed[]|\Closure
+     */
+    protected $childComponents = [];
 
-    public function childComponents(array | Closure $components): static
+    /**
+     * @param mixed[]|\Closure $components
+     * @return $this
+     */
+    public function childComponents($components)
     {
         $this->childComponents = $components;
 
         return $this;
     }
 
-    public function schema(array | Closure $components): static
+    /**
+     * @param mixed[]|\Closure $components
+     * @return $this
+     */
+    public function schema($components)
     {
         $this->childComponents($components);
 

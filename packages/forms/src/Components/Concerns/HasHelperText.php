@@ -6,9 +6,16 @@ use Closure;
 
 trait HasHelperText
 {
-    protected string | Closure | null $helperText = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $helperText = null;
 
-    public function helperText(string | Closure | null $text): static
+    /**
+     * @param \Closure|string|null $text
+     * @return $this
+     */
+    public function helperText($text)
     {
         $this->helperText = $text;
 

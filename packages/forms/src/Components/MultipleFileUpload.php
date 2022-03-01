@@ -11,11 +11,20 @@ class MultipleFileUpload extends Field
 {
     protected string $view = 'forms::components.multiple-file-upload';
 
-    protected int | Closure | null $maxFiles = null;
+    /**
+     * @var \Closure|int|null
+     */
+    protected $maxFiles = null;
 
-    protected int | Closure | null $minFiles = null;
+    /**
+     * @var \Closure|int|null
+     */
+    protected $minFiles = null;
 
-    protected BaseFileUpload | Closure | null $uploadComponent = null;
+    /**
+     * @var \Closure|\Filament\Forms\Components\BaseFileUpload|null
+     */
+    protected $uploadComponent = null;
 
     protected function setUp(): void
     {
@@ -26,21 +35,33 @@ class MultipleFileUpload extends Field
         });
     }
 
-    public function maxFiles(int | Closure | null $count): static
+    /**
+     * @param \Closure|int|null $count
+     * @return $this
+     */
+    public function maxFiles($count)
     {
         $this->maxFiles = $count;
 
         return $this;
     }
 
-    public function minFiles(int | Closure | null $count): static
+    /**
+     * @param \Closure|int|null $count
+     * @return $this
+     */
+    public function minFiles($count)
     {
         $this->minFiles = $count;
 
         return $this;
     }
 
-    public function uploadComponent(Component | Closure | null $component): static
+    /**
+     * @param \Closure|\Filament\Forms\Components\Component|null $component
+     * @return $this
+     */
+    public function uploadComponent($component)
     {
         $this->uploadComponent = $component;
 

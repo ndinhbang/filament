@@ -10,18 +10,28 @@ class SelectAction extends Action
 
     protected string $view = 'filament::pages.actions.select-action';
 
-    protected array | Arrayable $options = [];
+    /**
+     * @var mixed[]|\Illuminate\Contracts\Support\Arrayable
+     */
+    protected $options = [];
 
     protected ?string $placeholder = null;
 
-    public function options(array | Arrayable $options): static
+    /**
+     * @param mixed[]|\Illuminate\Contracts\Support\Arrayable $options
+     * @return $this
+     */
+    public function options($options)
     {
         $this->options = $options;
 
         return $this;
     }
 
-    public function placeholder(string $placeholder): static
+    /**
+     * @return $this
+     */
+    public function placeholder(string $placeholder)
     {
         $this->placeholder = $placeholder;
 

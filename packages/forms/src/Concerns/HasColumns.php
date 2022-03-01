@@ -15,7 +15,11 @@ trait HasColumns
         '2xl' => null,
     ];
 
-    public function columns(array | int | null $columns = 2): static
+    /**
+     * @param mixed[]|int|null $columns
+     * @return $this
+     */
+    public function columns($columns = 2)
     {
         if (! is_array($columns)) {
             $columns = [
@@ -28,7 +32,10 @@ trait HasColumns
         return $this;
     }
 
-    public function getColumns($breakpoint = null): array | int | null
+    /**
+     * @return mixed[]|int|null
+     */
+    public function getColumns($breakpoint = null)
     {
         if ($this instanceof ComponentContainer && $this->getParentComponent()) {
             $columns = $this->getParentComponent()->getColumns();

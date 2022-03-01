@@ -84,7 +84,7 @@ class EditRecord extends Page implements HasFormActions
             $this->notify(
                 'success',
                 $this->getSavedNotificationMessage(),
-                isAfterRedirect: $shouldRedirect,
+                $shouldRedirect
             );
         }
 
@@ -131,7 +131,7 @@ class EditRecord extends Page implements HasFormActions
             $this->notify(
                 'success',
                 $this->getDeletedNotificationMessage(),
-                isAfterRedirect: true,
+                true
             );
         }
 
@@ -149,7 +149,7 @@ class EditRecord extends Page implements HasFormActions
 
         return array_merge(
             (($resource::hasPage('view') && $resource::canView($this->record)) ? [$this->getViewAction()] : []),
-            ($resource::canDelete($this->record) ? [$this->getDeleteAction()] : []),
+            ($resource::canDelete($this->record) ? [$this->getDeleteAction()] : [])
         );
     }
 

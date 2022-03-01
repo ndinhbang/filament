@@ -12,38 +12,81 @@ class FileUpload extends BaseFileUpload
 
     protected string $view = 'forms::components.file-upload';
 
-    protected string | Closure | null $imageCropAspectRatio = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $imageCropAspectRatio = null;
 
-    protected string | Closure | null $imagePreviewHeight = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $imagePreviewHeight = null;
 
-    protected string | Closure | null $imageResizeTargetHeight = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $imageResizeTargetHeight = null;
 
-    protected string | Closure | null $imageResizeTargetWidth = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $imageResizeTargetWidth = null;
 
-    protected bool | Closure $isAvatar = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $isAvatar = false;
 
-    protected string | Closure $loadingIndicatorPosition = 'right';
+    /**
+     * @var \Closure|string
+     */
+    protected $loadingIndicatorPosition = 'right';
 
-    protected string | Closure | null $panelAspectRatio = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $panelAspectRatio = null;
 
-    protected string | Closure | null $panelLayout = 'compact';
+    /**
+     * @var \Closure|string|null
+     */
+    protected $panelLayout = 'compact';
 
-    protected string | Closure $removeUploadedFileButtonPosition = 'left';
+    /**
+     * @var \Closure|string
+     */
+    protected $removeUploadedFileButtonPosition = 'left';
 
-    protected bool | Closure $shouldAppendFiles = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $shouldAppendFiles = false;
 
-    protected string | Closure $uploadButtonPosition = 'right';
+    /**
+     * @var \Closure|string
+     */
+    protected $uploadButtonPosition = 'right';
 
-    protected string | Closure $uploadProgressIndicatorPosition = 'right';
+    /**
+     * @var \Closure|string
+     */
+    protected $uploadProgressIndicatorPosition = 'right';
 
-    public function appendFiles(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function appendFiles($condition = true)
     {
         $this->shouldAppendFiles = $condition;
 
         return $this;
     }
 
-    public function avatar(): static
+    /**
+     * @return $this
+     */
+    public function avatar()
     {
         $this->isAvatar = true;
 
@@ -60,14 +103,21 @@ class FileUpload extends BaseFileUpload
         return $this;
     }
 
-    public function idleLabel(string | Closure | null $label): static
+    /**
+     * @param \Closure|string|null $label
+     * @return $this
+     */
+    public function idleLabel($label)
     {
         $this->placeholder($label);
 
         return $this;
     }
 
-    public function image(): static
+    /**
+     * @return $this
+     */
+    public function image()
     {
         $this->acceptedFileTypes([
             'image/*',
@@ -76,70 +126,110 @@ class FileUpload extends BaseFileUpload
         return $this;
     }
 
-    public function imageCropAspectRatio(string | Closure | null $ratio): static
+    /**
+     * @param \Closure|string|null $ratio
+     * @return $this
+     */
+    public function imageCropAspectRatio($ratio)
     {
         $this->imageCropAspectRatio = $ratio;
 
         return $this;
     }
 
-    public function imagePreviewHeight(string | Closure | null $height): static
+    /**
+     * @param \Closure|string|null $height
+     * @return $this
+     */
+    public function imagePreviewHeight($height)
     {
         $this->imagePreviewHeight = $height;
 
         return $this;
     }
 
-    public function imageResizeTargetHeight(string | Closure | null $height): static
+    /**
+     * @param \Closure|string|null $height
+     * @return $this
+     */
+    public function imageResizeTargetHeight($height)
     {
         $this->imageResizeTargetHeight = $height;
 
         return $this;
     }
 
-    public function imageResizeTargetWidth(string | Closure | null $width): static
+    /**
+     * @param \Closure|string|null $width
+     * @return $this
+     */
+    public function imageResizeTargetWidth($width)
     {
         $this->imageResizeTargetWidth = $width;
 
         return $this;
     }
 
-    public function loadingIndicatorPosition(string | Closure | null $position): static
+    /**
+     * @param \Closure|string|null $position
+     * @return $this
+     */
+    public function loadingIndicatorPosition($position)
     {
         $this->loadingIndicatorPosition = $position;
 
         return $this;
     }
 
-    public function panelAspectRatio(string | Closure | null $ratio): static
+    /**
+     * @param \Closure|string|null $ratio
+     * @return $this
+     */
+    public function panelAspectRatio($ratio)
     {
         $this->panelAspectRatio = $ratio;
 
         return $this;
     }
 
-    public function panelLayout(string | Closure | null $layout): static
+    /**
+     * @param \Closure|string|null $layout
+     * @return $this
+     */
+    public function panelLayout($layout)
     {
         $this->panelLayout = $layout;
 
         return $this;
     }
 
-    public function removeUploadedFileButtonPosition(string | Closure | null $position): static
+    /**
+     * @param \Closure|string|null $position
+     * @return $this
+     */
+    public function removeUploadedFileButtonPosition($position)
     {
         $this->removeUploadedFileButtonPosition = $position;
 
         return $this;
     }
 
-    public function uploadButtonPosition(string | Closure | null $position): static
+    /**
+     * @param \Closure|string|null $position
+     * @return $this
+     */
+    public function uploadButtonPosition($position)
     {
         $this->uploadButtonPosition = $position;
 
         return $this;
     }
 
-    public function uploadProgressIndicatorPosition(string | Closure | null $position): static
+    /**
+     * @param \Closure|string|null $position
+     * @return $this
+     */
+    public function uploadProgressIndicatorPosition($position)
     {
         $this->uploadProgressIndicatorPosition = $position;
 

@@ -10,9 +10,16 @@ class TextColumn extends Column
 
     protected string $view = 'tables::columns.text-column';
 
-    protected bool | Closure $canWrap = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $canWrap = false;
 
-    public function wrap(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function wrap($condition = true)
     {
         $this->canWrap = $condition;
 

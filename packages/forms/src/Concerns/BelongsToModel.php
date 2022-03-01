@@ -6,9 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 trait BelongsToModel
 {
-    public Model | string | null $model = null;
+    /**
+     * @var \Illuminate\Database\Eloquent\Model|string|null
+     */
+    public $model = null;
 
-    public function model(Model | string | null $model = null): static
+    /**
+     * @param \Illuminate\Database\Eloquent\Model|string|null $model
+     * @return $this
+     */
+    public function model($model = null)
     {
         $this->model = $model;
 
@@ -37,14 +44,14 @@ trait BelongsToModel
         $model = $this->model;
 
         if ($model instanceof Model) {
-            return $model::class;
+            return get_class($model);
         }
 
         if (filled($model)) {
             return $model;
         }
 
-        return $this->getParentComponent()?->getModel();
+        return ($getParentComponent = $this->getParentComponent()) ? $getParentComponent->getModel() : null;
     }
 
     public function getRecord(): ?Model
@@ -59,7 +66,7 @@ trait BelongsToModel
             return null;
         }
 
-        return $this->getParentComponent()?->getRecord();
+        return ($getParentComponent = $this->getParentComponent()) ? $getParentComponent->getRecord() : null;
     }
 
     public function getModelInstance(): ?Model
@@ -67,7 +74,7 @@ trait BelongsToModel
         $model = $this->model;
 
         if ($model === null) {
-            return $this->getParentComponent()?->getModelInstance();
+            return ($getParentComponent = $this->getParentComponent()) ? $getParentComponent->getModelInstance() : null;
         }
 
         if ($model instanceof Model) {

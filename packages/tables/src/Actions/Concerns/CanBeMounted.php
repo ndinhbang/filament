@@ -9,7 +9,10 @@ trait CanBeMounted
 {
     protected ?Closure $mountUsing = null;
 
-    public function mountUsing(?Closure $callback): static
+    /**
+     * @return $this
+     */
+    public function mountUsing(?Closure $callback)
     {
         $this->mountUsing = $callback;
 

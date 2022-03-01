@@ -7,11 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 trait BelongsToModel
 {
-    protected Model | string | Closure | null $model = null;
+    /**
+     * @var \Closure|\Illuminate\Database\Eloquent\Model|string|null
+     */
+    protected $model = null;
 
     protected ?Closure $saveRelationshipsUsing = null;
 
-    public function model(Model | string | Closure | null $model = null): static
+    /**
+     * @param \Closure|\Illuminate\Database\Eloquent\Model|string|null $model
+     * @return $this
+     */
+    public function model($model = null)
     {
         $this->model = $model;
 
@@ -29,7 +36,10 @@ trait BelongsToModel
         $this->evaluate($callback);
     }
 
-    public function saveRelationshipsUsing(?Closure $callback): static
+    /**
+     * @return $this
+     */
+    public function saveRelationshipsUsing(?Closure $callback)
     {
         $this->saveRelationshipsUsing = $callback;
 
@@ -41,7 +51,7 @@ trait BelongsToModel
         $model = $this->evaluate($this->model);
 
         if ($model instanceof Model) {
-            return $model::class;
+            return get_class($model);
         }
 
         if (filled($model)) {

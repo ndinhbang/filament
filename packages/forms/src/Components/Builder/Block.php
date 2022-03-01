@@ -13,19 +13,29 @@ class Block extends Component
 
     protected string $view = 'forms::components.builder.block';
 
-    protected string | Closure | null $icon = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $icon = null;
 
     final public function __construct(string $name)
     {
         $this->name($name);
     }
 
-    public static function make(string $name): static
+    /**
+     * @return $this
+     */
+    public static function make(string $name)
     {
         return app(static::class, ['name' => $name]);
     }
 
-    public function icon(string | Closure | null $icon): static
+    /**
+     * @param \Closure|string|null $icon
+     * @return $this
+     */
+    public function icon($icon)
     {
         $this->icon = $icon;
 

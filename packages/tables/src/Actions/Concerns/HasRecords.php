@@ -8,7 +8,10 @@ trait HasRecords
 {
     protected ?Collection $records = null;
 
-    public function records(Collection $records): static
+    /**
+     * @return $this
+     */
+    public function records(Collection $records)
     {
         $this->records = $records;
 

@@ -13,7 +13,10 @@ class MarkdownEditor extends Field implements Contracts\HasFileAttachments
 
     protected string $view = 'forms::components.markdown-editor';
 
-    protected array | Closure $toolbarButtons = [
+    /**
+     * @var mixed[]|\Closure
+     */
+    protected $toolbarButtons = [
         'attachFiles',
         'bold',
         'bulletList',

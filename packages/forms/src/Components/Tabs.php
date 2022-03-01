@@ -15,7 +15,10 @@ class Tabs extends Component
         $this->label($label);
     }
 
-    public static function make(string $label): static
+    /**
+     * @return $this
+     */
+    public static function make(string $label)
     {
         $static = app(static::class, ['label' => $label]);
         $static->setUp();
@@ -23,7 +26,10 @@ class Tabs extends Component
         return $static;
     }
 
-    public function tabs(array $tabs): static
+    /**
+     * @return $this
+     */
+    public function tabs(array $tabs)
     {
         $this->schema($tabs);
 

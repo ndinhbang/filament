@@ -6,7 +6,10 @@ trait HasFormSchema
 {
     protected array $formSchema = [];
 
-    public function form(array $schema): static
+    /**
+     * @return $this
+     */
+    public function form(array $schema)
     {
         $this->formSchema = $schema;
 

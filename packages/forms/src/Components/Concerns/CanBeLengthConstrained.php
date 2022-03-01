@@ -6,11 +6,21 @@ use Closure;
 
 trait CanBeLengthConstrained
 {
-    protected int | Closure | null $maxLength = null;
+    /**
+     * @var \Closure|int|null
+     */
+    protected $maxLength = null;
 
-    protected int | Closure | null $minLength = null;
+    /**
+     * @var \Closure|int|null
+     */
+    protected $minLength = null;
 
-    public function maxLength(int | Closure $length): static
+    /**
+     * @param \Closure|int $length
+     * @return $this
+     */
+    public function maxLength($length)
     {
         $this->maxLength = $length;
 
@@ -23,7 +33,11 @@ trait CanBeLengthConstrained
         return $this;
     }
 
-    public function minLength(int | Closure $length): static
+    /**
+     * @param \Closure|int $length
+     * @return $this
+     */
+    public function minLength($length)
     {
         $this->minLength = $length;
 

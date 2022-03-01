@@ -7,11 +7,21 @@ use Filament\Forms\Components\Component;
 
 trait CanLimitItemsLength
 {
-    protected int | Closure | null $maxItems = null;
+    /**
+     * @var \Closure|int|null
+     */
+    protected $maxItems = null;
 
-    protected int | Closure | null $minItems = null;
+    /**
+     * @var \Closure|int|null
+     */
+    protected $minItems = null;
 
-    public function maxItems(int | Closure | null $count): static
+    /**
+     * @param \Closure|int|null $count
+     * @return $this
+     */
+    public function maxItems($count)
     {
         $this->maxItems = $count;
 
@@ -27,7 +37,11 @@ trait CanLimitItemsLength
         return $this;
     }
 
-    public function minItems(int | Closure | null $count): static
+    /**
+     * @param \Closure|int|null $count
+     * @return $this
+     */
+    public function minItems($count)
     {
         $this->minItems = $count;
 

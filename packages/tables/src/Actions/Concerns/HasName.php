@@ -6,7 +6,10 @@ trait HasName
 {
     protected string $name;
 
-    public function name(string $name): static
+    /**
+     * @return $this
+     */
+    public function name(string $name)
     {
         $this->name = $name;
 

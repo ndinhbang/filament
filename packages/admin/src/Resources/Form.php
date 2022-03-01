@@ -8,34 +8,54 @@ use Filament\Forms\Components\Grid;
 
 class Form
 {
-    protected array | int | null $columns = null;
+    /**
+     * @var mixed[]|int|null
+     */
+    protected $columns = null;
 
-    protected array | Component | Closure $schema = [];
+    /**
+     * @var mixed[]|\Closure|\Filament\Forms\Components\Component
+     */
+    protected $schema = [];
 
     final public function __construct()
     {
     }
 
-    public static function make(): static
+    /**
+     * @return $this
+     */
+    public static function make()
     {
         return app(static::class);
     }
 
-    public function columns(array | int | null $columns): static
+    /**
+     * @param mixed[]|int|null $columns
+     * @return $this
+     */
+    public function columns($columns)
     {
         $this->columns = $columns;
 
         return $this;
     }
 
-    public function schema(array | Component | Closure $schema): static
+    /**
+     * @param mixed[]|\Closure|\Filament\Forms\Components\Component $schema
+     * @return $this
+     */
+    public function schema($schema)
     {
         $this->schema = $schema;
 
         return $this;
     }
 
-    public function getColumns(): array | int | null
+    /**
+     * @return mixed[]|int|null
+     */
+    public function getColumns()
     {
         return $this->columns;
     }

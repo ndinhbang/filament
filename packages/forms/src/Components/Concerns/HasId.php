@@ -6,9 +6,16 @@ use Closure;
 
 trait HasId
 {
-    protected string | Closure | null $id = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $id = null;
 
-    public function id(string | Closure | null $id): static
+    /**
+     * @param \Closure|string|null $id
+     * @return $this
+     */
+    public function id($id)
     {
         $this->id = $id;
 

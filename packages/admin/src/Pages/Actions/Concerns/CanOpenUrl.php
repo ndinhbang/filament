@@ -8,16 +8,26 @@ trait CanOpenUrl
 {
     protected bool $shouldOpenUrlInNewTab = false;
 
-    protected string | Closure | null $url = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $url = null;
 
-    public function openUrlInNewTab(bool $condition = true): static
+    /**
+     * @return $this
+     */
+    public function openUrlInNewTab(bool $condition = true)
     {
         $this->shouldOpenUrlInNewTab = $condition;
 
         return $this;
     }
 
-    public function url(string | Closure | null $url, bool $shouldOpenInNewTab = false): static
+    /**
+     * @param \Closure|string|null $url
+     * @return $this
+     */
+    public function url($url, bool $shouldOpenInNewTab = false)
     {
         $this->shouldOpenUrlInNewTab = $shouldOpenInNewTab;
         $this->url = $url;

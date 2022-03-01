@@ -6,7 +6,10 @@ use Closure;
 
 trait InteractsWithToolbarButtons
 {
-    public function disableAllToolbarButtons(bool $condition = true): static
+    /**
+     * @return $this
+     */
+    public function disableAllToolbarButtons(bool $condition = true)
     {
         if ($condition) {
             $this->toolbarButtons = [];
@@ -15,7 +18,10 @@ trait InteractsWithToolbarButtons
         return $this;
     }
 
-    public function disableToolbarButtons(array $buttonsToDisable = []): static
+    /**
+     * @return $this
+     */
+    public function disableToolbarButtons(array $buttonsToDisable = [])
     {
         $this->toolbarButtons = collect($this->getToolbarButtons())
             ->filter(fn ($button) => ! in_array($button, $buttonsToDisable))
@@ -24,14 +30,21 @@ trait InteractsWithToolbarButtons
         return $this;
     }
 
-    public function enableToolbarButtons(array $buttonsToEnable = []): static
+    /**
+     * @return $this
+     */
+    public function enableToolbarButtons(array $buttonsToEnable = [])
     {
         $this->toolbarButtons = array_merge($this->getToolbarButtons(), $buttonsToEnable);
 
         return $this;
     }
 
-    public function toolbarButtons(array | Closure $buttons = []): static
+    /**
+     * @param mixed[]|\Closure $buttons
+     * @return $this
+     */
+    public function toolbarButtons($buttons = [])
     {
         $this->toolbarButtons = $buttons;
 
@@ -43,7 +56,10 @@ trait InteractsWithToolbarButtons
         return $this->evaluate($this->toolbarButtons);
     }
 
-    public function hasToolbarButton(string | array $button): bool
+    /**
+     * @param mixed[]|string $button
+     */
+    public function hasToolbarButton($button): bool
     {
         if (is_array($button)) {
             $buttons = $button;

@@ -15,14 +15,20 @@ trait HasState
 
     protected ?Closure $getStateUsing = null;
 
-    public function getStateUsing(?Closure $callback): static
+    /**
+     * @return $this
+     */
+    public function getStateUsing(?Closure $callback)
     {
         $this->getStateUsing = $callback;
 
         return $this;
     }
 
-    public function default($state): static
+    /**
+     * @return $this
+     */
+    public function default($state)
     {
         $this->defaultState = $state;
 

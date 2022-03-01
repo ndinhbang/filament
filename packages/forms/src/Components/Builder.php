@@ -16,15 +16,30 @@ class Builder extends Field
 
     protected string $view = 'forms::components.builder';
 
-    protected string | Closure | null $createItemBetweenButtonLabel = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $createItemBetweenButtonLabel = null;
 
-    protected string | Closure | null $createItemButtonLabel = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $createItemButtonLabel = null;
 
-    protected bool | Closure $isItemMovementDisabled = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $isItemMovementDisabled = false;
 
-    protected bool | Closure $isItemCreationDisabled = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $isItemCreationDisabled = false;
 
-    protected bool | Closure $isItemDeletionDisabled = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $isItemDeletionDisabled = false;
 
     protected function setUp(): void
     {
@@ -161,42 +176,65 @@ class Builder extends Field
         });
     }
 
-    public function blocks(array $blocks): static
+    /**
+     * @return $this
+     */
+    public function blocks(array $blocks)
     {
         $this->childComponents($blocks);
 
         return $this;
     }
 
-    public function createItemBetweenButtonLabel(string | Closure | null $label): static
+    /**
+     * @param \Closure|string|null $label
+     * @return $this
+     */
+    public function createItemBetweenButtonLabel($label)
     {
         $this->createItemBetweenButtonLabel = $label;
 
         return $this;
     }
 
-    public function createItemButtonLabel(string | Closure | null $label): static
+    /**
+     * @param \Closure|string|null $label
+     * @return $this
+     */
+    public function createItemButtonLabel($label)
     {
         $this->createItemButtonLabel = $label;
 
         return $this;
     }
 
-    public function disableItemMovement(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function disableItemMovement($condition = true)
     {
         $this->isItemMovementDisabled = $condition;
 
         return $this;
     }
 
-    public function disableItemCreation(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function disableItemCreation($condition = true)
     {
         $this->isItemCreationDisabled = $condition;
 
         return $this;
     }
 
-    public function disableItemDeletion(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function disableItemDeletion($condition = true)
     {
         $this->isItemDeletionDisabled = $condition;
 
@@ -212,7 +250,7 @@ class Builder extends Field
     {
         return Arr::first(
             $this->getBlocks(),
-            fn (Block $block) => $block->getName() === $name,
+            fn (Block $block) => $block->getName() === $name
         );
     }
 

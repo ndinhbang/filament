@@ -11,7 +11,10 @@ class Group extends Component
         $this->schema($schema);
     }
 
-    public static function make(array $schema = []): static
+    /**
+     * @return $this
+     */
+    public static function make(array $schema = [])
     {
         $static = app(static::class, ['schema' => $schema]);
         $static->setUp();

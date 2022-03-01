@@ -31,12 +31,12 @@ class BelongsToManyRelationManager extends RelationManager
 
             $table->bulkActions(array_merge(
                 ($this->canDeleteAny() ? [$this->getDeleteBulkAction()] : []),
-                ($this->canDetachAny() ? [$this->getDetachBulkAction()] : []),
+                ($this->canDetachAny() ? [$this->getDetachBulkAction()] : [])
             ));
 
             $table->headerActions(array_merge(
                 ($this->canCreate() ? [$this->getCreateAction()] : []),
-                ($this->canAttach() ? [$this->getAttachAction()] : []),
+                ($this->canAttach() ? [$this->getAttachAction()] : [])
             ));
 
             $this->resourceTable = static::table($table);
@@ -90,7 +90,7 @@ class BelongsToManyRelationManager extends RelationManager
         /** @var Builder $query */
         $query->select(
             $relationship->getTable().'.*',
-            $query->getModel()->getTable().'.*',
+            $query->getModel()->getTable().'.*'
         );
 
         return $query;

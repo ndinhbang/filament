@@ -6,25 +6,43 @@ use Closure;
 
 trait HasAffixes
 {
-    protected string | Closure | null $postfixLabel = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $postfixLabel = null;
 
-    protected string | Closure | null $prefixLabel = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $prefixLabel = null;
 
-    public function prefix(string | Closure | null $label): static
+    /**
+     * @param \Closure|string|null $label
+     * @return $this
+     */
+    public function prefix($label)
     {
         $this->prefixLabel = $label;
 
         return $this;
     }
 
-    public function postfix(string | Closure | null $label): static
+    /**
+     * @param \Closure|string|null $label
+     * @return $this
+     */
+    public function postfix($label)
     {
         $this->postfixLabel = $label;
 
         return $this;
     }
 
-    public function suffix(string | Closure | null $label): static
+    /**
+     * @param \Closure|string|null $label
+     * @return $this
+     */
+    public function suffix($label)
     {
         return $this->postfix($label);
     }

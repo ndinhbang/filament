@@ -7,9 +7,16 @@ use Filament\Forms\Components\Checkbox;
 
 trait HasFormSchema
 {
-    protected array | Closure | null $formSchema = null;
+    /**
+     * @var mixed[]|\Closure|null
+     */
+    protected $formSchema = null;
 
-    public function form(array | Closure | null $schema): static
+    /**
+     * @param mixed[]|\Closure|null $schema
+     * @return $this
+     */
+    public function form($schema)
     {
         $this->formSchema = $schema;
 

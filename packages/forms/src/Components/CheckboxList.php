@@ -9,7 +9,10 @@ class CheckboxList extends Field
 {
     protected string $view = 'forms::components.checkbox-list';
 
-    protected array | Closure $options = [];
+    /**
+     * @var mixed[]|\Closure
+     */
+    protected $options = [];
 
     protected function setUp(): void
     {
@@ -26,7 +29,11 @@ class CheckboxList extends Field
         });
     }
 
-    public function options(array | Arrayable | Closure $options): static
+    /**
+     * @param mixed[]|\Closure|\Illuminate\Contracts\Support\Arrayable $options
+     * @return $this
+     */
+    public function options($options)
     {
         $this->options = $options;
 

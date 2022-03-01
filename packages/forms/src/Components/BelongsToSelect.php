@@ -11,11 +11,20 @@ use Illuminate\Support\Str;
 
 class BelongsToSelect extends Select
 {
-    protected string | Closure | null $displayColumnName = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $displayColumnName = null;
 
-    protected bool | Closure $isPreloaded = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $isPreloaded = false;
 
-    protected string | Closure | null $relationship = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $relationship = null;
 
     protected function setUp(): void
     {
@@ -35,8 +44,8 @@ class BelongsToSelect extends Select
 
             $component->state(
                 $relatedModel->getAttribute(
-                    $relationship->getOwnerKeyName(),
-                ),
+                    $relationship->getOwnerKeyName()
+                )
             );
         });
 
@@ -46,7 +55,11 @@ class BelongsToSelect extends Select
         });
     }
 
-    public function preload(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function preload($condition = true)
     {
         $this->isPreloaded = $condition;
 
@@ -58,7 +71,12 @@ class BelongsToSelect extends Select
         return $this->searchColumns ?? [$this->getDisplayColumnName()];
     }
 
-    public function relationship(string | Closure $relationshipName, string | Closure $displayColumnName, ?Closure $callback = null): static
+    /**
+     * @param \Closure|string $relationshipName
+     * @param \Closure|string $displayColumnName
+     * @return $this
+     */
+    public function relationship($relationshipName, $displayColumnName, ?Closure $callback = null)
     {
         $this->displayColumnName = $displayColumnName;
         $this->relationship = $relationshipName;
@@ -68,7 +86,7 @@ class BelongsToSelect extends Select
 
             $record = $relationship->getRelated()->query()->where($relationship->getOwnerKeyName(), $value)->first();
 
-            return $record?->getAttributeValue($component->getDisplayColumnName());
+            return ($record2 = $record) ? $record2->getAttributeValue($component->getDisplayColumnName()) : null;
         });
 
         $this->getSearchResultsUsing(function (BelongsToSelect $component, ?string $query) use ($callback): array {
@@ -111,8 +129,8 @@ class BelongsToSelect extends Select
         });
 
         $this->exists(
-            fn (BelongsToSelect $component): ?string => ($relationship = $component->getRelationship()) ? $relationship->getModel()::class : null,
-            fn (BelongsToSelect $component): string => $component->getRelationship()->getOwnerKeyName(),
+            fn (BelongsToSelect $component): ?string => ($relationship = $component->getRelationship()) ? get_class($relationship->getModel()) : null,
+            fn (BelongsToSelect $component): string => $component->getRelationship()->getOwnerKeyName()
         );
 
         return $this;
@@ -123,10 +141,14 @@ class BelongsToSelect extends Select
         /** @var Connection $databaseConnection */
         $databaseConnection = $query->getConnection();
 
-        $searchOperator = match ($databaseConnection->getDriverName()) {
-            'pgsql' => 'ilike',
-            default => 'like',
-        };
+        switch ($databaseConnection->getDriverName()) {
+            case 'pgsql':
+                $searchOperator = 'ilike';
+                break;
+            default:
+                $searchOperator = 'like';
+                break;
+        }
 
         $isFirst = true;
 
@@ -136,7 +158,7 @@ class BelongsToSelect extends Select
             $query->{$whereClause}(
                 $searchColumnName,
                 $searchOperator,
-                "%{$searchQuery}%",
+                "%{$searchQuery}%"
             );
 
             $isFirst = false;

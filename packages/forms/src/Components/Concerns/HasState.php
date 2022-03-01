@@ -21,32 +21,47 @@ trait HasState
 
     protected bool $hasDefaultState = false;
 
-    protected bool | Closure $isDehydrated = true;
+    /**
+     * @var bool|\Closure
+     */
+    protected $isDehydrated = true;
 
     protected ?string $statePath = null;
 
-    public function afterStateHydrated(?Closure $callback): static
+    /**
+     * @return $this
+     */
+    public function afterStateHydrated(?Closure $callback)
     {
         $this->afterStateHydrated = $callback;
 
         return $this;
     }
 
-    public function afterStateUpdated(?Closure $callback): static
+    /**
+     * @return $this
+     */
+    public function afterStateUpdated(?Closure $callback)
     {
         $this->afterStateUpdated = $callback;
 
         return $this;
     }
 
-    public function beforeStateDehydrated(?Closure $callback): static
+    /**
+     * @return $this
+     */
+    public function beforeStateDehydrated(?Closure $callback)
     {
         $this->beforeStateDehydrated = $callback;
 
         return $this;
     }
 
-    public function callAfterStateHydrated(): static
+    /**
+     * @return $this
+     */
+    public function callAfterStateHydrated()
     {
         if ($callback = $this->afterStateHydrated) {
             $this->evaluate($callback);
@@ -55,7 +70,10 @@ trait HasState
         return $this;
     }
 
-    public function callAfterStateUpdated(): static
+    /**
+     * @return $this
+     */
+    public function callAfterStateUpdated()
     {
         if ($callback = $this->afterStateUpdated) {
             $this->evaluate($callback);
@@ -64,7 +82,10 @@ trait HasState
         return $this;
     }
 
-    public function callBeforeStateDehydrated(): static
+    /**
+     * @return $this
+     */
+    public function callBeforeStateDehydrated()
     {
         if ($callback = $this->beforeStateDehydrated) {
             $this->evaluate($callback);
@@ -73,7 +94,10 @@ trait HasState
         return $this;
     }
 
-    public function default($state): static
+    /**
+     * @return $this
+     */
+    public function default($state)
     {
         $this->defaultState = $state;
         $this->hasDefaultState = true;
@@ -81,7 +105,11 @@ trait HasState
         return $this;
     }
 
-    public function dehydrated(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function dehydrated($condition = true)
     {
         $this->isDehydrated = $condition;
 
@@ -97,14 +125,20 @@ trait HasState
         return $this->getState();
     }
 
-    public function dehydrateStateUsing(?Closure $callback): static
+    /**
+     * @return $this
+     */
+    public function dehydrateStateUsing(?Closure $callback)
     {
         $this->dehydrateStateUsing = $callback;
 
         return $this;
     }
 
-    public function hydrateDefaultState(): static
+    /**
+     * @return $this
+     */
+    public function hydrateDefaultState()
     {
         if (! $this->hasDefaultState()) {
             return $this;
@@ -115,7 +149,10 @@ trait HasState
         return $this;
     }
 
-    public function fillMissingStateWithNull(): static
+    /**
+     * @return $this
+     */
+    public function fillMissingStateWithNull()
     {
         $livewire = $this->getLivewire();
 
@@ -128,7 +165,7 @@ trait HasState
     {
         return $this->evaluate(
             $this->mutateDehydratedStateUsing,
-            ['state' => $state],
+            ['state' => $state]
         );
     }
 
@@ -137,14 +174,20 @@ trait HasState
         return $this->mutateDehydratedStateUsing instanceof Closure;
     }
 
-    public function mutateDehydratedStateUsing(?Closure $callback): static
+    /**
+     * @return $this
+     */
+    public function mutateDehydratedStateUsing(?Closure $callback)
     {
         $this->mutateDehydratedStateUsing = $callback;
 
         return $this;
     }
 
-    public function state($state): static
+    /**
+     * @return $this
+     */
+    public function state($state)
     {
         $livewire = $this->getLivewire();
 
@@ -153,7 +196,10 @@ trait HasState
         return $this;
     }
 
-    public function statePath(?string $path): static
+    /**
+     * @return $this
+     */
+    public function statePath(?string $path)
     {
         $this->statePath = $path;
 
@@ -207,7 +253,7 @@ trait HasState
 
     protected function getGetCallback(): Closure
     {
-        return function (Component | string $path, bool $isAbsolute = false) {
+        return function ($path, bool $isAbsolute = false) {
             if ($path instanceof Component) {
                 $path = $path->getStatePath();
             } elseif (
@@ -225,7 +271,7 @@ trait HasState
 
     protected function getSetCallback(): Closure
     {
-        return function (string | Component $path, $state, bool $isAbsolute = false) {
+        return function ($path, $state, bool $isAbsolute = false) {
             if ($path instanceof Component) {
                 $path = $path->getStatePath();
             } elseif (

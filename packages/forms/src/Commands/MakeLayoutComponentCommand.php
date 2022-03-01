@@ -36,13 +36,13 @@ class MakeLayoutComponentCommand extends Command
             (string) Str::of($component)
                 ->prepend('Forms\\Components\\')
                 ->replace('\\', '/')
-                ->append('.php'),
+                ->append('.php')
         );
         $viewPath = resource_path(
             (string) Str::of($view)
                 ->replace('.', '/')
                 ->prepend('views/')
-                ->append('.blade.php'),
+                ->append('.blade.php')
         );
 
         if (! $this->option('force') && $this->checkForCollision([

@@ -55,10 +55,14 @@ trait CanAttachRecords
                 /** @var Connection $databaseConnection */
                 $databaseConnection = $relationshipQuery->getConnection();
 
-                $searchOperator = match ($databaseConnection->getDriverName()) {
-                    'pgsql' => 'ilike',
-                    default => 'like',
-                };
+                switch ($databaseConnection->getDriverName()) {
+                    case 'pgsql':
+                        $searchOperator = 'ilike';
+                        break;
+                    default:
+                        $searchOperator = 'like';
+                        break;
+                }
 
                 $searchColumns = $component->getSearchColumns() ?? [$displayColumnName];
                 $isFirst = true;
@@ -69,7 +73,7 @@ trait CanAttachRecords
                     $relationshipQuery->{$whereClause}(
                         $searchColumnName,
                         $searchOperator,
-                        "%{$query}%",
+                        "%{$query}%"
                     );
 
                     $isFirst = false;

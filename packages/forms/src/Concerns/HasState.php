@@ -47,7 +47,7 @@ trait HasState
 
             $component->callBeforeStateDehydrated();
 
-            if ($component->getRecord()?->exists) {
+            if (($getRecord = $component->getRecord()) ? $getRecord->exists : null) {
                 $component->saveRelationships();
             }
 
@@ -122,8 +122,8 @@ trait HasState
                     $state,
                     $componentStatePath,
                     $component->mutateDehydratedState(
-                        data_get($state, $componentStatePath),
-                    ),
+                        data_get($state, $componentStatePath)
+                    )
                 );
             }
         }
@@ -131,7 +131,10 @@ trait HasState
         return $state;
     }
 
-    public function fill(?array $state = null): static
+    /**
+     * @return $this
+     */
+    public function fill(?array $state = null)
     {
         if ($state !== null) {
             $livewire = $this->getLivewire();
@@ -154,7 +157,10 @@ trait HasState
         return $this;
     }
 
-    public function hydrateDefaultState(): static
+    /**
+     * @return $this
+     */
+    public function hydrateDefaultState()
     {
         foreach ($this->getComponents(withHidden: true) as $component) {
             $component->hydrateDefaultState();
@@ -168,7 +174,10 @@ trait HasState
         return $this;
     }
 
-    public function fillMissingComponentStateWithNull(): static
+    /**
+     * @return $this
+     */
+    public function fillMissingComponentStateWithNull()
     {
         foreach ($this->getComponents(withHidden: true) as $component) {
             if ($component->hasChildComponentContainer()) {
@@ -183,7 +192,10 @@ trait HasState
         return $this;
     }
 
-    public function statePath(?string $path): static
+    /**
+     * @return $this
+     */
+    public function statePath(?string $path)
     {
         $this->statePath = $path;
 
@@ -218,7 +230,7 @@ trait HasState
     {
         $pathComponents = [];
 
-        if ($isAbsolute && $parentComponentStatePath = $this->getParentComponent()?->getStatePath()) {
+        if ($isAbsolute && $parentComponentStatePath = ($getParentComponent = $this->getParentComponent()) ? $getParentComponent->getStatePath() : null) {
             $pathComponents[] = $parentComponentStatePath;
         }
 

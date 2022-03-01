@@ -20,43 +20,82 @@ class TextInput extends Field
 
     protected ?Closure $configureMaskUsing = null;
 
-    protected array | Arrayable | Closure | null $datalistOptions = null;
+    /**
+     * @var mixed[]|\Closure|\Illuminate\Contracts\Support\Arrayable|null
+     */
+    protected $datalistOptions = null;
 
-    protected string | Closure | null $inputMode = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $inputMode = null;
 
-    protected bool | Closure $isEmail = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $isEmail = false;
 
-    protected bool | Closure $isNumeric = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $isNumeric = false;
 
-    protected bool | Closure $isPassword = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $isPassword = false;
 
-    protected bool | Closure $isTel = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $isTel = false;
 
-    protected bool | Closure $isUrl = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $isUrl = false;
 
     protected $maxValue = null;
 
     protected $minValue = null;
 
-    protected int | float | string | Closure | null $step = null;
+    /**
+     * @var \Closure|float|int|string|null
+     */
+    protected $step = null;
 
-    protected string | Closure | null $type = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $type = null;
 
-    public function currentPassword(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function currentPassword($condition = true)
     {
         $this->rule('current_password', $condition);
 
         return $this;
     }
 
-    public function datalist(array | Arrayable | Closure | null $options): static
+    /**
+     * @param mixed[]|\Closure|\Illuminate\Contracts\Support\Arrayable|null $options
+     * @return $this
+     */
+    public function datalist($options)
     {
         $this->datalistOptions = $options;
 
         return $this;
     }
 
-    public function email(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function email($condition = true)
     {
         $this->isEmail = $condition;
 
@@ -65,14 +104,22 @@ class TextInput extends Field
         return $this;
     }
 
-    public function inputMode(string | Closure | null $mode): static
+    /**
+     * @param \Closure|string|null $mode
+     * @return $this
+     */
+    public function inputMode($mode)
     {
         $this->inputMode = $mode;
 
         return $this;
     }
 
-    public function integer(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function integer($condition = true)
     {
         $this->numeric($condition);
         $this->inputMode(fn (): ?string => $condition ? 'numeric' : null);
@@ -81,14 +128,20 @@ class TextInput extends Field
         return $this;
     }
 
-    public function mask(?Closure $configuration): static
+    /**
+     * @return $this
+     */
+    public function mask(?Closure $configuration)
     {
         $this->configureMaskUsing = $configuration;
 
         return $this;
     }
 
-    public function maxValue($value): static
+    /**
+     * @return $this
+     */
+    public function maxValue($value)
     {
         $this->maxValue = $value;
 
@@ -101,7 +154,10 @@ class TextInput extends Field
         return $this;
     }
 
-    public function minValue($value): static
+    /**
+     * @return $this
+     */
+    public function minValue($value)
     {
         $this->minValue = $value;
 
@@ -114,7 +170,11 @@ class TextInput extends Field
         return $this;
     }
 
-    public function numeric(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function numeric($condition = true)
     {
         $this->isNumeric = $condition;
 
@@ -125,35 +185,55 @@ class TextInput extends Field
         return $this;
     }
 
-    public function password(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function password($condition = true)
     {
         $this->isPassword = $condition;
 
         return $this;
     }
 
-    public function step(int | float | string | Closure | null $interval): static
+    /**
+     * @param \Closure|float|int|string|null $interval
+     * @return $this
+     */
+    public function step($interval)
     {
         $this->step = $interval;
 
         return $this;
     }
 
-    public function tel(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function tel($condition = true)
     {
         $this->isTel = $condition;
 
         return $this;
     }
 
-    public function type(string | Closure | null $type): static
+    /**
+     * @param \Closure|string|null $type
+     * @return $this
+     */
+    public function type($type)
     {
         $this->type = $type;
 
         return $this;
     }
 
-    public function url(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function url($condition = true)
     {
         $this->isUrl = $condition;
 
@@ -191,7 +271,7 @@ class TextInput extends Field
 
     public function getJsonMaskConfiguration(): ?string
     {
-        return $this->getMask()?->toJson();
+        return ($getMask = $this->getMask()) ? $getMask->toJson() : null;
     }
 
     public function getMaxValue()
@@ -204,7 +284,10 @@ class TextInput extends Field
         return $this->evaluate($this->minValue);
     }
 
-    public function getStep(): int | float | string | null
+    /**
+     * @return float|int|string|null
+     */
+    public function getStep()
     {
         return $this->evaluate($this->step);
     }

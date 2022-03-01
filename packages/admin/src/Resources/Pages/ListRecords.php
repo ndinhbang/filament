@@ -45,7 +45,7 @@ class ListRecords extends Page implements Tables\Contracts\HasTable
             $table->actions(array_merge(
                 ($this->hasViewAction() ? [$this->getViewAction()] : []),
                 ($this->hasEditAction() ? [$this->getEditAction()] : []),
-                ($this->hasDeleteAction() ? [$this->getDeleteAction()] : []),
+                ($this->hasDeleteAction() ? [$this->getDeleteAction()] : [])
             ));
 
             if ($resource::canDeleteAny()) {

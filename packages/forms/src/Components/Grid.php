@@ -6,12 +6,19 @@ class Grid extends Component
 {
     protected string $view = 'forms::components.grid';
 
-    final public function __construct(array | int | null $columns)
+    /**
+     * @param mixed[]|int|null $columns
+     */
+    final public function __construct($columns)
     {
         $this->columns($columns);
     }
 
-    public static function make(array | int | null $columns = 2): static
+    /**
+     * @param mixed[]|int|null $columns
+     * @return $this
+     */
+    public static function make($columns = 2)
     {
         $static = app(static::class, ['columns' => $columns]);
         $static->setUp();

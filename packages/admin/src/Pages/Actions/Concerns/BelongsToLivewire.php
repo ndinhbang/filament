@@ -8,7 +8,10 @@ trait BelongsToLivewire
 {
     protected Page $livewire;
 
-    public function livewire(Page $livewire): static
+    /**
+     * @return $this
+     */
+    public function livewire(Page $livewire)
     {
         $this->livewire = $livewire;
 

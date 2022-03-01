@@ -22,33 +22,48 @@ class Table
     {
     }
 
-    public static function make(): static
+    /**
+     * @return $this
+     */
+    public static function make()
     {
         return app(static::class);
     }
 
-    public function actions(array $actions): static
+    /**
+     * @return $this
+     */
+    public function actions(array $actions)
     {
         $this->actions = $actions;
 
         return $this;
     }
 
-    public function bulkActions(array $actions): static
+    /**
+     * @return $this
+     */
+    public function bulkActions(array $actions)
     {
         $this->bulkActions = $actions;
 
         return $this;
     }
 
-    public function columns(array $columns): static
+    /**
+     * @return $this
+     */
+    public function columns(array $columns)
     {
         $this->columns = $columns;
 
         return $this;
     }
 
-    public function defaultSort(string $column, string $direction = 'asc'): static
+    /**
+     * @return $this
+     */
+    public function defaultSort(string $column, string $direction = 'asc')
     {
         $this->defaultSortColumn = $column;
         $this->defaultSortDirection = $direction;
@@ -56,56 +71,80 @@ class Table
         return $this;
     }
 
-    public function filters(array $filters): static
+    /**
+     * @return $this
+     */
+    public function filters(array $filters)
     {
         $this->filters = $filters;
 
         return $this;
     }
 
-    public function headerActions(array $actions): static
+    /**
+     * @return $this
+     */
+    public function headerActions(array $actions)
     {
         $this->headerActions = $actions;
 
         return $this;
     }
 
-    public function prependActions(array $actions): static
+    /**
+     * @return $this
+     */
+    public function prependActions(array $actions)
     {
         $this->actions = array_merge($actions, $this->actions);
 
         return $this;
     }
 
-    public function prependBulkActions(array $actions): static
+    /**
+     * @return $this
+     */
+    public function prependBulkActions(array $actions)
     {
         $this->bulkActions = array_merge($actions, $this->bulkActions);
 
         return $this;
     }
 
-    public function prependHeaderActions(array $actions): static
+    /**
+     * @return $this
+     */
+    public function prependHeaderActions(array $actions)
     {
         $this->headerActions = array_merge($actions, $this->headerActions);
 
         return $this;
     }
 
-    public function pushActions(array $actions): static
+    /**
+     * @return $this
+     */
+    public function pushActions(array $actions)
     {
         $this->actions = array_merge($this->actions, $actions);
 
         return $this;
     }
 
-    public function pushBulkActions(array $actions): static
+    /**
+     * @return $this
+     */
+    public function pushBulkActions(array $actions)
     {
         $this->bulkActions = array_merge($this->bulkActions, $actions);
 
         return $this;
     }
 
-    public function pushHeaderActions(array $actions): static
+    /**
+     * @return $this
+     */
+    public function pushHeaderActions(array $actions)
     {
         $this->headerActions = array_merge($this->headerActions, $actions);
 

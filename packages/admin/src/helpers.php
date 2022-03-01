@@ -23,7 +23,7 @@ if (! function_exists('Filament\get_asset_id')) {
 
         $file = $manifest[$file];
 
-        if (! str_contains($file, 'id=')) {
+        if (strpos($file, 'id=') === false) {
             return null;
         }
 

@@ -18,7 +18,7 @@ trait CanValidateInput
 
         $validator = Validator::make(
             [$field => $input],
-            [$field => $rules],
+            [$field => $rules]
         );
 
         if ($validator->fails()) {

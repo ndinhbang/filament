@@ -9,11 +9,20 @@ use Illuminate\Support\Str;
 
 class BelongsToManyMultiSelect extends MultiSelect
 {
-    protected string | Closure | null $displayColumnName = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $displayColumnName = null;
 
-    protected bool | Closure $isPreloaded = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $isPreloaded = false;
 
-    protected string | Closure | null $relationship = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $relationship = null;
 
     protected function setUp(): void
     {
@@ -35,7 +44,7 @@ class BelongsToManyMultiSelect extends MultiSelect
                 $relatedModels
                     ->pluck($relationship->getRelatedKeyName())
                     ->map(fn ($key): string => strval($key))
-                    ->toArray(),
+                    ->toArray()
             );
         });
 
@@ -46,14 +55,23 @@ class BelongsToManyMultiSelect extends MultiSelect
         $this->dehydrated(false);
     }
 
-    public function preload(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function preload($condition = true)
     {
         $this->isPreloaded = $condition;
 
         return $this;
     }
 
-    public function relationship(string | Closure $relationshipName, string | Closure $displayColumnName, ?Closure $callback = null): static
+    /**
+     * @param \Closure|string $relationshipName
+     * @param \Closure|string $displayColumnName
+     * @return $this
+     */
+    public function relationship($relationshipName, $displayColumnName, ?Closure $callback = null)
     {
         $this->displayColumnName = $displayColumnName;
         $this->relationship = $relationshipName;
@@ -84,10 +102,14 @@ class BelongsToManyMultiSelect extends MultiSelect
             /** @var Connection $databaseConnection */
             $databaseConnection = $relationshipQuery->getConnection();
 
-            $searchOperator = match ($databaseConnection->getDriverName()) {
-                'pgsql' => 'ilike',
-                default => 'like',
-            };
+            switch ($databaseConnection->getDriverName()) {
+                case 'pgsql':
+                    $searchOperator = 'ilike';
+                    break;
+                default:
+                    $searchOperator = 'like';
+                    break;
+            }
 
             return $relationshipQuery
                 ->where($component->getDisplayColumnName(), $searchOperator, "%{$query}%")

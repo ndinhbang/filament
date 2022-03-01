@@ -18,9 +18,15 @@ class MultiSelect extends Field
 
     protected ?Closure $getSearchResultsUsing = null;
 
-    protected string | HtmlString | Closure | null $noSearchResultsMessage = null;
+    /**
+     * @var \Closure|\Illuminate\Support\HtmlString|string|null
+     */
+    protected $noSearchResultsMessage = null;
 
-    protected string | HtmlString | Closure | null $searchPrompt = null;
+    /**
+     * @var \Closure|\Illuminate\Support\HtmlString|string|null
+     */
+    protected $searchPrompt = null;
 
     protected function setUp(): void
     {
@@ -51,28 +57,42 @@ class MultiSelect extends Field
         $this->searchPrompt(__('forms::components.multi_select.search_prompt'));
     }
 
-    public function getOptionLabelsUsing(?Closure $callback): static
+    /**
+     * @return $this
+     */
+    public function getOptionLabelsUsing(?Closure $callback)
     {
         $this->getOptionLabelsUsing = $callback;
 
         return $this;
     }
 
-    public function getSearchResultsUsing(?Closure $callback): static
+    /**
+     * @return $this
+     */
+    public function getSearchResultsUsing(?Closure $callback)
     {
         $this->getSearchResultsUsing = $callback;
 
         return $this;
     }
 
-    public function noSearchResultsMessage(string | HtmlString | Closure | null $message): static
+    /**
+     * @param \Closure|\Illuminate\Support\HtmlString|string|null $message
+     * @return $this
+     */
+    public function noSearchResultsMessage($message)
     {
         $this->noSearchResultsMessage = $message;
 
         return $this;
     }
 
-    public function searchPrompt(string | HtmlString | Closure | null $message): static
+    /**
+     * @param \Closure|\Illuminate\Support\HtmlString|string|null $message
+     * @return $this
+     */
+    public function searchPrompt($message)
     {
         $this->searchPrompt = $message;
 
@@ -92,12 +112,18 @@ class MultiSelect extends Field
         return $labels;
     }
 
-    public function getNoSearchResultsMessage(): string | HtmlString
+    /**
+     * @return \Illuminate\Support\HtmlString|string
+     */
+    public function getNoSearchResultsMessage()
     {
         return $this->evaluate($this->noSearchResultsMessage);
     }
 
-    public function getSearchPrompt(): string | HtmlString
+    /**
+     * @return \Illuminate\Support\HtmlString|string
+     */
+    public function getSearchPrompt()
     {
         return $this->evaluate($this->searchPrompt);
     }

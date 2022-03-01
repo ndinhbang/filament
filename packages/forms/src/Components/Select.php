@@ -19,17 +19,32 @@ class Select extends Field
 
     protected ?Closure $getSearchResultsUsing = null;
 
-    protected bool | Closure | null $isOptionDisabled = null;
+    /**
+     * @var bool|\Closure|null
+     */
+    protected $isOptionDisabled = null;
 
-    protected bool | Closure | null $isPlaceholderSelectionDisabled = false;
+    /**
+     * @var bool|\Closure|null
+     */
+    protected $isPlaceholderSelectionDisabled = false;
 
-    protected bool | Closure $isSearchable = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $isSearchable = false;
 
     protected ?array $searchColumns = null;
 
-    protected string | HtmlString | Closure | null $noSearchResultsMessage = null;
+    /**
+     * @var \Closure|\Illuminate\Support\HtmlString|string|null
+     */
+    protected $noSearchResultsMessage = null;
 
-    protected string | HtmlString | Closure | null $searchPrompt = null;
+    /**
+     * @var \Closure|\Illuminate\Support\HtmlString|string|null
+     */
+    protected $searchPrompt = null;
 
     protected function setUp(): void
     {
@@ -50,7 +65,10 @@ class Select extends Field
         $this->searchPrompt(__('forms::components.select.search_prompt'));
     }
 
-    public function boolean(string $trueLabel = 'Yes', string $falseLabel = 'No'): static
+    /**
+     * @return $this
+     */
+    public function boolean(string $trueLabel = 'Yes', string $falseLabel = 'No')
     {
         $this->options([
             1 => $trueLabel,
@@ -60,35 +78,53 @@ class Select extends Field
         return $this;
     }
 
-    public function disableOptionWhen(bool | Closure $callback): static
+    /**
+     * @param bool|\Closure $callback
+     * @return $this
+     */
+    public function disableOptionWhen($callback)
     {
         $this->isOptionDisabled = $callback;
 
         return $this;
     }
 
-    public function disablePlaceholderSelection(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function disablePlaceholderSelection($condition = true)
     {
         $this->isPlaceholderSelectionDisabled = $condition;
 
         return $this;
     }
 
-    public function getOptionLabelUsing(?Closure $callback): static
+    /**
+     * @return $this
+     */
+    public function getOptionLabelUsing(?Closure $callback)
     {
         $this->getOptionLabelUsing = $callback;
 
         return $this;
     }
 
-    public function getSearchResultsUsing(?Closure $callback): static
+    /**
+     * @return $this
+     */
+    public function getSearchResultsUsing(?Closure $callback)
     {
         $this->getSearchResultsUsing = $callback;
 
         return $this;
     }
 
-    public function searchable(bool | array | Closure $condition = true): static
+    /**
+     * @param mixed[]|bool|\Closure $condition
+     * @return $this
+     */
+    public function searchable($condition = true)
     {
         if (is_array($condition)) {
             $this->isSearchable = true;
@@ -101,14 +137,22 @@ class Select extends Field
         return $this;
     }
 
-    public function noSearchResultsMessage(string | HtmlString | Closure | null $message): static
+    /**
+     * @param \Closure|\Illuminate\Support\HtmlString|string|null $message
+     * @return $this
+     */
+    public function noSearchResultsMessage($message)
     {
         $this->noSearchResultsMessage = $message;
 
         return $this;
     }
 
-    public function searchPrompt(string | HtmlString | Closure | null $message): static
+    /**
+     * @param \Closure|\Illuminate\Support\HtmlString|string|null $message
+     * @return $this
+     */
+    public function searchPrompt($message)
     {
         $this->searchPrompt = $message;
 
@@ -122,12 +166,18 @@ class Select extends Field
         ]);
     }
 
-    public function getNoSearchResultsMessage(): string | HtmlString
+    /**
+     * @return \Illuminate\Support\HtmlString|string
+     */
+    public function getNoSearchResultsMessage()
     {
         return $this->evaluate($this->noSearchResultsMessage);
     }
 
-    public function getSearchPrompt(): string | HtmlString
+    /**
+     * @return \Illuminate\Support\HtmlString|string
+     */
+    public function getSearchPrompt()
     {
         return $this->evaluate($this->searchPrompt);
     }

@@ -6,18 +6,32 @@ use Closure;
 
 trait HasLabel
 {
-    protected bool | Closure $isLabelHidden = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $isLabelHidden = false;
 
-    protected string | Closure | null $label = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $label = null;
 
-    public function disableLabel(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function disableLabel($condition = true)
     {
         $this->isLabelHidden = $condition;
 
         return $this;
     }
 
-    public function label(string | Closure | null $label): static
+    /**
+     * @param \Closure|string|null $label
+     * @return $this
+     */
+    public function label($label)
     {
         $this->label = $label;
 

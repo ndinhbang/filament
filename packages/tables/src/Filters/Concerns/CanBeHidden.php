@@ -6,9 +6,16 @@ use Closure;
 
 trait CanBeHidden
 {
-    protected bool | Closure $isHidden = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $isHidden = false;
 
-    public function hidden(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function hidden($condition = true)
     {
         $this->isHidden = $condition;
 

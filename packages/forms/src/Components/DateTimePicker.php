@@ -14,23 +14,50 @@ class DateTimePicker extends Field
 
     protected string $view = 'forms::components.date-time-picker';
 
-    protected string | Closure | null $displayFormat = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $displayFormat = null;
 
-    protected array | Closure $extraTriggerAttributes = [];
+    /**
+     * @var mixed[]|\Closure
+     */
+    protected $extraTriggerAttributes = [];
 
-    protected int | null $firstDayOfWeek = null;
+    /**
+     * @var int|null
+     */
+    protected $firstDayOfWeek = null;
 
-    protected string | Closure | null $format = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $format = null;
 
-    protected bool | Closure $isWithoutDate = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $isWithoutDate = false;
 
-    protected bool | Closure $isWithoutSeconds = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $isWithoutSeconds = false;
 
-    protected bool | Closure $isWithoutTime = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $isWithoutTime = false;
 
-    protected DateTime | string | Closure | null $maxDate = null;
+    /**
+     * @var \Closure|\DateTime|string|null
+     */
+    protected $maxDate = null;
 
-    protected DateTime | string | Closure | null $minDate = null;
+    /**
+     * @var \Closure|\DateTime|string|null
+     */
+    protected $minDate = null;
 
     protected function setUp(): void
     {
@@ -49,21 +76,33 @@ class DateTimePicker extends Field
         $this->rule('date', $this->hasDate());
     }
 
-    public function displayFormat(string | Closure | null $format): static
+    /**
+     * @param \Closure|string|null $format
+     * @return $this
+     */
+    public function displayFormat($format)
     {
         $this->displayFormat = $format;
 
         return $this;
     }
 
-    public function extraTriggerAttributes(array | Closure $attributes): static
+    /**
+     * @param mixed[]|\Closure $attributes
+     * @return $this
+     */
+    public function extraTriggerAttributes($attributes)
     {
         $this->extraTriggerAttributes = $attributes;
 
         return $this;
     }
 
-    public function firstDayOfWeek(int | null $day): static
+    /**
+     * @param int|null $day
+     * @return $this
+     */
+    public function firstDayOfWeek($day)
     {
         if ($day < 0 || $day > 7) {
             $day = null;
@@ -74,14 +113,22 @@ class DateTimePicker extends Field
         return $this;
     }
 
-    public function format(string | Closure | null $format): static
+    /**
+     * @param \Closure|string|null $format
+     * @return $this
+     */
+    public function format($format)
     {
         $this->format = $format;
 
         return $this;
     }
 
-    public function maxDate(DateTime | string | Closure | null $date): static
+    /**
+     * @param \Closure|\DateTime|string|null $date
+     * @return $this
+     */
+    public function maxDate($date)
     {
         $this->maxDate = $date;
 
@@ -98,7 +145,11 @@ class DateTimePicker extends Field
         return $this;
     }
 
-    public function minDate(DateTime | string | Closure | null $date): static
+    /**
+     * @param \Closure|\DateTime|string|null $date
+     * @return $this
+     */
+    public function minDate($date)
     {
         $this->minDate = $date;
 
@@ -115,42 +166,63 @@ class DateTimePicker extends Field
         return $this;
     }
 
-    public function resetFirstDayOfWeek(): static
+    /**
+     * @return $this
+     */
+    public function resetFirstDayOfWeek()
     {
         $this->firstDayOfWeek(null);
 
         return $this;
     }
 
-    public function weekStartsOnMonday(): static
+    /**
+     * @return $this
+     */
+    public function weekStartsOnMonday()
     {
         $this->firstDayOfWeek(1);
 
         return $this;
     }
 
-    public function weekStartsOnSunday(): static
+    /**
+     * @return $this
+     */
+    public function weekStartsOnSunday()
     {
         $this->firstDayOfWeek(7);
 
         return $this;
     }
 
-    public function withoutDate(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function withoutDate($condition = true)
     {
         $this->isWithoutDate = $condition;
 
         return $this;
     }
 
-    public function withoutSeconds(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function withoutSeconds($condition = true)
     {
         $this->isWithoutSeconds = $condition;
 
         return $this;
     }
 
-    public function withoutTime(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function withoutTime($condition = true)
     {
         $this->isWithoutTime = $condition;
 

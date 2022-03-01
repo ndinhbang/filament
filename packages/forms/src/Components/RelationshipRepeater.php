@@ -13,7 +13,10 @@ class RelationshipRepeater extends Repeater
 {
     protected ?Collection $cachedExistingRecords = null;
 
-    protected string | Closure | null $relationship = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $relationship = null;
 
     protected function setUp(): void
     {
@@ -74,7 +77,11 @@ class RelationshipRepeater extends Repeater
         $this->disableItemMovement();
     }
 
-    public function relationship(string | Closure $name): static
+    /**
+     * @param \Closure|string $name
+     * @return $this
+     */
+    public function relationship($name)
     {
         $this->relationship = $name;
 
@@ -135,7 +142,7 @@ class RelationshipRepeater extends Repeater
         $relationship = $this->getRelationship();
 
         return $this->cachedExistingRecords = $relationship->getResults()->keyBy(
-            $relationship->getLocalKeyName(),
+            $relationship->getLocalKeyName()
         );
     }
 
@@ -146,6 +153,6 @@ class RelationshipRepeater extends Repeater
 
     protected function getRelatedModel(): string
     {
-        return $this->getRelationship()->getModel()::class;
+        return get_class($this->getRelationship()->getModel());
     }
 }

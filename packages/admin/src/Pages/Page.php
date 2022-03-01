@@ -123,7 +123,10 @@ class Page extends Component implements Forms\Contracts\HasForms
         return static::getUrl();
     }
 
-    protected function getActions(): array | View | null
+    /**
+     * @return mixed[]|\Illuminate\Contracts\View\View|null
+     */
+    protected function getActions()
     {
         return null;
     }

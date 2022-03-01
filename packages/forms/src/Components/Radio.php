@@ -11,20 +11,35 @@ class Radio extends Field
 
     protected string $view = 'forms::components.radio';
 
-    protected bool | Closure $isInline = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $isInline = false;
 
-    protected array | Arrayable | Closure $options = [];
+    /**
+     * @var mixed[]|\Closure|\Illuminate\Contracts\Support\Arrayable
+     */
+    protected $options = [];
 
-    protected array | Arrayable | Closure $descriptions = [];
+    /**
+     * @var mixed[]|\Closure|\Illuminate\Contracts\Support\Arrayable
+     */
+    protected $descriptions = [];
 
-    protected bool | Closure | null $isOptionDisabled = null;
+    /**
+     * @var bool|\Closure|null
+     */
+    protected $isOptionDisabled = null;
 
     protected function setUp(): void
     {
         parent::setUp();
     }
 
-    public function boolean(string $trueLabel = 'Yes', string $falseLabel = 'No'): static
+    /**
+     * @return $this
+     */
+    public function boolean(string $trueLabel = 'Yes', string $falseLabel = 'No')
     {
         $this->options([
             1 => $trueLabel,
@@ -34,28 +49,44 @@ class Radio extends Field
         return $this;
     }
 
-    public function disableOptionWhen(bool | Closure $callback): static
+    /**
+     * @param bool|\Closure $callback
+     * @return $this
+     */
+    public function disableOptionWhen($callback)
     {
         $this->isOptionDisabled = $callback;
 
         return $this;
     }
 
-    public function inline(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function inline($condition = true)
     {
         $this->isInline = $condition;
 
         return $this;
     }
 
-    public function options(array | Arrayable | Closure $options): static
+    /**
+     * @param mixed[]|\Closure|\Illuminate\Contracts\Support\Arrayable $options
+     * @return $this
+     */
+    public function options($options)
     {
         $this->options = $options;
 
         return $this;
     }
 
-    public function descriptions(array | Arrayable | Closure $descriptions): static
+    /**
+     * @param mixed[]|\Closure|\Illuminate\Contracts\Support\Arrayable $descriptions
+     * @return $this
+     */
+    public function descriptions($descriptions)
     {
         $this->descriptions = $descriptions;
 

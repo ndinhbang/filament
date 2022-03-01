@@ -42,7 +42,7 @@ class MakeResourceCommand extends Command
         $baseResourcePath = app_path(
             (string) Str::of($resource)
                 ->prepend('Filament\\Resources\\')
-                ->replace('\\', '/'),
+                ->replace('\\', '/')
         );
         $resourcePath = "{$baseResourcePath}.php";
         $resourcePagesDirectory = "{$baseResourcePath}/Pages";

@@ -6,9 +6,16 @@ use Closure;
 
 trait CanBeAutofocused
 {
-    protected bool | Closure $isAutofocused = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $isAutofocused = false;
 
-    public function autofocus(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function autofocus($condition = true)
     {
         $this->isAutofocused = $condition;
 

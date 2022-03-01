@@ -9,7 +9,10 @@ trait BelongsToTable
 {
     protected Table $table;
 
-    public function table(Table $table): static
+    /**
+     * @return $this
+     */
+    public function table(Table $table)
     {
         $this->table = $table;
 

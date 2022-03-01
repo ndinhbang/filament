@@ -38,7 +38,10 @@ class ComponentContainer extends ViewComponent implements Htmlable
         $this->livewire($livewire);
     }
 
-    public static function make(HasForms $livewire): static
+    /**
+     * @return $this
+     */
+    public static function make(HasForms $livewire)
     {
         return app(static::class, ['livewire' => $livewire]);
     }

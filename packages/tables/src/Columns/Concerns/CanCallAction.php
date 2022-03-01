@@ -10,7 +10,11 @@ trait CanCallAction
 {
     protected ?Closure $action = null;
 
-    public function action(string | Closure | null $action): static
+    /**
+     * @param \Closure|string|null $action
+     * @return $this
+     */
+    public function action($action)
     {
         if (is_string($action)) {
             $action = function (HasTable $livewire, ?Model $record) use ($action) {

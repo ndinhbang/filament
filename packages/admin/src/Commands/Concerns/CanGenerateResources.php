@@ -35,7 +35,7 @@ trait CanGenerateResources
 
             $componentData = [];
 
-            $componentData['type'] = $type = match ($column->getType()::class) {
+            $componentData['type'] = $type = match (get_class($column->getType())) {
                 Types\BooleanType::class => Forms\Components\Toggle::class,
                 Types\DateType::class => Forms\Components\DatePicker::class,
                 Types\DateTimeType::class => Forms\Components\DateTimePicker::class,
@@ -129,17 +129,17 @@ trait CanGenerateResources
 
             $columnData = [];
 
-            $columnData['type'] = $type = match ($column->getType()::class) {
+            $columnData['type'] = $type = match (get_class($column->getType())) {
                 Types\BooleanType::class => Tables\Columns\BooleanColumn::class,
                 default => Tables\Columns\TextColumn::class,
             };
 
             if ($type === Tables\Columns\TextColumn::class) {
-                if ($column->getType()::class === Types\DateType::class) {
+                if (get_class($column->getType()) === Types\DateType::class) {
                     $columnData['date'] = [];
                 }
 
-                if ($column->getType()::class === Types\DateTimeType::class) {
+                if (get_class($column->getType()) === Types\DateTimeType::class) {
                     $columnData['dateTime'] = [];
                 }
             }
@@ -203,8 +203,8 @@ trait CanGenerateResources
             PHP_EOL,
             array_map(
                 fn (string $line) => "                {$line}",
-                explode(PHP_EOL, $string),
-            ),
+                explode(PHP_EOL, $string)
+            )
         );
     }
 }

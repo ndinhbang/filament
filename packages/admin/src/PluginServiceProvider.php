@@ -61,7 +61,7 @@ abstract class PluginServiceProvider extends PackageServiceProvider
     {
         $this->app->singletonIf(
             'filament',
-            fn (): FilamentManager => app(FilamentManager::class),
+            fn (): FilamentManager => app(FilamentManager::class)
         );
 
         Facades\Filament::registerPages($this->getPages());

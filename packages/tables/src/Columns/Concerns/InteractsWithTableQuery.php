@@ -47,10 +47,14 @@ trait InteractsWithTableQuery
         /** @var Connection $databaseConnection */
         $databaseConnection = $query->getConnection();
 
-        $searchOperator = match ($databaseConnection->getDriverName()) {
-            'pgsql' => 'ilike',
-            default => 'like',
-        };
+        switch ($databaseConnection->getDriverName()) {
+            case 'pgsql':
+                $searchOperator = 'ilike';
+                break;
+            default:
+                $searchOperator = 'like';
+                break;
+        }
 
         foreach ($this->getSearchColumns() as $searchColumnName) {
             $whereClause = $isFirst ? 'where' : 'orWhere';
@@ -61,13 +65,13 @@ trait InteractsWithTableQuery
                     $this->getRelationshipName(),
                     $searchColumnName,
                     $searchOperator,
-                    "%{$searchQuery}%",
+                    "%{$searchQuery}%"
                 ),
                 fn ($query) => $query->{$whereClause}(
                     $searchColumnName,
                     $searchOperator,
-                    "%{$searchQuery}%",
-                ),
+                    "%{$searchQuery}%"
+                )
             );
 
             $isFirst = false;
@@ -94,11 +98,11 @@ trait InteractsWithTableQuery
                         ->getRelationExistenceQuery(
                             $this->getRelatedModel($query)->query(),
                             $query,
-                            $sortColumnName,
+                            $sortColumnName
                         ),
-                    $direction,
+                    $direction
                 ),
-                fn ($query) => $query->orderBy($sortColumnName, $direction),
+                fn ($query) => $query->orderBy($sortColumnName, $direction)
             );
         }
 

@@ -6,9 +6,16 @@ use Closure;
 
 trait HasAction
 {
-    protected Closure | string | null $action = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $action = null;
 
-    public function action(Closure | string | null $action): static
+    /**
+     * @param \Closure|string|null $action
+     * @return $this
+     */
+    public function action($action)
     {
         $this->action = $action;
 

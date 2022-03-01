@@ -6,9 +6,16 @@ use Closure;
 
 trait CanCountRelatedModels
 {
-    protected string | Closure | null $relationshipToCount = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $relationshipToCount = null;
 
-    public function counts(string | Closure | null $relationship): static
+    /**
+     * @param \Closure|string|null $relationship
+     * @return $this
+     */
+    public function counts($relationship)
     {
         $this->relationshipToCount = $relationship;
 

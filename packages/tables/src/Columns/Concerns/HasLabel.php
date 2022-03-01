@@ -7,9 +7,16 @@ use Illuminate\Support\Str;
 
 trait HasLabel
 {
-    protected string | Closure | null $label = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $label = null;
 
-    public function label(string | Closure | null $label): static
+    /**
+     * @param \Closure|string|null $label
+     * @return $this
+     */
+    public function label($label)
     {
         $this->label = $label;
 

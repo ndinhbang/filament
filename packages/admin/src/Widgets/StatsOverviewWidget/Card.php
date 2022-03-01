@@ -33,68 +33,98 @@ class Card extends Component implements Htmlable
         $this->value($value);
     }
 
-    public static function make(string $label, $value): static
+    /**
+     * @return $this
+     */
+    public static function make(string $label, $value)
     {
         return app(static::class, ['label' => $label, 'value' => $value]);
     }
 
-    public function chartColor(?string $color): static
+    /**
+     * @return $this
+     */
+    public function chartColor(?string $color)
     {
         $this->chartColor = $color;
 
         return $this;
     }
 
-    public function color(?string $color): static
+    /**
+     * @return $this
+     */
+    public function color(?string $color)
     {
         $this->color = $color;
 
         return $this;
     }
 
-    public function description(?string $description): static
+    /**
+     * @return $this
+     */
+    public function description(?string $description)
     {
         $this->description = $description;
 
         return $this;
     }
 
-    public function descriptionColor(?string $color): static
+    /**
+     * @return $this
+     */
+    public function descriptionColor(?string $color)
     {
         $this->descriptionColor = $color;
 
         return $this;
     }
 
-    public function descriptionIcon(?string $icon): static
+    /**
+     * @return $this
+     */
+    public function descriptionIcon(?string $icon)
     {
         $this->descriptionIcon = $icon;
 
         return $this;
     }
 
-    public function chart(?array $chart): static
+    /**
+     * @return $this
+     */
+    public function chart(?array $chart)
     {
         $this->chart = $chart;
 
         return $this;
     }
 
-    public function label(string $label): static
+    /**
+     * @return $this
+     */
+    public function label(string $label)
     {
         $this->label = $label;
 
         return $this;
     }
 
-    public function id(string $id): static
+    /**
+     * @return $this
+     */
+    public function id(string $id)
     {
         $this->id = $id;
 
         return $this;
     }
 
-    public function value($value): static
+    /**
+     * @return $this
+     */
+    public function value($value)
     {
         $this->value = $value;
 

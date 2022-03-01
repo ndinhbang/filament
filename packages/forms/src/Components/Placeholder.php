@@ -20,7 +20,10 @@ class Placeholder extends Component
         $this->statePath($name);
     }
 
-    public static function make(string $name): static
+    /**
+     * @return $this
+     */
+    public static function make(string $name)
     {
         $static = app(static::class, ['name' => $name]);
         $static->setUp();
@@ -35,7 +38,10 @@ class Placeholder extends Component
         $this->dehydrated(false);
     }
 
-    public function content($content): static
+    /**
+     * @return $this
+     */
+    public function content($content)
     {
         $this->content = $content;
 

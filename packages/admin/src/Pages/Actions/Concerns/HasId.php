@@ -6,7 +6,10 @@ trait HasId
 {
     protected ?string $id = null;
 
-    public function id(string $id): static
+    /**
+     * @return $this
+     */
+    public function id(string $id)
     {
         $this->id = $id;
 

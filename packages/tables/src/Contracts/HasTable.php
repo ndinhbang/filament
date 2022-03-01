@@ -41,7 +41,10 @@ interface HasTable extends HasForms
 
     public function getTableFiltersForm(): ComponentContainer;
 
-    public function getTableRecords(): Collection | Paginator;
+    /**
+     * @return \Illuminate\Contracts\Pagination\Paginator|\Illuminate\Database\Eloquent\Collection
+     */
+    public function getTableRecords();
 
     public function getTableSortColumn(): ?string;
 

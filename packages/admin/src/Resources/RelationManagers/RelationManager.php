@@ -76,7 +76,7 @@ class RelationManager extends Component implements Tables\Contracts\HasTable
 
     public static function canViewForRecord(Model $ownerRecord): bool
     {
-        $model = $ownerRecord->{static::getRelationshipName()}()->getQuery()->getModel()::class;
+        $model = get_class($ownerRecord->{static::getRelationshipName()}()->getQuery()->getModel());
 
         $policy = Gate::getPolicyFor($model);
         $action = 'viewAny';
@@ -123,7 +123,7 @@ class RelationManager extends Component implements Tables\Contracts\HasTable
 
     public static function getRecordTitle(?Model $record): ?string
     {
-        return $record?->getAttribute(static::getRecordTitleAttribute()) ?? $record?->getKey();
+        return (($record2 = $record) ? $record2->getAttribute(static::getRecordTitleAttribute()) : null) ?? (($record2 = $record) ? $record2->getKey() : null);
     }
 
     protected static function getRecordLabel(): string
@@ -140,7 +140,7 @@ class RelationManager extends Component implements Tables\Contracts\HasTable
 
     protected function getRelatedModel(): string
     {
-        return $this->getRelationship()->getQuery()->getModel()::class;
+        return get_class($this->getRelationship()->getQuery()->getModel());
     }
 
     protected function getRelationship(): Relation

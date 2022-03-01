@@ -108,7 +108,7 @@ trait HasBulkActions
     protected function getCachedTableBulkAction(string $name): ?BulkAction
     {
         $action = $this->getCachedTableBulkActions()[$name] ?? null;
-        $action?->records($this->getSelectedTableRecords());
+        ($action2 = $action) ? $action2->records($this->getSelectedTableRecords()) : null;
 
         return $action;
     }

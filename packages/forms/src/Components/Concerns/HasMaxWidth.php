@@ -6,9 +6,16 @@ use Closure;
 
 trait HasMaxWidth
 {
-    protected string | Closure | null $maxWidth = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $maxWidth = null;
 
-    public function maxWidth(string | Closure | null $width): static
+    /**
+     * @param \Closure|string|null $width
+     * @return $this
+     */
+    public function maxWidth($width)
     {
         $this->maxWidth = $width;
 

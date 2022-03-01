@@ -13,7 +13,10 @@ class RichEditor extends Field implements Contracts\HasFileAttachments
 
     protected string $view = 'forms::components.rich-editor';
 
-    protected array | Closure $toolbarButtons = [
+    /**
+     * @var mixed[]|\Closure
+     */
+    protected $toolbarButtons = [
         'attachFiles',
         'blockquote',
         'bold',

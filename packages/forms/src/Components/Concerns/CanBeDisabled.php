@@ -6,9 +6,16 @@ use Closure;
 
 trait CanBeDisabled
 {
-    protected bool | Closure $isDisabled = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $isDisabled = false;
 
-    public function disabled(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function disabled($condition = true)
     {
         $this->isDisabled = $condition;
 

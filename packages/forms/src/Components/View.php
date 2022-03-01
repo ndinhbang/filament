@@ -9,7 +9,10 @@ class View extends Component
         $this->view($view);
     }
 
-    public static function make(string $view): static
+    /**
+     * @return $this
+     */
+    public static function make(string $view)
     {
         return app(static::class, ['view' => $view]);
     }

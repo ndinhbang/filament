@@ -8,9 +8,15 @@ use Illuminate\Support\Str;
 
 class BelongsToManyCheckboxList extends CheckboxList
 {
-    protected string | Closure | null $displayColumnName = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $displayColumnName = null;
 
-    protected string | Closure | null $relationship = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $relationship = null;
 
     protected function setUp(): void
     {
@@ -32,7 +38,7 @@ class BelongsToManyCheckboxList extends CheckboxList
                 $relatedModels
                     ->pluck($relationship->getRelatedKeyName())
                     ->map(fn ($key): string => strval($key))
-                    ->toArray(),
+                    ->toArray()
             );
         });
 
@@ -43,7 +49,12 @@ class BelongsToManyCheckboxList extends CheckboxList
         $this->dehydrated(false);
     }
 
-    public function relationship(string | Closure $relationshipName, string | Closure $displayColumnName, ?Closure $callback = null): static
+    /**
+     * @param \Closure|string $relationshipName
+     * @param \Closure|string $displayColumnName
+     * @return $this
+     */
+    public function relationship($relationshipName, $displayColumnName, ?Closure $callback = null)
     {
         $this->displayColumnName = $displayColumnName;
         $this->relationship = $relationshipName;

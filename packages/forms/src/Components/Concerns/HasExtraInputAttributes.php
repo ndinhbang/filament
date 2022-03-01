@@ -7,9 +7,16 @@ use Illuminate\View\ComponentAttributeBag;
 
 trait HasExtraInputAttributes
 {
-    protected array | Closure $extraInputAttributes = [];
+    /**
+     * @var mixed[]|\Closure
+     */
+    protected $extraInputAttributes = [];
 
-    public function extraInputAttributes(array | Closure $attributes): static
+    /**
+     * @param mixed[]|\Closure $attributes
+     * @return $this
+     */
+    public function extraInputAttributes($attributes)
     {
         $this->extraInputAttributes = $attributes;
 

@@ -8,7 +8,10 @@ class TagsColumn extends Column
 {
     protected string $view = 'tables::columns.tags-column';
 
-    protected string | Closure | null $separator = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $separator = null;
 
     public function getTags(): array
     {
@@ -31,7 +34,11 @@ class TagsColumn extends Column
         return $tags;
     }
 
-    public function separator(string | Closure | null $separator = ','): static
+    /**
+     * @param \Closure|string|null $separator
+     * @return $this
+     */
+    public function separator($separator = ',')
     {
         $this->separator = $separator;
 

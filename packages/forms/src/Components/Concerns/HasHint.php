@@ -6,18 +6,32 @@ use Closure;
 
 trait HasHint
 {
-    protected string | Closure | null $hint = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $hint = null;
 
-    protected string | Closure | null $hintIcon = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $hintIcon = null;
 
-    public function hint(string | Closure | null $hint): static
+    /**
+     * @param \Closure|string|null $hint
+     * @return $this
+     */
+    public function hint($hint)
     {
         $this->hint = $hint;
 
         return $this;
     }
 
-    public function hintIcon(string | Closure | null $hintIcon): static
+    /**
+     * @param \Closure|string|null $hintIcon
+     * @return $this
+     */
+    public function hintIcon($hintIcon)
     {
         $this->hintIcon = $hintIcon;
 

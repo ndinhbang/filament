@@ -112,7 +112,7 @@ trait HasActions
     protected function getCachedTableAction(string $name): ?Action
     {
         $action = $this->getCachedTableActions()[$name] ?? null;
-        $action?->record($this->getMountedTableActionRecord());
+        ($action2 = $action) ? $action2->record($this->getMountedTableActionRecord()) : null;
 
         return $action;
     }

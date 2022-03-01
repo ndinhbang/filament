@@ -8,7 +8,10 @@ trait HasLabel
 {
     protected ?string $label = null;
 
-    public function label(string $label): static
+    /**
+     * @return $this
+     */
+    public function label(string $label)
     {
         $this->label = $label;
 

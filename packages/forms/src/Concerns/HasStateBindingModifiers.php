@@ -8,21 +8,30 @@ trait HasStateBindingModifiers
 {
     protected $stateBindingModifiers = null;
 
-    public function reactive(): static
+    /**
+     * @return $this
+     */
+    public function reactive()
     {
         $this->stateBindingModifiers([]);
 
         return $this;
     }
 
-    public function lazy(): static
+    /**
+     * @return $this
+     */
+    public function lazy()
     {
         $this->stateBindingModifiers(['lazy']);
 
         return $this;
     }
 
-    public function stateBindingModifiers(array $modifiers): static
+    /**
+     * @return $this
+     */
+    public function stateBindingModifiers(array $modifiers)
     {
         $this->stateBindingModifiers = $modifiers;
 

@@ -6,7 +6,10 @@ trait HasColor
 {
     protected ?string $color = null;
 
-    public function color(?string $color): static
+    /**
+     * @return $this
+     */
+    public function color(?string $color)
     {
         $this->color = $color;
 

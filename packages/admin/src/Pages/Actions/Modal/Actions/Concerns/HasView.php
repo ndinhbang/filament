@@ -6,7 +6,10 @@ trait HasView
 {
     protected string $view;
 
-    public function view(string $view): static
+    /**
+     * @return $this
+     */
+    public function view(string $view)
     {
         $this->view = $view;
 

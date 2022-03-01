@@ -220,10 +220,13 @@ class FilamentManager
         return array_unique($this->resources);
     }
 
-    public function getModelResource(string | Model $model): ?string
+    /**
+     * @param \Illuminate\Database\Eloquent\Model|string $model
+     */
+    public function getModelResource($model): ?string
     {
         if ($model instanceof Model) {
-            $model = $model::class;
+            $model = get_class($model);
         }
 
         foreach ($this->getResources() as $resource) {

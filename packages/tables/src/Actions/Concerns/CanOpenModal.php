@@ -7,54 +7,96 @@ use Filament\Tables\Actions\Modal\Actions\ButtonAction;
 
 trait CanOpenModal
 {
-    protected bool | Closure | null $isModalCentered = null;
+    /**
+     * @var bool|\Closure|null
+     */
+    protected $isModalCentered = null;
 
-    protected array | Closure | null $modalActions = null;
+    /**
+     * @var mixed[]|\Closure|null
+     */
+    protected $modalActions = null;
 
-    protected string | Closure | null $modalButtonLabel = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $modalButtonLabel = null;
 
-    protected string | Closure | null $modalHeading = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $modalHeading = null;
 
-    protected string | Closure | null $modalSubheading = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $modalSubheading = null;
 
-    protected string | Closure | null $modalWidth = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $modalWidth = null;
 
-    public function centerModal(bool | Closure | null $condition = true): static
+    /**
+     * @param bool|\Closure|null $condition
+     * @return $this
+     */
+    public function centerModal($condition = true)
     {
         $this->isModalCentered = $condition;
 
         return $this;
     }
 
-    public function modalActions(array | Closure | null $actions = null): static
+    /**
+     * @param mixed[]|\Closure|null $actions
+     * @return $this
+     */
+    public function modalActions($actions = null)
     {
         $this->modalActions = $actions;
 
         return $this;
     }
 
-    public function modalButton(string | Closure | null $label = null): static
+    /**
+     * @param \Closure|string|null $label
+     * @return $this
+     */
+    public function modalButton($label = null)
     {
         $this->modalButtonLabel = $label;
 
         return $this;
     }
 
-    public function modalHeading(string | Closure | null $heading = null): static
+    /**
+     * @param \Closure|string|null $heading
+     * @return $this
+     */
+    public function modalHeading($heading = null)
     {
         $this->modalHeading = $heading;
 
         return $this;
     }
 
-    public function modalSubheading(string | Closure | null $subheading = null): static
+    /**
+     * @param \Closure|string|null $subheading
+     * @return $this
+     */
+    public function modalSubheading($subheading = null)
     {
         $this->modalSubheading = $subheading;
 
         return $this;
     }
 
-    public function modalWidth(string | Closure | null $width = null): static
+    /**
+     * @param \Closure|string|null $width
+     * @return $this
+     */
+    public function modalWidth($width = null)
     {
         $this->modalWidth = $width;
 

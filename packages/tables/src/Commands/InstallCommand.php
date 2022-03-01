@@ -62,7 +62,7 @@ class InstallCommand extends Command
             Arr::except($packages, [
                 'axios',
                 'lodash',
-            ]),
+            ])
         );
     }
 }

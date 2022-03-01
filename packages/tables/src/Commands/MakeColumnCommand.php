@@ -36,13 +36,13 @@ class MakeColumnCommand extends Command
             (string) Str::of($column)
                 ->prepend('Tables\\Columns\\')
                 ->replace('\\', '/')
-                ->append('.php'),
+                ->append('.php')
         );
         $viewPath = resource_path(
             (string) Str::of($view)
                 ->replace('.', '/')
                 ->prepend('views/')
-                ->append('.blade.php'),
+                ->append('.blade.php')
         );
 
         if (! $this->option('force') && $this->checkForCollision([

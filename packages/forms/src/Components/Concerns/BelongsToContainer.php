@@ -9,7 +9,10 @@ trait BelongsToContainer
 {
     protected ComponentContainer $container;
 
-    public function container(ComponentContainer $container): static
+    /**
+     * @return $this
+     */
+    public function container(ComponentContainer $container)
     {
         $this->container = $container;
 

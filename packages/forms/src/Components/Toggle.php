@@ -12,9 +12,15 @@ class Toggle extends Field
 
     protected string $view = 'forms::components.toggle';
 
-    protected string | Closure | null $offIcon = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $offIcon = null;
 
-    protected string | Closure | null $onIcon = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $onIcon = null;
 
     protected function setUp(): void
     {
@@ -29,14 +35,22 @@ class Toggle extends Field
         $this->rule('boolean');
     }
 
-    public function offIcon(string | Closure | null $icon): static
+    /**
+     * @param \Closure|string|null $icon
+     * @return $this
+     */
+    public function offIcon($icon)
     {
         $this->offIcon = $icon;
 
         return $this;
     }
 
-    public function onIcon(string | Closure | null $icon): static
+    /**
+     * @param \Closure|string|null $icon
+     * @return $this
+     */
+    public function onIcon($icon)
     {
         $this->onIcon = $icon;
 

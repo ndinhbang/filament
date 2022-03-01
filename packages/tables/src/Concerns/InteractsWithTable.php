@@ -74,7 +74,7 @@ trait InteractsWithTable
             ->getRecordUrlUsing($this->getTableRecordUrlUsing())
             ->header($this->getTableHeader())
             ->heading($this->getTableHeading())
-            ->model($this->getTableQuery()->getModel()::class)
+            ->model(get_class($this->getTableQuery()->getModel()))
             ->recordsPerPageSelectOptions($this->getTableRecordsPerPageSelectOptions());
     }
 
@@ -105,11 +105,11 @@ trait InteractsWithTable
                 ->model($this->getFormModel()),
             'mountedTableActionForm' => $this->makeForm()
                 ->schema(($action = $this->getMountedTableAction()) ? $action->getFormSchema() : [])
-                ->model($this->getMountedTableActionRecord() ?? $this->getTableQuery()->getModel()::class)
+                ->model($this->getMountedTableActionRecord() ?? get_class($this->getTableQuery()->getModel()))
                 ->statePath('mountedTableActionData'),
             'mountedTableBulkActionForm' => $this->makeForm()
                 ->schema(($action = $this->getMountedTableBulkAction()) ? $action->getFormSchema() : [])
-                ->model($this->getTableQuery()->getModel()::class)
+                ->model(get_class($this->getTableQuery()->getModel()))
                 ->statePath('mountedTableBulkActionData'),
             'tableFiltersForm' => $this->makeForm()
                 ->schema($this->getTableFiltersFormSchema())

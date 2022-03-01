@@ -14,9 +14,15 @@ class MultiSelectFilter extends Filter
     use Concerns\HasOptions;
     use Concerns\HasPlaceholder;
 
-    protected string | Closure | null $column = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $column = null;
 
-    protected bool | Closure $isStatic = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $isStatic = false;
 
     protected function setUp(): void
     {
@@ -47,8 +53,8 @@ class MultiSelectFilter extends Filter
                 $this->getRelationshipName(),
                 fn (Builder $query) => $query->whereIn(
                     $relationship->getOwnerKeyName(),
-                    $data['values'],
-                ),
+                    $data['values']
+                )
             );
         }
 
@@ -58,21 +64,32 @@ class MultiSelectFilter extends Filter
         return $query;
     }
 
-    public function column(string | Closure | null $name): static
+    /**
+     * @param \Closure|string|null $name
+     * @return $this
+     */
+    public function column($name)
     {
         $this->column = $name;
 
         return $this;
     }
 
-    public function relationship(string $relationshipName, string $displayColumnName): static
+    /**
+     * @return $this
+     */
+    public function relationship(string $relationshipName, string $displayColumnName)
     {
         $this->column("{$relationshipName}.{$displayColumnName}");
 
         return $this;
     }
 
-    public function static(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function static($condition = true)
     {
         $this->isStatic = $condition;
 

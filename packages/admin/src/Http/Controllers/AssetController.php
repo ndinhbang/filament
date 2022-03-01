@@ -37,7 +37,7 @@ class AssetController
 
             abort_unless(
                 array_key_exists($name, Filament::getStyles()),
-                404,
+                404
             );
 
             return $this->pretendResponseIsFile(Filament::getStyles()[$name], 'text/css; charset=utf-8');
@@ -55,7 +55,7 @@ class AssetController
     {
         abort_unless(
             file_exists($path) || file_exists($path = base_path($path)),
-            404,
+            404
         );
 
         $cacheControl = 'public, max-age=31536000';

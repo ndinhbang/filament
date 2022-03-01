@@ -11,7 +11,10 @@ class Fieldset extends Component
         $this->label($label);
     }
 
-    public static function make(string $label): static
+    /**
+     * @return $this
+     */
+    public static function make(string $label)
     {
         $static = app(static::class, ['label' => $label]);
         $static->setUp();

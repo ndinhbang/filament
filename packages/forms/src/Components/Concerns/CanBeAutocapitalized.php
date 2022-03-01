@@ -6,16 +6,27 @@ use Closure;
 
 trait CanBeAutocapitalized
 {
-    protected string | Closure | null $autocapitalize = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $autocapitalize = null;
 
-    public function autocapitalize(string | Closure | null $autocapitalize = 'on'): static
+    /**
+     * @param \Closure|string|null $autocapitalize
+     * @return $this
+     */
+    public function autocapitalize($autocapitalize = 'on')
     {
         $this->autocapitalize = $autocapitalize;
 
         return $this;
     }
 
-    public function disableAutocapitalize(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function disableAutocapitalize($condition = true)
     {
         $this->autocapitalize(function () use ($condition): ?string {
             return $this->evaluate($condition) ? 'off' : null;

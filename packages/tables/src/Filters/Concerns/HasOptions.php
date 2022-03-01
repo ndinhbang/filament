@@ -7,9 +7,16 @@ use Illuminate\Contracts\Support\Arrayable;
 
 trait HasOptions
 {
-    protected array | Arrayable | string | Closure | null $options = null;
+    /**
+     * @var mixed[]|\Closure|\Illuminate\Contracts\Support\Arrayable|string|null
+     */
+    protected $options = null;
 
-    public function options(array | Arrayable | string | Closure | null $options): static
+    /**
+     * @param mixed[]|\Closure|\Illuminate\Contracts\Support\Arrayable|string|null $options
+     * @return $this
+     */
+    public function options($options)
     {
         $this->options = $options;
 
@@ -25,7 +32,7 @@ trait HasOptions
         }
 
         if (is_string($options) && function_exists('enum_exists') && enum_exists($options)) {
-            $options = collect($options::cases())->mapWithKeys(fn ($case) => [($case?->value ?? $case->name) => $case->name]);
+            $options = collect($options::cases())->mapWithKeys(fn ($case) => [((($case2 = $case) ? $case2->value : null) ?? $case->name) => $case->name]);
         }
 
         if ($options instanceof Arrayable) {

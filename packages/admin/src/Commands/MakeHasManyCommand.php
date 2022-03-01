@@ -40,7 +40,7 @@ class MakeHasManyCommand extends Command
             (string) Str::of($managerClass)
                 ->prepend("Filament\\Resources\\{$resource}\\RelationManagers\\")
                 ->replace('\\', '/')
-                ->append('.php'),
+                ->append('.php')
         );
 
         if (! $this->option('force') && $this->checkForCollision([

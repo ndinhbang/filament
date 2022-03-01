@@ -66,13 +66,13 @@ class CreateRecord extends Page implements HasFormActions
             $this->notify(
                 'success',
                 $this->getCreatedNotificationMessage(),
-                isAfterRedirect: ! $another,
+                ! $another
             );
         }
 
         if ($another) {
             // Ensure that the form record is anonymized so that relationships aren't loaded.
-            $this->form->model($this->record::class);
+            $this->form->model(get_class($this->record));
             $this->record = null;
 
             $this->fillForm();
@@ -90,7 +90,7 @@ class CreateRecord extends Page implements HasFormActions
 
     public function createAndCreateAnother(): void
     {
-        $this->create(another: true);
+        $this->create(true);
     }
 
     protected function handleRecordCreation(array $data): Model

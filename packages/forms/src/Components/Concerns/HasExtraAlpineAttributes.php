@@ -7,9 +7,16 @@ use Illuminate\View\ComponentAttributeBag;
 
 trait HasExtraAlpineAttributes
 {
-    protected array | Closure $extraAlpineAttributes = [];
+    /**
+     * @var mixed[]|\Closure
+     */
+    protected $extraAlpineAttributes = [];
 
-    public function extraAlpineAttributes(array | Closure $attributes): static
+    /**
+     * @param mixed[]|\Closure $attributes
+     * @return $this
+     */
+    public function extraAlpineAttributes($attributes)
     {
         $this->extraAlpineAttributes = $attributes;
 

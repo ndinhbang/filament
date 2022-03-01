@@ -52,7 +52,7 @@ trait CanManipulateFiles
 
         $filesystem->ensureDirectoryExists(
             (string) Str::of($path)
-                ->beforeLast('/'),
+                ->beforeLast('/')
         );
 
         $filesystem->put($path, $contents);

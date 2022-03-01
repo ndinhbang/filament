@@ -6,7 +6,10 @@ trait CanRequireConfirmation
 {
     protected bool $isConfirmationRequired = false;
 
-    public function requiresConfirmation(bool $condition = true): static
+    /**
+     * @return $this
+     */
+    public function requiresConfirmation(bool $condition = true)
     {
         $this->isConfirmationRequired = $condition;
 

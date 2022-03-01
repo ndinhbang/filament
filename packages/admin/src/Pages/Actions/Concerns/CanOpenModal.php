@@ -18,42 +18,60 @@ trait CanOpenModal
 
     protected ?string $modalWidth = null;
 
-    public function centerModal(?bool $condition = true): static
+    /**
+     * @return $this
+     */
+    public function centerModal(?bool $condition = true)
     {
         $this->isModalCentered = $condition;
 
         return $this;
     }
 
-    public function modalActions(?array $actions = null): static
+    /**
+     * @return $this
+     */
+    public function modalActions(?array $actions = null)
     {
         $this->modalActions = $actions;
 
         return $this;
     }
 
-    public function modalButton(?string $label = null): static
+    /**
+     * @return $this
+     */
+    public function modalButton(?string $label = null)
     {
         $this->modalButtonLabel = $label;
 
         return $this;
     }
 
-    public function modalHeading(?string $heading = null): static
+    /**
+     * @return $this
+     */
+    public function modalHeading(?string $heading = null)
     {
         $this->modalHeading = $heading;
 
         return $this;
     }
 
-    public function modalSubheading(?string $subheading = null): static
+    /**
+     * @return $this
+     */
+    public function modalSubheading(?string $subheading = null)
     {
         $this->modalSubheading = $subheading;
 
         return $this;
     }
 
-    public function modalWidth(?string $width = null): static
+    /**
+     * @return $this
+     */
+    public function modalWidth(?string $width = null)
     {
         $this->modalWidth = $width;
 

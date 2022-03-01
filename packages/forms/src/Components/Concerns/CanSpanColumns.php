@@ -15,7 +15,11 @@ trait CanSpanColumns
         '2xl' => null,
     ];
 
-    public function columnSpan(array | int | string | Closure | null $span): static
+    /**
+     * @param mixed[]|\Closure|int|string|null $span
+     * @return $this
+     */
+    public function columnSpan($span)
     {
         if (! is_array($span)) {
             $span = [
@@ -28,7 +32,10 @@ trait CanSpanColumns
         return $this;
     }
 
-    public function getColumnSpan($breakpoint = null): array | int | string | null
+    /**
+     * @return mixed[]|int|string|null
+     */
+    public function getColumnSpan($breakpoint = null)
     {
         $span = $this->columnSpan;
 
@@ -37,7 +44,7 @@ trait CanSpanColumns
         }
 
         return array_map(
-            fn (array | int | string | Closure | null $value): array | int | string | null => $this->evaluate($value),
+            fn ($value) => $this->evaluate($value),
             $span
         );
     }

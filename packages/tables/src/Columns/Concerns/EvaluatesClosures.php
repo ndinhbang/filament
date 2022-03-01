@@ -11,7 +11,7 @@ trait EvaluatesClosures
         if ($value instanceof Closure) {
             return app()->call(
                 $value,
-                array_merge($this->getDefaultEvaluationParameters(), $parameters),
+                array_merge($this->getDefaultEvaluationParameters(), $parameters)
             );
         }
 

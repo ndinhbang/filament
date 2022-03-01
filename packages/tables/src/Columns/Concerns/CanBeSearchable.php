@@ -10,7 +10,11 @@ trait CanBeSearchable
 
     protected ?array $searchColumns = null;
 
-    public function searchable(bool | array $condition = true): static
+    /**
+     * @param mixed[]|bool $condition
+     * @return $this
+     */
+    public function searchable($condition = true)
     {
         if (is_array($condition)) {
             $this->isSearchable = true;

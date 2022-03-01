@@ -10,9 +10,16 @@ class ButtonAction extends Action
 
     protected string $view = 'tables::actions.button-action';
 
-    protected string | Closure | null $iconPosition = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $iconPosition = null;
 
-    public function iconPosition(string | Closure | null $position): static
+    /**
+     * @param \Closure|string|null $position
+     * @return $this
+     */
+    public function iconPosition($position)
     {
         $this->iconPosition = $position;
 

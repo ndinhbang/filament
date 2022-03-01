@@ -11,7 +11,10 @@ class Widget extends Component
 
     protected static string $view;
 
-    protected int | string | array $columnSpan = 1;
+    /**
+     * @var mixed[]|int|string
+     */
+    protected $columnSpan = 1;
 
     public static function canView(): bool
     {
@@ -23,7 +26,10 @@ class Widget extends Component
         return static::$sort ?? -1;
     }
 
-    protected function getColumnSpan(): int | string | array
+    /**
+     * @return mixed[]|int|string
+     */
+    protected function getColumnSpan()
     {
         return $this->columnSpan;
     }

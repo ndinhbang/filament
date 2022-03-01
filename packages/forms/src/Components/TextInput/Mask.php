@@ -57,91 +57,130 @@ class Mask implements Jsonable
     {
     }
 
-    public function autofix(bool $condition = true): static
+    /**
+     * @return $this
+     */
+    public function autofix(bool $condition = true)
     {
         $this->shouldAutofix = $condition;
 
         return $this;
     }
 
-    public function decimalPlaces(?int $places): static
+    /**
+     * @return $this
+     */
+    public function decimalPlaces(?int $places)
     {
         $this->decimalPlaces = $places;
 
         return $this;
     }
 
-    public function decimalSeparator(?string $separator = '.'): static
+    /**
+     * @return $this
+     */
+    public function decimalSeparator(?string $separator = '.')
     {
         $this->decimalSeparator = $separator;
 
         return $this;
     }
 
-    public function enum(array $values): static
+    /**
+     * @return $this
+     */
+    public function enum(array $values)
     {
         $this->enum = $values;
 
         return $this;
     }
 
-    public function from(?int $value): static
+    /**
+     * @return $this
+     */
+    public function from(?int $value)
     {
         $this->fromValue = $value;
 
         return $this;
     }
 
-    public function integer(): static
+    /**
+     * @return $this
+     */
+    public function integer()
     {
         $this->decimalPlaces(0);
 
         return $this;
     }
 
-    public function jsonOptions(?string $json = null): static
+    /**
+     * @return $this
+     */
+    public function jsonOptions(?string $json = null)
     {
         $this->jsonOptions = $json;
 
         return $this;
     }
 
-    public function lazyPlaceholder(bool $condition = true): static
+    /**
+     * @return $this
+     */
+    public function lazyPlaceholder(bool $condition = true)
     {
         $this->hasLazyPlaceholder = $condition;
 
         return $this;
     }
 
-    public function mapToDecimalSeparator(array $characters): static
+    /**
+     * @return $this
+     */
+    public function mapToDecimalSeparator(array $characters)
     {
         $this->mapToDecimalSeparator = $characters;
 
         return $this;
     }
 
-    public function maxLength(?int $value): static
+    /**
+     * @return $this
+     */
+    public function maxLength(?int $value)
     {
         $this->maxLength = $value;
 
         return $this;
     }
 
-    public function maxValue(?int $value): static
+    /**
+     * @return $this
+     */
+    public function maxValue(?int $value)
     {
         $this->maxValue = $value;
 
         return $this;
     }
 
-    public function minValue(?int $value): static
+    /**
+     * @return $this
+     */
+    public function minValue(?int $value)
     {
         $this->minValue = $value;
 
         return $this;
     }
 
-    public function money(string $prefix = '$', string $thousandsSeparator = ',', int $decimalPlaces = 2): static
+    /**
+     * @return $this
+     */
+    public function money(string $prefix = '$', string $thousandsSeparator = ',', int $decimalPlaces = 2)
     {
         $this
             ->patternBlocks([
@@ -158,91 +197,130 @@ class Mask implements Jsonable
         return $this;
     }
 
-    public function numeric(bool $condition = true): static
+    /**
+     * @return $this
+     */
+    public function numeric(bool $condition = true)
     {
         $this->isNumeric = $condition;
 
         return $this;
     }
 
-    public function normalizeZeros(bool $condition = true): static
+    /**
+     * @return $this
+     */
+    public function normalizeZeros(bool $condition = true)
     {
         $this->shouldNormalizeZeros = $condition;
 
         return $this;
     }
 
-    public function overwrite(bool $condition = true): static
+    /**
+     * @return $this
+     */
+    public function overwrite(bool $condition = true)
     {
         $this->shouldOverwrite = $condition;
 
         return $this;
     }
 
-    public function padFractionalZeros(bool $condition = true): static
+    /**
+     * @return $this
+     */
+    public function padFractionalZeros(bool $condition = true)
     {
         $this->shouldPadFractionalZeros = $condition;
 
         return $this;
     }
 
-    public function pattern($pattern): static
+    /**
+     * @return $this
+     */
+    public function pattern($pattern)
     {
         $this->pattern = $pattern;
 
         return $this;
     }
 
-    public function patternBlocks(array $blocks): static
+    /**
+     * @return $this
+     */
+    public function patternBlocks(array $blocks)
     {
         $this->patternBlocks = $blocks;
 
         return $this;
     }
 
-    public function patternDefinitions(array $definitions): static
+    /**
+     * @return $this
+     */
+    public function patternDefinitions(array $definitions)
     {
         $this->patternDefinitions = $definitions;
 
         return $this;
     }
 
-    public function placeholderCharacter(string $character): static
+    /**
+     * @return $this
+     */
+    public function placeholderCharacter(string $character)
     {
         $this->placeholderCharacter = $character;
 
         return $this;
     }
 
-    public function positive(): static
+    /**
+     * @return $this
+     */
+    public function positive()
     {
         $this->signed(false);
 
         return $this;
     }
 
-    public function range(bool $condition = true): static
+    /**
+     * @return $this
+     */
+    public function range(bool $condition = true)
     {
         $this->isRange = $condition;
 
         return $this;
     }
 
-    public function signed(bool $condition = true): static
+    /**
+     * @return $this
+     */
+    public function signed(bool $condition = true)
     {
         $this->isSigned = $condition;
 
         return $this;
     }
 
-    public function thousandsSeparator(?string $separator = ','): static
+    /**
+     * @return $this
+     */
+    public function thousandsSeparator(?string $separator = ',')
     {
         $this->thousandsSeparator = $separator;
 
         return $this;
     }
 
-    public function to(?int $value): static
+    /**
+     * @return $this
+     */
+    public function to(?int $value)
     {
         $this->toValue = $value;
 
@@ -271,7 +349,7 @@ class Mask implements Jsonable
         if ($this->patternBlocks !== []) {
             $configuration['blocks'] = array_map(
                 fn (Closure $configuration): array => $configuration(app(static::class))->getArrayableConfiguration(),
-                $this->patternBlocks,
+                $this->patternBlocks
             );
         }
 
@@ -356,7 +434,7 @@ class Mask implements Jsonable
                 ' }}"',
             ],
             '',
-            $json,
+            $json
         );
     }
 }

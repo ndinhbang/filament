@@ -9,7 +9,10 @@ use Illuminate\Database\Eloquent\Model;
 
 trait HasRecords
 {
-    protected Collection | Paginator | null $records = null;
+    /**
+     * @var \Illuminate\Contracts\Pagination\Paginator|\Illuminate\Database\Eloquent\Collection|null
+     */
+    protected $records = null;
 
     protected function getFilteredTableQuery(): Builder
     {
@@ -27,7 +30,10 @@ trait HasRecords
         return $query;
     }
 
-    public function getTableRecords(): Collection | Paginator
+    /**
+     * @return \Illuminate\Contracts\Pagination\Paginator|\Illuminate\Database\Eloquent\Collection
+     */
+    public function getTableRecords()
     {
         if ($this->records) {
             return $this->records;

@@ -6,9 +6,16 @@ use Closure;
 
 trait HasPlaceholder
 {
-    protected string | Closure | null $placeholder = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $placeholder = null;
 
-    public function placeholder(string | Closure | null $placeholder): static
+    /**
+     * @param \Closure|string|null $placeholder
+     * @return $this
+     */
+    public function placeholder($placeholder)
     {
         $this->placeholder = $placeholder;
 

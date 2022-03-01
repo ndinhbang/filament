@@ -6,9 +6,16 @@ use Closure;
 
 trait HasColor
 {
-    protected string | Closure | null $color = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $color = null;
 
-    public function color(string | Closure | null $color): static
+    /**
+     * @param \Closure|string|null $color
+     * @return $this
+     */
+    public function color($color)
     {
         $this->color = $color;
 

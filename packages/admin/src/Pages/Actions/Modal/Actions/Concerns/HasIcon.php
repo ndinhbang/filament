@@ -6,7 +6,10 @@ trait HasIcon
 {
     protected ?string $icon = null;
 
-    public function icon(string $icon): static
+    /**
+     * @return $this
+     */
+    public function icon(string $icon)
     {
         $this->icon = $icon;
 

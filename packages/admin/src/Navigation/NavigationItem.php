@@ -22,47 +22,68 @@ class NavigationItem
     {
     }
 
-    public static function make(): static
+    /**
+     * @return $this
+     */
+    public static function make()
     {
         return app(static::class);
     }
 
-    public function group(?string $group): static
+    /**
+     * @return $this
+     */
+    public function group(?string $group)
     {
         $this->group = $group;
 
         return $this;
     }
 
-    public function icon(string $icon): static
+    /**
+     * @return $this
+     */
+    public function icon(string $icon)
     {
         $this->icon = $icon;
 
         return $this;
     }
 
-    public function isActiveWhen(Closure $callback): static
+    /**
+     * @return $this
+     */
+    public function isActiveWhen(Closure $callback)
     {
         $this->isActiveWhen = $callback;
 
         return $this;
     }
 
-    public function label(string $label): static
+    /**
+     * @return $this
+     */
+    public function label(string $label)
     {
         $this->label = $label;
 
         return $this;
     }
 
-    public function sort(?int $sort): static
+    /**
+     * @return $this
+     */
+    public function sort(?int $sort)
     {
         $this->sort = $sort;
 
         return $this;
     }
 
-    public function url(?string $url): static
+    /**
+     * @return $this
+     */
+    public function url(?string $url)
     {
         $this->url = $url;
 

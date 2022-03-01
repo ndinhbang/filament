@@ -6,26 +6,45 @@ use Closure;
 
 trait HasAlignment
 {
-    protected string | Closure | null $alignment = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $alignment = null;
 
-    public function alignment(string | Closure | null $alignment): static
+    /**
+     * @param \Closure|string|null $alignment
+     * @return $this
+     */
+    public function alignment($alignment)
     {
         $this->alignment = $alignment;
 
         return $this;
     }
 
-    public function alignLeft(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function alignLeft($condition = true)
     {
         return $this->alignment(fn (): ?string => $condition ? 'left' : null);
     }
 
-    public function alignCenter(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function alignCenter($condition = true)
     {
         return $this->alignment(fn (): ?string => $condition ? 'center' : null);
     }
 
-    public function alignRight(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function alignRight($condition = true)
     {
         return $this->alignment(fn (): ?string => $condition ? 'right' : null);
     }

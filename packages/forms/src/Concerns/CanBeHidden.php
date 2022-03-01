@@ -6,6 +6,6 @@ trait CanBeHidden
 {
     public function isHidden(): bool
     {
-        return (bool) $this->getParentComponent()?->isHidden();
+        return (bool) (($getParentComponent = $this->getParentComponent()) ? $getParentComponent->isHidden() : null);
     }
 }

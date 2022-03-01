@@ -6,16 +6,27 @@ use Closure;
 
 trait CanBeAutocompleted
 {
-    protected string | Closure | null $autocomplete = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $autocomplete = null;
 
-    public function autocomplete(string | Closure | null $autocomplete = 'on'): static
+    /**
+     * @param \Closure|string|null $autocomplete
+     * @return $this
+     */
+    public function autocomplete($autocomplete = 'on')
     {
         $this->autocomplete = $autocomplete;
 
         return $this;
     }
 
-    public function disableAutocomplete(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function disableAutocomplete($condition = true)
     {
         $this->autocomplete(function () use ($condition): ?string {
             return $this->evaluate($condition) ? 'off' : null;

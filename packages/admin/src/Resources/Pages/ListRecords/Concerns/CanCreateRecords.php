@@ -83,7 +83,7 @@ trait CanCreateRecords
 
         if ($another) {
             // Ensure that the form record is anonymized so that relationships aren't loaded.
-            $form->model($record::class);
+            $form->model(get_class($record));
             $this->mountedTableActionRecord = null;
 
             $form->fill();
@@ -96,7 +96,7 @@ trait CanCreateRecords
 
     protected function getCreatedNotificationMessage(): ?string
     {
-        return __('filament::resources/pages/list-records.actions.create.messages.created')
+        return __('filament::resources/pages/list-records.actions.create.messages.created');
     }
 
     public function createAndCreateAnother(): void

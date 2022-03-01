@@ -6,7 +6,10 @@ trait CanBeOutlined
 {
     protected bool $isOutlined = false;
 
-    public function outlined(bool $condition = true): static
+    /**
+     * @return $this
+     */
+    public function outlined(bool $condition = true)
     {
         $this->isOutlined = $condition;
 

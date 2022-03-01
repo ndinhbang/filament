@@ -8,15 +8,32 @@ class BooleanColumn extends Column
 {
     protected string $view = 'tables::columns.boolean-column';
 
-    protected string | Closure | null $falseColor = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $falseColor = null;
 
-    protected string | Closure | null $falseIcon = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $falseIcon = null;
 
-    protected string | Closure | null $trueColor = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $trueColor = null;
 
-    protected string | Closure | null $trueIcon = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $trueIcon = null;
 
-    public function false(string | Closure | null $icon = null, string | Closure | null $color = null): static
+    /**
+     * @param \Closure|string|null $icon
+     * @param \Closure|string|null $color
+     * @return $this
+     */
+    public function false($icon = null, $color = null)
     {
         $this->falseIcon($icon);
         $this->falseColor($color);
@@ -24,21 +41,34 @@ class BooleanColumn extends Column
         return $this;
     }
 
-    public function falseColor(string | Closure | null $color): static
+    /**
+     * @param \Closure|string|null $color
+     * @return $this
+     */
+    public function falseColor($color)
     {
         $this->falseColor = $color;
 
         return $this;
     }
 
-    public function falseIcon(string | Closure | null $icon): static
+    /**
+     * @param \Closure|string|null $icon
+     * @return $this
+     */
+    public function falseIcon($icon)
     {
         $this->falseIcon = $icon;
 
         return $this;
     }
 
-    public function true(string | Closure | null $icon = null, string | Closure | null $color = null): static
+    /**
+     * @param \Closure|string|null $icon
+     * @param \Closure|string|null $color
+     * @return $this
+     */
+    public function true($icon = null, $color = null)
     {
         $this->trueIcon($icon);
         $this->trueColor($color);
@@ -46,14 +76,22 @@ class BooleanColumn extends Column
         return $this;
     }
 
-    public function trueColor(string | Closure | null $color): static
+    /**
+     * @param \Closure|string|null $color
+     * @return $this
+     */
+    public function trueColor($color)
     {
         $this->trueColor = $color;
 
         return $this;
     }
 
-    public function trueIcon(string | Closure | null $icon): static
+    /**
+     * @param \Closure|string|null $icon
+     * @return $this
+     */
+    public function trueIcon($icon)
     {
         $this->trueIcon = $icon;
 

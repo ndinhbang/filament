@@ -6,9 +6,16 @@ use Closure;
 
 trait HasColors
 {
-    protected array | Closure $colors = [];
+    /**
+     * @var mixed[]|\Closure
+     */
+    protected $colors = [];
 
-    public function colors(array | Closure $colors): static
+    /**
+     * @param mixed[]|\Closure $colors
+     * @return $this
+     */
+    public function colors($colors)
     {
         $this->colors = $colors;
 

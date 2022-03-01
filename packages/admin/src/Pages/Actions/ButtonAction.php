@@ -12,7 +12,10 @@ class ButtonAction extends Action
 
     protected ?string $iconPosition = null;
 
-    public function iconPosition(string $position): static
+    /**
+     * @return $this
+     */
+    public function iconPosition(string $position)
     {
         $this->iconPosition = $position;
 

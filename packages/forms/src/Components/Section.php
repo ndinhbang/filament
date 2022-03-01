@@ -11,20 +11,39 @@ class Section extends Component implements Contracts\CanConcealComponents
 
     protected string $view = 'forms::components.section';
 
-    protected bool | Closure $isCollapsed = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $isCollapsed = false;
 
-    protected bool | Closure $isCollapsible = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $isCollapsible = false;
 
-    protected string | Closure | null $description = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $description = null;
 
-    protected string | Closure $heading;
+    /**
+     * @var \Closure|string
+     */
+    protected $heading;
 
-    final public function __construct(string | Closure $heading)
+    /**
+     * @param \Closure|string $heading
+     */
+    final public function __construct($heading)
     {
         $this->heading($heading);
     }
 
-    public static function make(string | Closure $heading): static
+    /**
+     * @param \Closure|string $heading
+     * @return $this
+     */
+    public static function make($heading)
     {
         $static = app(static::class, ['heading' => $heading]);
         $static->setUp();
@@ -39,7 +58,11 @@ class Section extends Component implements Contracts\CanConcealComponents
         $this->columnSpan('full');
     }
 
-    public function collapsed(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function collapsed($condition = true)
     {
         $this->isCollapsed = $condition;
         $this->collapsible(true);
@@ -47,21 +70,33 @@ class Section extends Component implements Contracts\CanConcealComponents
         return $this;
     }
 
-    public function collapsible(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function collapsible($condition = true)
     {
         $this->isCollapsible = $condition;
 
         return $this;
     }
 
-    public function description(string | Closure | null $description = null): static
+    /**
+     * @param \Closure|string|null $description
+     * @return $this
+     */
+    public function description($description = null)
     {
         $this->description = $description;
 
         return $this;
     }
 
-    public function heading(string | Closure $heading): static
+    /**
+     * @param \Closure|string $heading
+     * @return $this
+     */
+    public function heading($heading)
     {
         $this->heading = $heading;
 

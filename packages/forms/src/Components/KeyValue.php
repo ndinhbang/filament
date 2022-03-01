@@ -10,25 +10,55 @@ class KeyValue extends Field
 
     protected string $view = 'forms::components.key-value';
 
-    protected string | Closure | null $addButtonLabel = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $addButtonLabel = null;
 
-    protected bool | Closure $shouldDisableAddingRows = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $shouldDisableAddingRows = false;
 
-    protected bool | Closure $shouldDisableDeletingRows = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $shouldDisableDeletingRows = false;
 
-    protected bool | Closure $shouldDisableEditingKeys = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $shouldDisableEditingKeys = false;
 
-    protected bool | Closure $shouldDisableEditingValues = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $shouldDisableEditingValues = false;
 
-    protected string | Closure | null $deleteButtonLabel = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $deleteButtonLabel = null;
 
-    protected string | Closure | null $keyLabel = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $keyLabel = null;
 
-    protected string | Closure | null $valueLabel = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $valueLabel = null;
 
-    protected string | Closure | null $keyPlaceholder = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $keyPlaceholder = null;
 
-    protected string | Closure | null $valuePlaceholder = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $valuePlaceholder = null;
 
     protected function setUp(): void
     {
@@ -52,70 +82,110 @@ class KeyValue extends Field
         $this->valueLabel(__('forms::components.key_value.fields.value.label'));
     }
 
-    public function addButtonLabel(string | Closure | null $label): static
+    /**
+     * @param \Closure|string|null $label
+     * @return $this
+     */
+    public function addButtonLabel($label)
     {
         $this->addButtonLabel = $label;
 
         return $this;
     }
 
-    public function deleteButtonLabel(string | Closure | null $label): static
+    /**
+     * @param \Closure|string|null $label
+     * @return $this
+     */
+    public function deleteButtonLabel($label)
     {
         $this->deleteButtonLabel = $label;
 
         return $this;
     }
 
-    public function disableAddingRows(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function disableAddingRows($condition = true)
     {
         $this->shouldDisableAddingRows = $condition;
 
         return $this;
     }
 
-    public function disableDeletingRows(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function disableDeletingRows($condition = true)
     {
         $this->shouldDisableDeletingRows = $condition;
 
         return $this;
     }
 
-    public function disableEditingKeys(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function disableEditingKeys($condition = true)
     {
         $this->shouldDisableEditingKeys = $condition;
 
         return $this;
     }
 
-    public function disableEditingValues(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function disableEditingValues($condition = true)
     {
         $this->shouldDisableEditingValues = $condition;
 
         return $this;
     }
 
-    public function keyLabel(string | Closure | null $label): static
+    /**
+     * @param \Closure|string|null $label
+     * @return $this
+     */
+    public function keyLabel($label)
     {
         $this->keyLabel = $label;
 
         return $this;
     }
 
-    public function valueLabel(string | Closure | null $label): static
+    /**
+     * @param \Closure|string|null $label
+     * @return $this
+     */
+    public function valueLabel($label)
     {
         $this->valueLabel = $label;
 
         return $this;
     }
 
-    public function keyPlaceholder(string | Closure | null $placeholder): static
+    /**
+     * @param \Closure|string|null $placeholder
+     * @return $this
+     */
+    public function keyPlaceholder($placeholder)
     {
         $this->keyPlaceholder = $placeholder;
 
         return $this;
     }
 
-    public function valuePlaceholder(string | Closure | null $placeholder): static
+    /**
+     * @param \Closure|string|null $placeholder
+     * @return $this
+     */
+    public function valuePlaceholder($placeholder)
     {
         $this->valuePlaceholder = $placeholder;
 

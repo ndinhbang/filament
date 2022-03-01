@@ -12,7 +12,10 @@ trait CanFormatState
 {
     protected ?Closure $formatStateUsing = null;
 
-    public function date(?string $format = null): static
+    /**
+     * @return $this
+     */
+    public function date(?string $format = null)
     {
         $format ??= config('tables.date_format');
 
@@ -21,7 +24,10 @@ trait CanFormatState
         return $this;
     }
 
-    public function dateTime(?string $format = null): static
+    /**
+     * @return $this
+     */
+    public function dateTime(?string $format = null)
     {
         $format ??= config('tables.date_time_format');
 
@@ -30,14 +36,20 @@ trait CanFormatState
         return $this;
     }
 
-    public function enum(array $options, $default = null): static
+    /**
+     * @return $this
+     */
+    public function enum(array $options, $default = null)
     {
         $this->formatStateUsing(fn ($state): string => $options[$state] ?? ($default ?? $state));
 
         return $this;
     }
 
-    public function limit(int $length = 100, string $end = '...'): static
+    /**
+     * @return $this
+     */
+    public function limit(int $length = 100, string $end = '...')
     {
         $this->formatStateUsing(function ($state) use ($length, $end): ?string {
             if (blank($state)) {
@@ -50,14 +62,21 @@ trait CanFormatState
         return $this;
     }
 
-    public function formatStateUsing(?Closure $callback): static
+    /**
+     * @return $this
+     */
+    public function formatStateUsing(?Closure $callback)
     {
         $this->formatStateUsing = $callback;
 
         return $this;
     }
 
-    public function money(string | Closure $currency = 'usd', bool $shouldConvert = false): static
+    /**
+     * @param \Closure|string $currency
+     * @return $this
+     */
+    public function money($currency = 'usd', bool $shouldConvert = false)
     {
         $this->formatStateUsing(function (Column $column, $state) use ($currency, $shouldConvert): ?string {
             if (blank($state)) {
@@ -67,7 +86,7 @@ trait CanFormatState
             return (new Money\Money(
                 $state,
                 (new Money\Currency(strtoupper($column->evaluate($currency)))),
-                $shouldConvert,
+                $shouldConvert
             ))->format();
         });
 
@@ -87,7 +106,10 @@ trait CanFormatState
         return $state;
     }
 
-    public function time(?string $format = null): static
+    /**
+     * @return $this
+     */
+    public function time(?string $format = null)
     {
         $format ??= config('tables.time_format');
 

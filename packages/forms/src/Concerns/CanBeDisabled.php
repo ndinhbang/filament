@@ -6,7 +6,10 @@ trait CanBeDisabled
 {
     protected bool $isDisabled = false;
 
-    public function disabled(bool $condition = true): static
+    /**
+     * @return $this
+     */
+    public function disabled(bool $condition = true)
     {
         $this->isDisabled = $condition;
 
@@ -15,6 +18,6 @@ trait CanBeDisabled
 
     public function isDisabled(): bool
     {
-        return $this->isDisabled || $this->getParentComponent()?->isDisabled();
+        return $this->isDisabled || (($getParentComponent = $this->getParentComponent()) ? $getParentComponent->isDisabled() : null);
     }
 }

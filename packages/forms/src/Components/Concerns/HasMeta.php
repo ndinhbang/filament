@@ -8,14 +8,20 @@ trait HasMeta
 {
     protected array $meta = [];
 
-    public function meta(string $key, $value): static
+    /**
+     * @return $this
+     */
+    public function meta(string $key, $value)
     {
         $this->meta[$key] = $value;
 
         return $this;
     }
 
-    public function getMeta(string | array | null $keys = null)
+    /**
+     * @param mixed[]|string|null $keys
+     */
+    public function getMeta($keys = null)
     {
         if (is_array($keys)) {
             return Arr::only($this->meta, $keys);
@@ -28,7 +34,10 @@ trait HasMeta
         return $this->meta;
     }
 
-    public function hasMeta(string | array $keys): bool
+    /**
+     * @param mixed[]|string $keys
+     */
+    public function hasMeta($keys): bool
     {
         return Arr::has($this->meta, $keys);
     }

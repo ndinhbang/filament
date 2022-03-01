@@ -196,9 +196,9 @@ class Resource
             ->limit(50)
             ->get()
             ->map(fn (Model $record): GlobalSearchResult => new GlobalSearchResult(
-                title: static::getGlobalSearchResultTitle($record),
-                url: static::getGlobalSearchResultUrl($record),
-                details: static::getGlobalSearchResultDetails($record),
+                static::getGlobalSearchResultTitle($record),
+                static::getGlobalSearchResultUrl($record),
+                static::getGlobalSearchResultDetails($record)
             ));
     }
 
@@ -233,7 +233,7 @@ class Resource
 
     public static function getRecordTitle(?Model $record): ?string
     {
-        return $record?->getAttribute(static::getRecordTitleAttribute()) ?? $record?->getKey();
+        return (($record2 = $record) ? $record2->getAttribute(static::getRecordTitleAttribute()) : null) ?? (($record2 = $record) ? $record2->getKey() : null);
     }
 
     public static function getRelations(): array
@@ -300,10 +300,14 @@ class Resource
         /** @var Connection $databaseConnection */
         $databaseConnection = $query->getConnection();
 
-        $searchOperator = match ($databaseConnection->getDriverName()) {
-            'pgsql' => 'ilike',
-            default => 'like',
-        };
+        switch ($databaseConnection->getDriverName()) {
+            case 'pgsql':
+                $searchOperator = 'ilike';
+                break;
+            default:
+                $searchOperator = 'like';
+                break;
+        }
 
         foreach ($searchAttributes as $searchAttribute) {
             $whereClause = $isFirst ? 'where' : 'orWhere';
@@ -314,13 +318,13 @@ class Resource
                     (string) Str::of($searchAttribute)->beforeLast('.'),
                     (string) Str::of($searchAttribute)->afterLast('.'),
                     $searchOperator,
-                    "%{$searchQuery}%",
+                    "%{$searchQuery}%"
                 ),
                 fn ($query) => $query->{$whereClause}(
                     $searchAttribute,
                     $searchOperator,
-                    "%{$searchQuery}%",
-                ),
+                    "%{$searchQuery}%"
+                )
             );
 
             $isFirst = false;

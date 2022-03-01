@@ -8,7 +8,10 @@ trait BelongsToLivewire
 {
     protected HasTable $livewire;
 
-    public function livewire(HasTable $livewire): static
+    /**
+     * @return $this
+     */
+    public function livewire(HasTable $livewire)
     {
         $this->livewire = $livewire;
 

@@ -15,27 +15,48 @@ class Textarea extends Field
 
     protected string $view = 'forms::components.textarea';
 
-    protected int | Closure | null $cols = null;
+    /**
+     * @var \Closure|int|null
+     */
+    protected $cols = null;
 
-    protected int | Closure | null $rows = null;
+    /**
+     * @var \Closure|int|null
+     */
+    protected $rows = null;
 
-    protected bool | Closure $shouldAutosize = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $shouldAutosize = false;
 
-    public function autosize(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function autosize($condition = true)
     {
         $this->shouldAutosize = $condition;
 
         return $this;
     }
 
-    public function cols(int | Closure | null $cols): static
+    /**
+     * @param \Closure|int|null $cols
+     * @return $this
+     */
+    public function cols($cols)
     {
         $this->cols = $cols;
 
         return $this;
     }
 
-    public function rows(int | Closure | null $rows): static
+    /**
+     * @param \Closure|int|null $rows
+     * @return $this
+     */
+    public function rows($rows)
     {
         $this->rows = $rows;
 

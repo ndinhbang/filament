@@ -6,9 +6,16 @@ use Closure;
 
 trait HasFormSchema
 {
-    protected array | Closure $formSchema = [];
+    /**
+     * @var mixed[]|\Closure
+     */
+    protected $formSchema = [];
 
-    public function form(array | Closure $schema): static
+    /**
+     * @param mixed[]|\Closure $schema
+     * @return $this
+     */
+    public function form($schema)
     {
         $this->formSchema = $schema;
 

@@ -8,7 +8,10 @@ trait CanSubmitForm
 
     protected ?string $form = null;
 
-    public function submit(?string $form = null): static
+    /**
+     * @return $this
+     */
+    public function submit(?string $form = null)
     {
         $this->canSubmitForm = true;
         $this->form = $form;

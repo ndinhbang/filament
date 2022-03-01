@@ -6,7 +6,11 @@ use Closure;
 
 trait CanBeAccepted
 {
-    public function accepted(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function accepted($condition = true)
     {
         $this->rule('accepted', $condition);
 

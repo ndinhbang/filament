@@ -32,7 +32,7 @@ trait CanPaginateRecords
         $records = $query->paginate(
             $this->getTableRecordsPerPage(),
             ['*'],
-            $this->getTablePaginationPageName(),
+            $this->getTablePaginationPageName()
         );
 
         return $records->onEachSide(1);
@@ -73,7 +73,7 @@ trait CanPaginateRecords
 
     public function getTablePerPageSessionKey(): string
     {
-        $table = class_basename($this::class);
+        $table = class_basename(get_class($this));
 
         return $table . '_per_page';
     }

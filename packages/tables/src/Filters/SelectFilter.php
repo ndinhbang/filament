@@ -14,11 +14,20 @@ class SelectFilter extends Filter
     use Concerns\HasOptions;
     use Concerns\HasPlaceholder;
 
-    protected string | Closure | null $column = null;
+    /**
+     * @var \Closure|string|null
+     */
+    protected $column = null;
 
-    protected bool | Closure $isStatic = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $isStatic = false;
 
-    protected bool | Closure $isSearchable = false;
+    /**
+     * @var bool|\Closure
+     */
+    protected $isSearchable = false;
 
     protected function setUp(): void
     {
@@ -48,35 +57,50 @@ class SelectFilter extends Filter
             return $query->whereRelation(
                 $this->getRelationshipName(),
                 $relationship->getOwnerKeyName(),
-                $data['value'],
+                $data['value']
             );
         }
 
         return $query->where($this->getColumn(), $data['value']);
     }
 
-    public function column(string | Closure | null $name): static
+    /**
+     * @param \Closure|string|null $name
+     * @return $this
+     */
+    public function column($name)
     {
         $this->column = $name;
 
         return $this;
     }
 
-    public function relationship(string $relationshipName, string $displayColumnName): static
+    /**
+     * @return $this
+     */
+    public function relationship(string $relationshipName, string $displayColumnName)
     {
         $this->column("{$relationshipName}.{$displayColumnName}");
 
         return $this;
     }
 
-    public function static(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function static($condition = true)
     {
         $this->isStatic = $condition;
 
         return $this;
     }
 
-    public function searchable(bool | Closure $condition = true): static
+    /**
+     * @param bool|\Closure $condition
+     * @return $this
+     */
+    public function searchable($condition = true)
     {
         $this->isSearchable = $condition;
 
