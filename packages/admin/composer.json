@@ -9,7 +9,7 @@
     },
     "require": {
         "php": ">=7.4",
-        "danharrin/livewire-rate-limiting": "^0.3|^1.0",
+        "danharrin/livewire-rate-limiting": "dev-support-laravel-7",
         "filament/forms": "self.version",
         "filament/tables": "self.version",
         "illuminate/auth": "^7.29|^8.6|^9.0",
@@ -25,6 +25,12 @@
         "livewire/livewire": "^2.6",
         "spatie/laravel-package-tools": "^1.9"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/ndinhbang/livewire-rate-limiting"
+        }
+    ],
     "autoload": {
         "files": [
             "src/helpers.php"
