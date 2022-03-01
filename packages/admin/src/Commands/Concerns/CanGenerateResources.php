@@ -35,13 +35,25 @@ trait CanGenerateResources
 
             $componentData = [];
 
-            $componentData['type'] = $type = match (get_class($column->getType())) {
-                Types\BooleanType::class => Forms\Components\Toggle::class,
-                Types\DateType::class => Forms\Components\DatePicker::class,
-                Types\DateTimeType::class => Forms\Components\DateTimePicker::class,
-                Types\TextType::class => Forms\Components\Textarea::class,
-                default => Forms\Components\TextInput::class,
-            };
+            switch (get_class($column->getType())) {
+                case Types\BooleanType::class:
+                    $type = Forms\Components\Toggle::class;
+                    break;
+                case Types\DateType::class:
+                    $type = Forms\Components\DatePicker::class;
+                    break;
+                case Types\DateTimeType::class:
+                    $type = Forms\Components\DateTimePicker::class;
+                    break;
+                case Types\TextType::class:
+                    $type = Forms\Components\Textarea::class;
+                    break;
+                default:
+                    $type = Forms\Components\TextInput::class;
+                    break;
+            }
+
+            $componentData['type'] = $type;
 
             if ($type === Forms\Components\TextInput::class) {
                 if (Str::of($column->getName())->contains(['email'])) {
@@ -129,10 +141,16 @@ trait CanGenerateResources
 
             $columnData = [];
 
-            $columnData['type'] = $type = match (get_class($column->getType())) {
-                Types\BooleanType::class => Tables\Columns\BooleanColumn::class,
-                default => Tables\Columns\TextColumn::class,
-            };
+            switch (get_class($column->getType())) {
+                case Types\BooleanType::class:
+                    $type = Tables\Columns\BooleanColumn::class;
+                    break;
+                default:
+                    $type = Tables\Columns\TextColumn::class;
+                    break;
+            }
+
+            $columnData['type'] = $type;
 
             if ($type === Tables\Columns\TextColumn::class) {
                 if (get_class($column->getType()) === Types\DateType::class) {
