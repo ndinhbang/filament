@@ -12,7 +12,7 @@ class InstallCommand extends Command
 
     protected $description = 'Set up form builder CSS and JS in a fresh Laravel installation.';
 
-    public function __invoke(): int
+    public function handle(): int
     {
         static::updateNpmPackages();
 
