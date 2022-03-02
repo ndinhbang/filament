@@ -10,10 +10,10 @@ trait HasState
 
     public function callAfterStateHydrated(): void
     {
-        foreach ($this->getComponents(withHidden: true) as $component) {
+        foreach ($this->getComponents(true) as $component) {
             $component->callAfterStateHydrated();
 
-            foreach ($component->getChildComponentContainers(withHidden: true) as $container) {
+            foreach ($component->getChildComponentContainers(true) as $container) {
                 $container->callAfterStateHydrated();
             }
         }
@@ -21,7 +21,7 @@ trait HasState
 
     public function callAfterStateUpdated(string $path): bool
     {
-        foreach ($this->getComponents(withHidden: true) as $component) {
+        foreach ($this->getComponents(true) as $component) {
             if ($component->getStatePath() === $path) {
                 $component->callAfterStateUpdated();
 
@@ -40,7 +40,7 @@ trait HasState
 
     public function callBeforeStateDehydrated(): void
     {
-        foreach ($this->getComponents(withHidden: true) as $component) {
+        foreach ($this->getComponents(true) as $component) {
             if ($component->isHidden()) {
                 continue;
             }
@@ -162,11 +162,11 @@ trait HasState
      */
     public function hydrateDefaultState()
     {
-        foreach ($this->getComponents(withHidden: true) as $component) {
+        foreach ($this->getComponents(true) as $component) {
             $component->hydrateDefaultState();
             $component->callAfterStateHydrated();
 
-            foreach ($component->getChildComponentContainers(withHidden: true) as $container) {
+            foreach ($component->getChildComponentContainers(true) as $container) {
                 $container->hydrateDefaultState();
             }
         }
@@ -179,7 +179,7 @@ trait HasState
      */
     public function fillMissingComponentStateWithNull()
     {
-        foreach ($this->getComponents(withHidden: true) as $component) {
+        foreach ($this->getComponents(true) as $component) {
             if ($component->hasChildComponentContainer()) {
                 foreach ($component->getChildComponentContainers() as $container) {
                     $container->fillMissingComponentStateWithNull();
