@@ -46,15 +46,15 @@
         x-transition:leave="ease duration-300"
         x-transition:leave-start="opacity-100 translate-y-0"
         x-transition:leave-end="opacity-0 translate-y-2"
-        @class([
+        {{ $attributes->class([
             'absolute right-0 rtl:right-auto rtl:left-0 z-10 w-screen pl-12 rtl:pr-12 mt-2 top-full transition',
             $class,
-        ])
+        ]) }}
     >
-        <div @class([
+        <div {{ $attributes->class([
             'px-6 py-4 bg-white space-y-6 shadow-xl rounded-xl',
             'dark:bg-gray-700' => config('tables.dark_mode'),
-        ])>
+        ]) }}>
             {{ $form }}
 
             <div class="text-right">

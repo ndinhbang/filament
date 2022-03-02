@@ -15,10 +15,10 @@
         </thead>
     @endif
 
-    <tbody @class([
+    <tbody {{ $attributes->class([
         'divide-y whitespace-nowrap',
         'dark:divide-gray-700' => config('tables.dark_mode'),
-    ])>
+    ]) }}>
         {{ $slot }}
     </tbody>
 

@@ -8,10 +8,10 @@
             x-on:click.prevent="$store.sidebar.toggleCollapsedGroup(label)"
             class="flex items-center justify-between w-full"
         >
-            <p @class([
+            <p {{ $attributes->class([
                 'font-bold uppercase text-gray-600 text-xs tracking-wider',
                 'dark:text-gray-300' => config('filament.dark_mode'),
-            ])>
+            ]) }}>
                 {{ $label }}
             </p>
 
@@ -27,10 +27,10 @@
         </button>
     @endif
 
-    <ul x-show="! $store.sidebar.groupIsCollapsed(label)" x-collapse.duration.200ms @class([
+    <ul x-show="! $store.sidebar.groupIsCollapsed(label)" x-collapse.duration.200ms {{ $attributes->class([
         'text-sm space-y-1 -mx-3',
         'mt-2' => $label,
-    ])>
+    ]) }}>
         {{ $slot }}
     </ul>
 </li>

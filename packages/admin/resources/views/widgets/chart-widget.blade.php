@@ -8,10 +8,10 @@
             @if ($filters = $this->getFilters())
                 <select
                     wire:model="filter"
-                    @class([
+                    {{ $attributes->class([
                         'text-gray-900 border-gray-300 block h-10 transition duration-75 rounded-lg shadow-sm focus:border-primary-600 focus:ring-1 focus:ring-inset focus:ring-primary-600',
                         'dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200' => config('filament.dark_mode'),
-                    ])
+                    ]) ?>"
                 >
                     @foreach ($filters as $value => $label)
                         <option value="{{ $value }}">
@@ -71,18 +71,18 @@
             >
                 <span
                     x-ref="backgroundColorElement"
-                    @class([
+                    {{ $attributes->class([
                         'text-gray-50',
                         'dark:text-gray-300' => config('filament.dark_mode'),
-                    ])
+                    ]) ?>"
                 ></span>
 
                 <span
                     x-ref="borderColorElement"
-                    @class([
+                    {{ $attributes->class([
                         'text-gray-500',
                         'dark:text-gray-200' => config('filament.dark_mode'),
-                    ])
+                    ]) ?>"
                 ></span>
             </canvas>
         </div>

@@ -20,7 +20,7 @@
 >
     <div {{ $attributes->merge($getExtraAttributes())->class(['flex items-center space-x-1 rtl:space-x-reverse group filament-forms-text-input-component']) }}>
         @if ($label = $getPrefixLabel())
-            <span @class($sideLabelClasses)>
+            <span {{ $attributes->class($sideLabelClasses)}}>
                 {{ $label }}
             </span>
         @endif
@@ -64,7 +64,7 @@
         </div>
 
         @if ($label = $getPostfixLabel())
-            <span @class($sideLabelClasses)>
+            <span {{ $attributes->class($sideLabelClasses) }}>
                 {{ $label }}
             </span>
         @endif

@@ -15,30 +15,30 @@
         {{ $attributes->merge($getExtraAttributes())->class(['filament-forms-key-value-component']) }}
         {{ $getExtraAlpineAttributeBag() }}
     >
-        <div @class([
+        <div {{ $attributes->class([
             'border border-gray-300 divide-y shadow-sm bg-white rounded-xl overflow-hidden',
             'dark:bg-gray-700 dark:border-gray-600 dark:divide-gray-600' => config('forms.dark_mode'),
-        ])>
-            <table @class([
+        ]) }}>
+            <table {{ $attributes->class([
                 'w-full text-left rtl:text-right divide-y table-auto',
                 'dark:divide-gray-700' => config('forms.dark_mode'),
-            ])>
+            ]) }}>
                 <thead>
-                    <tr @class([
+                    <tr {{ $attributes->class([
                         'bg-gray-50',
                         'dark:bg-gray-800/60' => config('forms.dark_mode'),
-                    ])>
-                        <th @class([
+                    ]) }}>
+                        <th {{ $attributes->class([
                             'px-4 py-2 whitespace-nowrap font-medium text-sm text-gray-600',
                             'dark:text-gray-300' => config('forms.dark_mode'),
-                        ]) scope="col">
+                        ]) }} scope="col">
                             {{ $getKeyLabel() }}
                         </th>
 
-                        <th @class([
+                        <th {{ $attributes->class([
                             'px-4 py-2 whitespace-nowrap font-medium text-sm text-gray-600',
                             'dark:text-gray-300' => config('forms.dark_mode'),
-                        ]) scope="col">
+                        ]) }} scope="col">
                             {{ $getValueLabel() }}
                         </th>
 
@@ -54,16 +54,16 @@
 
                 <tbody
                     x-ref="tableBody"
-                    @class([
+                    {{ $attributes->class([
                         'divide-y whitespace-nowrap',
                         'dark:divide-gray-600' => config('forms.dark_mode'),
-                    ])
+                    ]) }}
                 >
                     <template x-for="(row, index) in rows" x-bind:key="index" x-ref="rowTemplate">
-                        <tr @class([
+                        <tr {{ $attributes->class([
                             'divide-x',
                             'dark:divide-gray-600' => config('forms.dark_mode'),
-                        ])>
+                        ]) }}>
                             <td>
                                 <input
                                     type="text"
@@ -112,10 +112,10 @@
                 <button
                     x-on:click="addRow"
                     type="button"
-                    @class([
+                    {{ $attributes->class([
                         'w-full px-4 py-2 flex items-center space-x-1 rtl:space-x-reverse text-sm font-medium text-gray-800 hover:bg-gray-50 focus:bg-gray-50',
                         'dark:text-white dark:bg-gray-800/60 dark:hover:bg-gray-800/30' => config('forms.dark_mode'),
-                    ])
+                    ]) }}
                 >
                     <x-heroicon-s-plus class="w-4 h-4" />
 

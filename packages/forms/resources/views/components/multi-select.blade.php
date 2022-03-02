@@ -60,10 +60,10 @@
                         placeholder="{{ $getPlaceholder() }}"
                         type="text"
                         autocomplete="off"
-                        @class([
+                        {{ $attributes->class([
                             'block w-full border-0',
                             'dark:bg-gray-700 dark:placeholder-gray-400' => config('forms.dark_mode'),
-                        ])
+                        ]) }}
                     />
 
                     <span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none rtl:right-auto rtl:left-0 rtl:pr-0 rtl:pl-2">
@@ -87,10 +87,10 @@
                     x-bind:aria-activedescendant="focusedOptionIndex ? '{{ $getStatePath() }}' + 'Option' + focusedOptionIndex : null"
                     tabindex="-1"
                     x-cloak
-                    @class([
+                    {{ $attributes->class([
                         'absolute z-30 w-full my-1 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none transition',
                         'dark:bg-gray-700 dark:border-gray-600' => config('forms.dark_mode'),
-                    ])
+                    ]) }}
                 >
                     <ul
                         x-ref="listboxOptionsList"
@@ -138,10 +138,10 @@
 
                         <div
                             x-show="! Object.keys(options).length"
-                            @class([
+                            {{ $attributes->class([
                                 'px-3 py-2 text-sm text-gray-700 cursor-default select-none',
                                 'dark:text-gray-200' => config('forms.dark_mode'),
-                            ])
+                            ]) }}
                         >
                             <span x-show="(! search) || isLoading">
                                 {{ $getSearchPrompt() }}
@@ -170,11 +170,11 @@
                             x-on:click.stop="deselectOption(option)"
                         @endunless
                         type="button"
-                        @class([
+                        {{ $attributes->class([
                             'inline-flex items-center justify-center min-h-6 px-2 py-0.5 text-sm font-medium tracking-tight text-primary-700 rounded-xl bg-primary-500/10 space-x-1 rtl:space-x-reverse',
                             'dark:text-primary-500' => config('forms.dark_mode'),
                             'cursor-default' => $isDisabled(),
-                        ])
+                        ]) }}
                     >
                         <span class="text-left" x-text="labels[option]"></span>
 

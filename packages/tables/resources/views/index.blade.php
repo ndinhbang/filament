@@ -12,7 +12,8 @@
     if (count($actions)) $columnsCount++;
     if ($isSelectionEnabled()) $columnsCount++;
 
-    $getHiddenClasses = function (\Filament\Tables\Columns\Column $column): ?string {
+    $getHiddenClasses = function ($column) {
+        /**@var \Filament\Tables\Columns\Column $column*/
         if ($breakpoint = $column->getHiddenFrom()) {
             $class = '';
             switch ($breakpoint) {
@@ -200,12 +201,12 @@
         </div>
 
         <div
-            @class([
+            {{ $attributes->class([
                 'overflow-y-auto relative',
                 'dark:border-gray-700' => config('tables.dark_mode'),
                 'rounded-t-xl' => ! $renderHeader,
                 'border-t' => $renderHeader,
-            ])
+            ]) }}
             x-bind:class="{
                 'rounded-t-xl': ! hasHeader,
                 'border-t': hasHeader,
@@ -249,10 +250,10 @@
                         @endforeach
 
                         @if (count($actions))
-                            <th @class([
+                            <th {{ $attributes->class([
                                 'w-5',
                                 'dark:bg-gray-800' => config('tables.dark_mode'),
-                            ])></th>
+                            ])}}></th>
                         @endif
                     </x-slot>
 
@@ -334,10 +335,10 @@
         </div>
 
         @if ($isPaginationEnabled())
-            <div @class([
+            <div {{ $attributes->class([
                 'p-2 border-t',
                 'dark:border-gray-700' => config('tables.dark_mode'),
-            ])>
+            ]) }}>
                 <x-tables::pagination
                     :paginator="$records"
                     :records-per-page-select-options="$getRecordsPerPageSelectOptions()"

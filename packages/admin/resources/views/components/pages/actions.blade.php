@@ -9,7 +9,10 @@
     @php
         $actions = array_filter(
             $actions,
-            fn (\Filament\Pages\Actions\Action $action): bool => ! $action->isHidden()
+            function ($action) {
+                /**@var \Filament\Pages\Actions\Action $action*/
+                return ! $action->isHidden(); // bool
+            }
         );
         switch ($align) {
             case 'center':

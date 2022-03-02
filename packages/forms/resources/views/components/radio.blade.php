@@ -93,11 +93,11 @@
                 @endphp
 
                 @foreach ($getOptions() as $value => $label)
-                    <div @class([
+                    <div {{ $attributes->class([
                         'flex items-start',
                         'gap-3' => ! $isInline(),
                         'gap-2' => $isInline(),
-                    ])>
+                    ]) }}>
                         <div class="flex items-center h-5">
                             <input
                                 name="{{ $getId() }}"
@@ -117,20 +117,20 @@
                         </div>
 
                         <div class="text-sm">
-                            <label for="{{ $getId() }}-{{ $value }}" @class([
+                            <label for="{{ $getId() }}-{{ $value }}" {{ $attributes->class([
                                 'font-medium',
                                 'text-gray-700' => ! $errors->has($getStatePath()),
                                 'dark:text-gray-200' => (! $errors->has($getStatePath())) && config('forms.dark_mode'),
                                 'text-danger-600' => $errors->has($getStatePath()),
-                            ])>
+                            ]) }}>
                                 {{ $label }}
                             </label>
 
                             @if ($hasDescription($value))
-                                <p @class([
+                                <p {{ $attributes->class([
                                     'text-gray-500',
                                     'dark:text-gray-400' => config('forms.dark_mode'),
-                                ])>
+                                ]) }}>
                                     {{ $getDescription($value) }}
                                 </p>
                             @endif

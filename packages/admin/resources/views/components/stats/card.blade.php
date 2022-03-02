@@ -56,13 +56,13 @@
     'border' => $flat,
     'dark:border-gray-700' => $flat && config('filament.dark_mode'),
 ]) }}>
-    <div @class([
+    <div {{ $attributes->class([
         'space-y-2',
-    ])>
-        <div @class([
+    ]) }}>
+        <div {{ $attributes->class([
             'text-sm font-medium text-gray-500',
             'dark:text-gray-200' => config('filament.dark_mode'),
-        ])>
+        ]) }}>
             {{ $label }}
         </div>
 
@@ -71,10 +71,10 @@
         </div>
 
         @if ($description)
-            <div @class([
+            <div {{ $attributes->class([
                 'flex items-center space-x-1 rtl:space-x-reverse text-sm font-medium',
                 $descriptionColorClass,
-            ])>
+            ]) }}>
                 <span>{{ $description }}</span>
 
                 @if ($descriptionIcon)
@@ -139,16 +139,16 @@
             >
                 <span
                     x-ref="backgroundColorElement"
-                    @class([
+                    {{ $attributes->class([
                         $chartColorClass1,
-                    ])
+                    ]) }}
                 ></span>
 
                 <span
                     x-ref="borderColorElement"
-                    @class([
+                    {{ $attributes->class([
                         $chartColorClass2,
-                    ])
+                    ]) }}
                 ></span>
             </canvas>
         </div>

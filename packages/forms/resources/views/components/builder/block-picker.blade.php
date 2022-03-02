@@ -13,10 +13,10 @@
         'dark:border-gray-600' => config('forms.dark_mode'),
     ]) }}
 >
-    <ul @class([
+    <ul {{ $attributes->class([
         'py-1 space-y-1 bg-white shadow rounded-xl',
         'dark:bg-gray-700 dark:divide-gray-600' => config('forms.dark_mode'),
-    ])>
+    ]) }}>
         @foreach ($blocks as $block)
             <li>
                 <button

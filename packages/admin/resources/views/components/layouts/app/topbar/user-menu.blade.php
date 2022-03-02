@@ -51,7 +51,7 @@
 >
     <button
         x-on:click="isOpen = ! isOpen"
-        @class([
+        {{ $attributes->class([
             'block flex-shrink-0 w-10 h-10 rounded-full bg-gray-200 bg-cover bg-center',
             'dark:bg-gray-900' => config('filament.dark_mode'),
         ])
@@ -70,7 +70,7 @@
         x-cloak
         class="absolute z-10 right-0 rtl:right-auto rtl:left-0 mt-2 shadow-xl rounded-xl w-52 top-full"
     >
-        <ul @class([
+        <ul {{ $attributes->class([
             'py-1 space-y-1 overflow-hidden bg-white shadow rounded-xl',
             'dark:border-gray-600 dark:bg-gray-700' => config('filament.dark_mode'),
         ])>
