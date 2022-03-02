@@ -73,7 +73,7 @@ trait HasState
             $componentStatePath = $component->getStatePath();
 
             if ($component->isDehydrated()) {
-                if ($component->getStatePath(isAbsolute: false)) {
+                if ($component->getStatePath(false)) {
                     data_set($state, $componentStatePath, $component->dehydrateState());
                 }
 
@@ -111,7 +111,7 @@ trait HasState
                 $container->mutateDehydratedState($state);
             }
 
-            if ($component->getStatePath(isAbsolute: false)) {
+            if ($component->getStatePath(false)) {
                 if (! $component->mutatesDehydratedState()) {
                     continue;
                 }
