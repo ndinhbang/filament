@@ -19,7 +19,7 @@
                     <a href="{{ route('filament.auth.logout') }}" {{ $attributes->class([
                         'text-gray-600 hover:text-primary-500 focus:outline-none focus:underline',
                         'dark:text-gray-300 dark:hover:text-primary-500' => config('filament.dark_mode'),
-                    ]) ?>">
+                    ]) }}>
                         {{ __('filament::widgets/account-widget.buttons.logout.label') }}
                     </a>
                 </p>
