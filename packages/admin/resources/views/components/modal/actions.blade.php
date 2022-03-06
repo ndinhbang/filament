@@ -3,7 +3,7 @@
     'fullWidth' => false,
 ])
 
-<div {{ $attributes->class([
+<div {{ \Illuminate\Support\Arr::toCssClasses([
     'filament-modal-actions',
     'flex items-center space-x-4 rtl:space-x-reverse' => ! $fullWidth,
     'justify-end' => (! $fullWidth) && ($align === 'right'),

@@ -26,7 +26,7 @@
 
     @if (count($actions))
         <div
-            {{ $attributes->class([
+            {{ \Illuminate\Support\Arr::toCssClasses([
                 'flex flex-wrap items-center gap-4 filament-page-actions',
                $class,
             ]) }}

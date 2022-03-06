@@ -18,7 +18,7 @@
     >
         <div
             x-show="state.length || {{ $isDisabled() ? 'false' : 'true' }}"
-            {{ $attributes->class([
+            {{ \Illuminate\Support\Arr::toCssClasses([
                 'block w-full transition duration-75 divide-y rounded-lg shadow-sm border overflow-hidden focus-within:border-primary-600 focus-within:ring-1 focus-within:ring-primary-600',
                 'dark:divide-gray-600' => config('forms.dark_mode'),
                 'border-gray-300' => ! $errors->has($getStatePath()),
@@ -67,7 +67,7 @@
                                 x-on:click="deleteTag(tag)"
                             @endunless
                             type="button"
-                            {{ $attributes->class([
+                            {{ \Illuminate\Support\Arr::toCssClasses([
                                 'inline-flex items-center justify-center min-h-6 px-2 py-0.5 text-sm font-medium tracking-tight text-primary-700 rounded-xl bg-primary-500/10 space-x-1 rtl:space-x-reverse',
                                 'dark:text-primary-500' => config('forms.dark_mode'),
                                 'cursor-default' => $isDisabled(),

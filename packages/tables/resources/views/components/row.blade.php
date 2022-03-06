@@ -1,3 +1,3 @@
-<tr {{ $attributes->class(['filament-tables-row']) }}>
+<tr class="{{ \Illuminate\Support\Arr::toCssClasses(['filament-tables-row']) }}">
     {{ $slot }}
 </tr>

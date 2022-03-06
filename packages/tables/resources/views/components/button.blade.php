@@ -77,7 +77,7 @@
             <svg
                 wire:loading
                 {!! $loadingIndicatorTarget ? "wire:target=\"{$loadingIndicatorTarget}\"" : '' !!}
-                {{ $attributes->class([$iconClasses, 'animate-spin']) }}
+                class="{{ \Illuminate\Support\Arr::toCssClasses([$iconClasses, 'animate-spin']) }}"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
@@ -105,7 +105,7 @@
             <svg
                 wire:loading
                 {!! $loadingIndicatorTarget ? "wire:target=\"{$loadingIndicatorTarget}\"" : '' !!}
-                {{ $attributes->class([$iconClasses, 'animate-spin']) }}
+                class="{{ \Illuminate\Support\Arr::toCssClasses([$iconClasses, 'animate-spin']) }}"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"

@@ -15,30 +15,30 @@
         {{ $attributes->merge($getExtraAttributes())->class(['filament-forms-key-value-component']) }}
         {{ $getExtraAlpineAttributeBag() }}
     >
-        <div {{ $attributes->class([
+        <div class="{{ \Illuminate\Support\Arr::toCssClasses([
             'border border-gray-300 divide-y shadow-sm bg-white rounded-xl overflow-hidden',
             'dark:bg-gray-700 dark:border-gray-600 dark:divide-gray-600' => config('forms.dark_mode'),
-        ]) }}>
-            <table {{ $attributes->class([
+        ]) }}">
+            <table class="{{ \Illuminate\Support\Arr::toCssClasses([
                 'w-full text-left rtl:text-right divide-y table-auto',
                 'dark:divide-gray-700' => config('forms.dark_mode'),
-            ]) }}>
+            ]) }}">
                 <thead>
-                    <tr {{ $attributes->class([
+                    <tr class="{{ \Illuminate\Support\Arr::toCssClasses([
                         'bg-gray-50',
                         'dark:bg-gray-800/60' => config('forms.dark_mode'),
-                    ]) }}>
-                        <th {{ $attributes->class([
+                    ]) }}">
+                        <th class="{{ \Illuminate\Support\Arr::toCssClasses([
                             'px-4 py-2 whitespace-nowrap font-medium text-sm text-gray-600',
                             'dark:text-gray-300' => config('forms.dark_mode'),
-                        ]) }} scope="col">
+                        ]) }}" scope="col">
                             {{ $getKeyLabel() }}
                         </th>
 
-                        <th {{ $attributes->class([
+                        <th class="{{ \Illuminate\Support\Arr::toCssClasses([
                             'px-4 py-2 whitespace-nowrap font-medium text-sm text-gray-600',
                             'dark:text-gray-300' => config('forms.dark_mode'),
-                        ]) }} scope="col">
+                        ]) }}" scope="col">
                             {{ $getValueLabel() }}
                         </th>
 
@@ -54,16 +54,16 @@
 
                 <tbody
                     x-ref="tableBody"
-                    {{ $attributes->class([
+                    class="{{ \Illuminate\Support\Arr::toCssClasses([
                         'divide-y whitespace-nowrap',
                         'dark:divide-gray-600' => config('forms.dark_mode'),
-                    ]) }}
+                    ]) }}"
                 >
                     <template x-for="(row, index) in rows" x-bind:key="index" x-ref="rowTemplate">
-                        <tr {{ $attributes->class([
+                        <tr class="{{ \Illuminate\Support\Arr::toCssClasses([
                             'divide-x',
                             'dark:divide-gray-600' => config('forms.dark_mode'),
-                        ]) }}>
+                        ]) }}">
                             <td>
                                 <input
                                     type="text"
@@ -112,10 +112,10 @@
                 <button
                     x-on:click="addRow"
                     type="button"
-                    {{ $attributes->class([
+                    class="{{ \Illuminate\Support\Arr::toCssClasses([
                         'w-full px-4 py-2 flex items-center space-x-1 rtl:space-x-reverse text-sm font-medium text-gray-800 hover:bg-gray-50 focus:bg-gray-50',
                         'dark:text-white dark:bg-gray-800/60 dark:hover:bg-gray-800/30' => config('forms.dark_mode'),
-                    ]) }}
+                    ]) }}"
                 >
                     <x-heroicon-s-plus class="w-4 h-4" />
 

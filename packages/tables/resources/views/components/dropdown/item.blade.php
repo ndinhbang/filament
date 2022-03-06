@@ -39,7 +39,7 @@
     @if ($tag === 'button')
         <button
             type="{{ $type }}"
-            {{ $attributes->class([$buttonClasses]) }}
+            class="{{ \Illuminate\Support\Arr::toCssClasses([$buttonClasses]) }}"
         >
             @if ($icon)
                 <x-dynamic-component :component="$icon" :class="$iconClasses" />
@@ -56,7 +56,7 @@
             @endif
         </button>
     @elseif ($tag === 'a')
-        <a {{ $attributes->class([$buttonClasses]) }}>
+        <a class="{{ \Illuminate\Support\Arr::toCssClasses([$buttonClasses]) }}">
             @if ($icon)
                 <x-dynamic-component :component="$icon" :class="$iconClasses" />
             @endif

@@ -2,7 +2,7 @@
     'icon' => null,
 ])
 
-<div {{ $attributes->class([
+<div {{ \Illuminate\Support\Arr::toCssClasses([
     'flex space-x-2 rtl:space-x-reverse text-gray-500 filament-forms-field-wrapper-hint',
     'dark:text-gray-300' => config('forms.dark_mode'),
 ]) }}>

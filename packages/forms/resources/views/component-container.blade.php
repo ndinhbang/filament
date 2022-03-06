@@ -1,4 +1,4 @@
-<div {{ $attributes->class([
+<div class="{{ \Illuminate\Support\Arr::toCssClasses([
     'grid gap-6 filament-forms-component-container',
     'grid-cols-1' => $getColumns('default') === 1,
     'grid-cols-2' => $getColumns('default') === 2,
@@ -72,9 +72,9 @@
     '2xl:grid-cols-10' => $getColumns('2xl') === 10,
     '2xl:grid-cols-11' => $getColumns('2xl') === 11,
     '2xl:grid-cols-12' => $getColumns('2xl') === 12,
-]) }}>
+]) }}">
     @foreach ($getComponents() as $formComponent)
-        <div {{ $attributes->class([
+        <div class="{{ \Illuminate\Support\Arr::toCssClasses([
             'max-w-xs' => $formComponent->getMaxWidth() === 'xs',
             'max-w-sm' => $formComponent->getMaxWidth() === 'sm',
             'max-w-md' => $formComponent->getMaxWidth() === 'md',
@@ -170,7 +170,7 @@
             '2xl:col-span-12' => $formComponent->getColumnSpan('2xl') === 12,
             '2xl:col-span-full' => $formComponent->getColumnSpan('2xl') === 'full',
             $classes = $formComponent->getColumnSpan('2xl') => is_string($classes) && $classes !== 'full',
-        ]) }}>
+        ]) }}">
             {{ $formComponent }}
         </div>
     @endforeach

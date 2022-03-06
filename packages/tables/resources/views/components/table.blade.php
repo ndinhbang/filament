@@ -3,7 +3,7 @@
     'header' => null,
 ])
 
-<table {{ $attributes->class([
+<table {{ \Illuminate\Support\Arr::toCssClasses([
     'w-full text-left rtl:text-right divide-y table-auto filament-tables-table',
     'dark:divide-gray-700' => config('tables.dark_mode'),
 ]) }}>
@@ -15,7 +15,7 @@
         </thead>
     @endif
 
-    <tbody {{ $attributes->class([
+    <tbody {{ \Illuminate\Support\Arr::toCssClasses([
         'divide-y whitespace-nowrap',
         'dark:divide-gray-700' => config('tables.dark_mode'),
     ]) }}>

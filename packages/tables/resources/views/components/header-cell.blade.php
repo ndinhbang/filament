@@ -29,22 +29,22 @@
             wire:click="sortTable('{{ $name }}')"
         @endif
         type="button"
-        {{ $attributes->class([
+        class="{{ \Illuminate\Support\Arr::toCssClasses([
             'flex items-center w-full px-4 py-2 whitespace-nowrap space-x-1 rtl:space-x-reverse font-medium text-sm text-gray-600',
             'dark:text-gray-300' => config('tables.dark_mode'),
             'cursor-default' => ! $sortable,
             $class,
-        ]) }}
+        ]) }}"
     >
         <span>
             {{ $slot }}
         </span>
 
         @if ($sortable)
-            <span {{ $attributes->class([
+            <span class="{{ \Illuminate\Support\Arr::toCssClasses([
                 'relative flex items-center',
                 'dark:text-gray-300' => config('tables.dark_mode'),
-            ]) }}>
+            ]) }}">
                 @if ($isSortColumn && $sortDirection === 'asc')
                     <x-heroicon-s-chevron-up class="w-3 h-3" />
                 @else

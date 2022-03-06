@@ -201,7 +201,7 @@
         </div>
 
         <div
-            {{ $attributes->class([
+            {{ \Illuminate\Support\Arr::toCssClasses([
                 'overflow-y-auto relative',
                 'dark:border-gray-700' => config('tables.dark_mode'),
                 'rounded-t-xl' => ! $renderHeader,
@@ -250,7 +250,7 @@
                         @endforeach
 
                         @if (count($actions))
-                            <th {{ $attributes->class([
+                            <th {{ \Illuminate\Support\Arr::toCssClasses([
                                 'w-5',
                                 'dark:bg-gray-800' => config('tables.dark_mode'),
                             ])}}></th>
@@ -335,7 +335,7 @@
         </div>
 
         @if ($isPaginationEnabled())
-            <div {{ $attributes->class([
+            <div {{ \Illuminate\Support\Arr::toCssClasses([
                 'p-2 border-t',
                 'dark:border-gray-700' => config('tables.dark_mode'),
             ]) }}>

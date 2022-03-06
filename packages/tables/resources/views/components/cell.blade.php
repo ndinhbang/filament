@@ -23,11 +23,11 @@
 @endphp
 
 <td
-    {{ $attributes->class([
+    class="{{ \Illuminate\Support\Arr::toCssClasses([
         'filament-tables-cell',
         'dark:text-white' => config('tables.dark_mode'),
         $class,
-    ]) }}
+    ]) }}"
 >
     @if ($action || ((! $url) && $recordAction))
         <button

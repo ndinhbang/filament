@@ -28,7 +28,7 @@
             $class = 'col-span-1';break;
     }
 @endphp
-<div {{ $attributes->class([
+<div {{ \Illuminate\Support\Arr::toCssClasses([
     'filament-widget',
     $class,
 ]) }}>

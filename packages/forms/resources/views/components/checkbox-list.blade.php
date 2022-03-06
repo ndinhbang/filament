@@ -8,7 +8,7 @@
     :required="$isRequired()"
     :state-path="$getStatePath()"
 >
-    <div {{ $attributes->class([
+    <div class="{{ \Illuminate\Support\Arr::toCssClasses([
         'grid gap-1 filament-forms-checkbox-list-component',
         'grid-cols-1' => $getColumns('default') === 1,
         'grid-cols-2' => $getColumns('default') === 2,
@@ -82,7 +82,7 @@
         '2xl:grid-cols-10' => $getColumns('2xl') === 10,
         '2xl:grid-cols-11' => $getColumns('2xl') === 11,
         '2xl:grid-cols-12' => $getColumns('2xl') === 12,
-    ]) }}>
+    ]) }}">
         @php
             $isDisabled = $isDisabled();
         @endphp
@@ -103,10 +103,10 @@
                     ]) }}
                 />
 
-                <span {{ $attributes->class([
+                <span class="{{ \Illuminate\Support\Arr::toCssClasses([
                     'text-sm font-medium text-gray-700',
                     'dark:text-gray-200' => config('forms.dark_mode'),
-                ]) }}>
+                ]) }}">
                     {{ $optionLabel }}
                 </span>
             </label>

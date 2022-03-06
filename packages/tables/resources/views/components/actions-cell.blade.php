@@ -17,11 +17,11 @@
     }
 @endphp
 
-<td {{ $attributes->class(['px-4 py-3 whitespace-nowrap filament-tables-actions-cell']) }}>
-    <div {{ $attributes->class([
+<td class="{{ \Illuminate\Support\Arr::toCssClasses(['px-4 py-3 whitespace-nowrap filament-tables-actions-cell']) }}">
+    <div class="{{ \Illuminate\Support\Arr::toCssClasses([
         'flex items-center gap-4',
         $class,
-    ]) }}>
+    ]) }}">
         @foreach ($actions as $action)
             @if (! $action->record($record)->isHidden())
                 {{ $action }}

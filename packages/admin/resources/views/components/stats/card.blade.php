@@ -49,20 +49,20 @@
     }
 @endphp
 
-<div {{ $attributes->class([
+<div class="{{ \Illuminate\Support\Arr::toCssClasses([
     'relative p-6 rounded-2xl filament-stats-card',
     'bg-white shadow' => ! $flat,
     'dark:bg-gray-800' => (! $flat) && config('filament.dark_mode'),
     'border' => $flat,
     'dark:border-gray-700' => $flat && config('filament.dark_mode'),
-]) }}>
-    <div {{ $attributes->class([
+]) }}">
+    <div class="{{ \Illuminate\Support\Arr::toCssClasses([
         'space-y-2',
-    ]) }}>
-        <div {{ $attributes->class([
+    ]) }}">
+        <div class="{{ \Illuminate\Support\Arr::toCssClasses([
             'text-sm font-medium text-gray-500',
             'dark:text-gray-200' => config('filament.dark_mode'),
-        ]) }}>
+        ]) }}">
             {{ $label }}
         </div>
 
@@ -71,10 +71,10 @@
         </div>
 
         @if ($description)
-            <div {{ $attributes->class([
+            <div class="{{ \Illuminate\Support\Arr::toCssClasses([
                 'flex items-center space-x-1 rtl:space-x-reverse text-sm font-medium',
                 $descriptionColorClass,
-            ]) }}>
+            ]) }}">
                 <span>{{ $description }}</span>
 
                 @if ($descriptionIcon)
@@ -139,16 +139,16 @@
             >
                 <span
                     x-ref="backgroundColorElement"
-                    {{ $attributes->class([
+                    class="{{ \Illuminate\Support\Arr::toCssClasses([
                         $chartColorClass1,
-                    ]) }}
+                    ]) }}"
                 ></span>
 
                 <span
                     x-ref="borderColorElement"
-                    {{ $attributes->class([
+                    class="{{ \Illuminate\Support\Arr::toCssClasses([
                         $chartColorClass2,
-                    ]) }}
+                    ]) }}"
                 ></span>
             </canvas>
         </div>

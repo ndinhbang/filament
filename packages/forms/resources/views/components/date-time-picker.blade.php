@@ -64,17 +64,17 @@
                 placeholder="{{ $getPlaceholder() }}"
                 x-model="displayText"
                 {!! ($id = $getId()) ? "id=\"{$id}\"" : null !!}
-                {{ $attributes->class([
+                class="{{ \Illuminate\Support\Arr::toCssClasses([
                     'w-full h-full p-0 placeholder-gray-400 bg-transparent border-0 focus:placeholder-gray-500 focus:ring-0 focus:outline-none',
                     'dark:bg-gray-700 dark:placeholder-gray-400' => config('forms.dark_mode'),
-                ]) }}
+                ]) }}"
             />
 
             <span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none rtl:right-auto rtl:left-0 rtl:pl-2">
-                <svg {{ $attributes->class([
+                <svg class="{{ \Illuminate\Support\Arr::toCssClasses([
                     'w-5 h-5 text-gray-400',
                     'dark:text-gray-400' => config('forms.dark_mode'),
-                ]) }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                ]) }}" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
             </span>
@@ -88,21 +88,21 @@
                 aria-modal="true"
                 role="dialog"
                 x-cloak
-                {{ $attributes->class([
+                class="{{ \Illuminate\Support\Arr::toCssClasses([
                     'absolute z-10 my-1 bg-white border border-gray-300 rounded-lg shadow-sm',
                     'dark:bg-gray-700 dark:border-gray-600' => config('forms.dark_mode'),
                     'p-4 w-64' => $hasDate(),
-                ]) }}
+                ]) }}"
             >
                 <div class="space-y-3">
                     @if ($hasDate())
                         <div class="flex items-center justify-between space-x-1 rtl:space-x-reverse">
                             <select
                                 x-model="focusedMonth"
-                                {{ $attributes->class([
+                                class="{{ \Illuminate\Support\Arr::toCssClasses([
                                     'grow px-1 py-0 text-lg font-medium text-gray-800 border-0 cursor-pointer focus:ring-0 focus:outline-none',
                                     'dark:bg-gray-700 dark:text-gray-200' => config('forms.dark_mode'),
-                                ]) }}
+                                ]) }}"
                             >
                                 <template x-for="(month, index) in months">
                                     <option x-bind:value="index" x-text="month"></option>
@@ -113,10 +113,10 @@
                                 type="number"
                                 inputmode="numeric"
                                 x-model.debounce="focusedYear"
-                                {{ $attributes->class([
+                                class="{{ \Illuminate\Support\Arr::toCssClasses([
                                     'w-20 p-0 text-lg text-right border-0 focus:ring-0 focus:outline-none',
                                     'dark:bg-gray-700 dark:text-gray-200' => config('forms.dark_mode'),
-                                ]) }}
+                                ]) }}"
                             />
                         </div>
 
@@ -124,10 +124,10 @@
                             <template x-for="(day, index) in dayLabels" :key="index">
                                 <div
                                     x-text="day"
-                                    {{ $attributes->class([
+                                    class="{{ \Illuminate\Support\Arr::toCssClasses([
                                         'text-xs font-medium text-center text-gray-800',
                                         'dark:text-gray-200' => config('forms.dark_mode'),
-                                    ]) }}
+                                    ]) }}"
                                 ></div>
                             </template>
                         </div>
@@ -161,11 +161,11 @@
 
                     @if ($hasTime())
                         <div
-                            {{ $attributes->class([
+                            class="{{ \Illuminate\Support\Arr::toCssClasses([
                                 'flex items-center justify-center py-2 rounded-lg',
                                 'bg-gray-50' => $hasDate(),
                                 'dark:bg-gray-800' => $hasDate() && config('forms.dark_mode'),
-                            ]) }}
+                            ]) }}"
                         >
                             <input
                                 max="23"
@@ -173,21 +173,21 @@
                                 type="number"
                                 inputmode="numeric"
                                 x-model.debounce="hour"
-                                {{ $attributes->class([
+                                class="{{ \Illuminate\Support\Arr::toCssClasses([
                                     'w-16 p-0 pr-1 text-xl text-center text-gray-700 border-0 focus:ring-0 focus:outline-none',
                                     'dark:text-gray-200' => config('forms.dark_mode'),
                                     'bg-gray-50' => $hasDate(),
                                     'dark:bg-gray-800' => $hasDate() && config('forms.dark_mode'),
-                                ]) }}
+                                ]) }}"
                             />
 
                             <span
-                                {{ $attributes->class([
+                                class="{{ \Illuminate\Support\Arr::toCssClasses([
                                     'text-xl font-medium text-gray-700',
                                     'dark:text-gray-200' => config('forms.dark_mode'),
                                     'bg-gray-50' => $hasDate(),
                                     'dark:bg-gray-800' => $hasDate() && config('forms.dark_mode'),
-                                ]) }}
+                                ]) }}"
                             >:</span>
 
                             <input
@@ -196,22 +196,22 @@
                                 type="number"
                                 inputmode="numeric"
                                 x-model.debounce="minute"
-                                {{ $attributes->class([
+                                class="{{ \Illuminate\Support\Arr::toCssClasses([
                                     'w-16 p-0 pr-1 text-xl text-center text-gray-700 border-0 focus:ring-0 focus:outline-none',
                                     'dark:text-gray-200' => config('forms.dark_mode'),
                                     'bg-gray-50' => $hasDate(),
                                     'dark:bg-gray-800' => $hasDate() && config('forms.dark_mode'),
-                                ]) }}
+                                ]) }}"
                             />
 
                             @if ($hasSeconds())
                                 <span
-                                    {{ $attributes->class([
+                                    class="{{ \Illuminate\Support\Arr::toCssClasses([
                                         'text-xl font-medium text-gray-700',
                                         'dark:text-gray-200' => config('forms.dark_mode'),
                                         'bg-gray-50' => $hasDate(),
                                         'dark:bg-gray-800' => $hasDate() && config('forms.dark_mode'),
-                                    ]) }}
+                                    ]) }}"
                                 >:</span>
 
 
@@ -221,12 +221,12 @@
                                     type="number"
                                     inputmode="numeric"
                                     x-model.debounce="second"
-                                    {{ $attributes->class([
+                                    class="{{ \Illuminate\Support\Arr::toCssClasses([
                                         'w-16 p-0 pr-1 text-xl text-center text-gray-700 border-0 focus:ring-0 focus:outline-none',
                                         'dark:text-gray-200' => config('forms.dark_mode'),
                                         'bg-gray-50' => $hasDate(),
                                         'dark:bg-gray-800' => $hasDate() && config('forms.dark_mode'),
-                                    ]) }}
+                                    ]) }}"
                                 />
                             @endif
                         </div>

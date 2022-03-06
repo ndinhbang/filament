@@ -85,7 +85,7 @@
                             aria-haspopup="listbox"
                             tabindex="1"
                         @endunless
-                        {{ $attributes->class([
+                        {{ \Illuminate\Support\Arr::toCssClasses([
                             'relative flex items-center py-2 pl-3 pr-10 border bg-white overflow-hidden duration-75 rounded-lg shadow-sm focus-within:border-primary-600 focus-within:ring-1 focus-within:ring-inset focus-within:ring-primary-600 focus:outline-none',
                             'dark:bg-gray-700' => config('forms.dark_mode'),
                             'border-gray-300' => ! $errors->has($getStatePath()),
@@ -96,7 +96,7 @@
                         <span
                             x-show="! isOpen"
                             x-text="label ?? '{{ addslashes($getPlaceholder()) }}'"
-                            {{ $attributes->class([
+                            {{ \Illuminate\Support\Arr::toCssClasses([
                                 'w-full bg-white whitespace-nowrap',
                                 'dark:bg-gray-700' => config('forms.dark_mode'),
                             ]) }}
@@ -112,7 +112,7 @@
                                 x-on:keydown.arrow-down.stop.prevent="focusNextOption()"
                                 type="text"
                                 autocomplete="off"
-                                {{ $attributes->class([
+                                {{ \Illuminate\Support\Arr::toCssClasses([
                                     'w-full p-0 border-0 focus:ring-0 focus:outline-none',
                                     'dark:bg-gray-700' => config('forms.dark_mode'),
                                 ]) }}
@@ -141,7 +141,7 @@
                             x-bind:aria-activedescendant="focusedOptionIndex ? '{{ $getStatePath() }}' + 'Option' + focusedOptionIndex : null"
                             tabindex="-1"
                             x-cloak
-                            {{ $attributes->class([
+                            {{ \Illuminate\Support\Arr::toCssClasses([
                                 'absolute z-10 w-full my-1 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none',
                                 'dark:bg-gray-700 dark:border-gray-600' => config('forms.dark_mode'),
                             ]) }}
@@ -192,7 +192,7 @@
 
                                 <div
                                     x-show="! Object.keys(options).length"
-                                    {{ $attributes->class([
+                                    {{ \Illuminate\Support\Arr::toCssClasses([
                                         'px-3 py-2 text-sm text-gray-700 cursor-default select-none',
                                         'dark:text-gray-300 dark:text-gray-200' => config('forms.dark_mode'),
                                     ]) }}

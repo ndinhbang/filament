@@ -54,7 +54,7 @@
         @endif
     </head>
 
-    <body {{ $attributes->class([
+    <body {{ \Illuminate\Support\Arr::toCssClasses([
         'bg-gray-100 text-gray-900 filament-body',
         'dark:text-gray-100 dark:bg-gray-900' => config('filament.dark_mode'),
     ]) }}>

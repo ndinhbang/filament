@@ -16,7 +16,7 @@
                 </h2>
 
                 <p class="text-sm">
-                    <a href="{{ route('filament.auth.logout') }}" {{ $attributes->class([
+                    <a href="{{ route('filament.auth.logout') }}" {{ \Illuminate\Support\Arr::toCssClasses([
                         'text-gray-600 hover:text-primary-500 focus:outline-none focus:underline',
                         'dark:text-gray-300 dark:hover:text-primary-500' => config('filament.dark_mode'),
                     ]) }}>

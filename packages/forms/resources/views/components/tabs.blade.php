@@ -12,7 +12,7 @@
     <div
         {!! $getLabel() ? 'aria-label="' . $getLabel() . '"' : null !!}
         role="tablist"
-        {{ $attributes->class([
+        {{ \Illuminate\Support\Arr::toCssClasses([
             'rounded-t-xl flex overflow-y-auto bg-gray-100',
             'dark:bg-gray-800' => config('forms.dark_mode'),
         ]) }}

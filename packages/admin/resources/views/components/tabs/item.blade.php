@@ -16,12 +16,12 @@
 @if ($tag === 'button')
     <button
         type="{{ $type }}"
-        {{ $attributes->class([$buttonClasses]) }}
+        class="{{ \Illuminate\Support\Arr::toCssClasses([$buttonClasses]) }}"
     >
         {{ $slot }}
     </button>
 @elseif ($tag === 'a')
-    <a {{ $attributes->class([$buttonClasses]) }}>
+    <a class="{{ \Illuminate\Support\Arr::toCssClasses([$buttonClasses]) }}">
         {{ $slot }}
     </a>
 @endif

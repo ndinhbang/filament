@@ -24,7 +24,7 @@
     }"
     x-show="isVisible"
     x-transition:enter.duration.500ms
-    {{ $attributes->class(['flex flex-col h-auto sm:max-w-xs max-w-screen mx-auto space-y-2 pointer-events-auto filament-notification']) }}
+    class="{{ \Illuminate\Support\Arr::toCssClasses(['flex flex-col h-auto sm:max-w-xs max-w-screen mx-auto space-y-2 pointer-events-auto filament-notification']) }}"
 >
     <div
         x-show="isVisible"

@@ -93,7 +93,7 @@
                 @endphp
 
                 @foreach ($getOptions() as $value => $label)
-                    <div {{ $attributes->class([
+                    <div {{ \Illuminate\Support\Arr::toCssClasses([
                         'flex items-start',
                         'gap-3' => ! $isInline(),
                         'gap-2' => $isInline(),
@@ -117,7 +117,7 @@
                         </div>
 
                         <div class="text-sm">
-                            <label for="{{ $getId() }}-{{ $value }}" {{ $attributes->class([
+                            <label for="{{ $getId() }}-{{ $value }}" {{ \Illuminate\Support\Arr::toCssClasses([
                                 'font-medium',
                                 'text-gray-700' => ! $errors->has($getStatePath()),
                                 'dark:text-gray-200' => (! $errors->has($getStatePath())) && config('forms.dark_mode'),
@@ -127,7 +127,7 @@
                             </label>
 
                             @if ($hasDescription($value))
-                                <p {{ $attributes->class([
+                                <p {{ \Illuminate\Support\Arr::toCssClasses([
                                     'text-gray-500',
                                     'dark:text-gray-400' => config('forms.dark_mode'),
                                 ]) }}>

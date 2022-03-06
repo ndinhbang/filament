@@ -5,10 +5,10 @@
     'heading' => null,
 ])
 
-<div {{ $attributes->class([
+<div class="{{ \Illuminate\Support\Arr::toCssClasses([
     'p-2 space-y-2 bg-white shadow rounded-xl',
     'dark:bg-gray-800' => config('filament.dark_mode'),
-]) }}>
+]) }}">
     @if ($actions || $header || $heading)
         <div class="px-4 py-2">
             @if ($header)
@@ -29,19 +29,19 @@
         </div>
     @endif
 
-    @if (($actions || $header || $heading) && $slot->isNotEmpty())
+    @if (($actions || $header || $heading) && !$slot->isEmpty())
         <x-filament::hr />
     @endif
 
     <div class="space-y-2">
-        @if ($slot->isNotEmpty())
+        @if (!$slot->isEmpty())
             <div class="px-4 py-2 space-y-4">
                 {{ $slot }}
             </div>
         @endif
     </div>
 
-    @if ($footer && $slot->isNotEmpty())
+    @if ($footer && !$slot->isEmpty())
         <x-filament::hr />
     @endif
 

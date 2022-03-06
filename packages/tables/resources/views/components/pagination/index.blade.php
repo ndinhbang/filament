@@ -53,7 +53,7 @@
                     </x-tables::button>
                 @endif
             @else
-                <div {{ $attributes->class([
+                <div {{ \Illuminate\Support\Arr::toCssClasses([
                     'pl-2 text-sm font-medium',
                     'dark:text-white' => config('tables.dark_mode'),
                 ]) }}>
@@ -88,11 +88,11 @@
                 @endif
             @else
                 @if ($paginator->hasPages())
-                    <div {{ $attributes->class([
+                    <div {{ \Illuminate\Support\Arr::toCssClasses([
                         'py-3 border rounded-lg',
                         'dark:border-gray-600' => config('tables.dark_mode'),
                     ]) }}>
-                        <ol {{ $attributes->class([
+                        <ol {{ \Illuminate\Support\Arr::toCssClasses([
                             'flex items-center text-sm text-gray-500 divide-x divide-gray-300',
                             'dark:text-gray-400' => config('tables.dark_mode'),
                         ]) }}>
