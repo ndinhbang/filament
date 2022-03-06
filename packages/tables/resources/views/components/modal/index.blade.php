@@ -84,7 +84,7 @@
                     </div>
                 @endif
 
-                @if ($header && ($actions || $heading || $slot->isNotEmpty() || $subheading))
+                @if ($header && ($actions || $heading || !$slot->isEmpty() || $subheading))
                     <x-tables::hr />
                 @endif
 
@@ -108,7 +108,7 @@
                         </div>
                     @endif
 
-                    @if ($slot->isNotEmpty())
+                    @if (!$slot->isEmpty())
                         <div class="px-4 py-2 space-y-4">
                             {{ $slot }}
                         </div>
@@ -117,7 +117,7 @@
                     {{ $actions }}
                 </div>
 
-                @if ($footer && ($actions || $heading || $slot->isNotEmpty() || $subheading))
+                @if ($footer && ($actions || $heading || !$slot->isEmpty() || $subheading))
                     <x-tables::hr />
                 @endif
 
