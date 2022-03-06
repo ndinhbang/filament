@@ -35,7 +35,7 @@
             $action = $this->getMountedAction();
         @endphp
 
-        <x-filament::modal id="page-action" :width="$action?->getModalWidth()" display-classes="block">
+        <x-filament::modal id="page-action" :width="$action ? $action->getModalWidth(): '4xl'" display-classes="block">
             @if ($action)
                 @if ($action->isModalCentered())
                     <x-slot name="heading">
