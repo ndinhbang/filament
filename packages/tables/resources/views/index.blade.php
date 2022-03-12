@@ -201,12 +201,12 @@
         </div>
 
         <div
-            {{ \Illuminate\Support\Arr::toCssClasses([
+            class="{{ \Illuminate\Support\Arr::toCssClasses([
                 'overflow-y-auto relative',
                 'dark:border-gray-700' => config('tables.dark_mode'),
                 'rounded-t-xl' => ! $renderHeader,
                 'border-t' => $renderHeader,
-            ]) }}
+            ]) }}"
             x-bind:class="{
                 'rounded-t-xl': ! hasHeader,
                 'border-t': hasHeader,
@@ -250,10 +250,10 @@
                         @endforeach
 
                         @if (count($actions))
-                            <th {{ \Illuminate\Support\Arr::toCssClasses([
+                            <th class="{{ \Illuminate\Support\Arr::toCssClasses([
                                 'w-5',
                                 'dark:bg-gray-800' => config('tables.dark_mode'),
-                            ])}}></th>
+                            ])}}"></th>
                         @endif
                     </x-slot>
 
@@ -335,10 +335,10 @@
         </div>
 
         @if ($isPaginationEnabled())
-            <div {{ \Illuminate\Support\Arr::toCssClasses([
+            <div class="{{ \Illuminate\Support\Arr::toCssClasses([
                 'p-2 border-t',
                 'dark:border-gray-700' => config('tables.dark_mode'),
-            ]) }}>
+            ]) }}">
                 <x-tables::pagination
                     :paginator="$records"
                     :records-per-page-select-options="$getRecordsPerPageSelectOptions()"

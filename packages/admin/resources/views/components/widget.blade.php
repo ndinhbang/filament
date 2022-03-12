@@ -28,9 +28,9 @@
             $class = 'col-span-1';break;
     }
 @endphp
-<div {{ \Illuminate\Support\Arr::toCssClasses([
+<div class="{{ \Illuminate\Support\Arr::toCssClasses([
     'filament-widget',
     $class,
-]) }}>
+]) }}">
     {{ $slot }}
 </div>

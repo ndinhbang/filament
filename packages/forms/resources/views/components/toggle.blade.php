@@ -33,18 +33,18 @@
                 {{ $getExtraAlpineAttributeBag() }}
             >
                 <span
-                    {{ \Illuminate\Support\Arr::toCssClasses([
+                    class="{{ \Illuminate\Support\Arr::toCssClasses([
                         'pointer-events-none relative inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 ease-in-out transition duration-200',
-                    ]) }}
+                    ]) }}"
                     :class="{
                         'translate-x-5 rtl:-translate-x-5': state,
                         'translate-x-0': ! state,
                     }"
                 >
                     <span
-                        {{ \Illuminate\Support\Arr::toCssClasses([
+                        class="{{ \Illuminate\Support\Arr::toCssClasses([
                             'absolute inset-0 h-full w-full flex items-center justify-center transition-opacity',
-                        ]) }}
+                        ]) }}"
                         aria-hidden="true"
                         :class="{
                             'opacity-0 ease-out duration-100': state,

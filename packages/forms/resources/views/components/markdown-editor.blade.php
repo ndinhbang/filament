@@ -101,10 +101,10 @@
                                         title="{{ __('forms::components.markdown_editor.toolbar_buttons.bullet_list') }}"
                                     >
                                         <md-unordered-list class="w-full h-full">
-                                            <svg {{ \Illuminate\Support\Arr::toCssClasses([
+                                            <svg class="{{ \Illuminate\Support\Arr::toCssClasses([
                                                 'h-4',
                                                 'dark:fill-current' => config('forms.dark_mode'),
-                                            ])}} aria-hidden="true" focusable="false" data-prefix="fas" data-icon="list-ul" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M16 96C16 69.49 37.49 48 64 48C90.51 48 112 69.49 112 96C112 122.5 90.51 144 64 144C37.49 144 16 122.5 16 96zM480 64C497.7 64 512 78.33 512 96C512 113.7 497.7 128 480 128H192C174.3 128 160 113.7 160 96C160 78.33 174.3 64 192 64H480zM480 224C497.7 224 512 238.3 512 256C512 273.7 497.7 288 480 288H192C174.3 288 160 273.7 160 256C160 238.3 174.3 224 192 224H480zM480 384C497.7 384 512 398.3 512 416C512 433.7 497.7 448 480 448H192C174.3 448 160 433.7 160 416C160 398.3 174.3 384 192 384H480zM16 416C16 389.5 37.49 368 64 368C90.51 368 112 389.5 112 416C112 442.5 90.51 464 64 464C37.49 464 16 442.5 16 416zM112 256C112 282.5 90.51 304 64 304C37.49 304 16 282.5 16 256C16 229.5 37.49 208 64 208C90.51 208 112 229.5 112 256z"></path></svg>
+                                            ])}}" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="list-ul" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M16 96C16 69.49 37.49 48 64 48C90.51 48 112 69.49 112 96C112 122.5 90.51 144 64 144C37.49 144 16 122.5 16 96zM480 64C497.7 64 512 78.33 512 96C512 113.7 497.7 128 480 128H192C174.3 128 160 113.7 160 96C160 78.33 174.3 64 192 64H480zM480 224C497.7 224 512 238.3 512 256C512 273.7 497.7 288 480 288H192C174.3 288 160 273.7 160 256C160 238.3 174.3 224 192 224H480zM480 384C497.7 384 512 398.3 512 416C512 433.7 497.7 448 480 448H192C174.3 448 160 433.7 160 416C160 398.3 174.3 384 192 384H480zM16 416C16 389.5 37.49 368 64 368C90.51 368 112 389.5 112 416C112 442.5 90.51 464 64 464C37.49 464 16 442.5 16 416zM112 256C112 282.5 90.51 304 64 304C37.49 304 16 282.5 16 256C16 229.5 37.49 208 64 208C90.51 208 112 229.5 112 256z"></path></svg>
                                         </md-unordered-list>
                                     </x-forms::markdown-editor.toolbar-button>
                                 @endif
@@ -114,10 +114,10 @@
                                         title="{{ __('forms::components.markdown_editor.toolbar_buttons.ordered_list') }}"
                                     >
                                         <md-ordered-list class="w-full h-full">
-                                            <svg {{ \Illuminate\Support\Arr::toCssClasses([
+                                            <svg class="{{ \Illuminate\Support\Arr::toCssClasses([
                                                 'h-4',
                                                 'dark:fill-current' => config('forms.dark_mode'),
-                                            ])}} aria-hidden="true" focusable="false" data-prefix="fas" data-icon="list-ol" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M55.1 56.04C55.1 42.78 66.74 32.04 79.1 32.04H111.1C125.3 32.04 135.1 42.78 135.1 56.04V176H151.1C165.3 176 175.1 186.8 175.1 200C175.1 213.3 165.3 224 151.1 224H71.1C58.74 224 47.1 213.3 47.1 200C47.1 186.8 58.74 176 71.1 176H87.1V80.04H79.1C66.74 80.04 55.1 69.29 55.1 56.04V56.04zM118.7 341.2C112.1 333.8 100.4 334.3 94.65 342.4L83.53 357.9C75.83 368.7 60.84 371.2 50.05 363.5C39.26 355.8 36.77 340.8 44.47 330.1L55.59 314.5C79.33 281.2 127.9 278.8 154.8 309.6C176.1 333.1 175.6 370.5 153.7 394.3L118.8 432H152C165.3 432 176 442.7 176 456C176 469.3 165.3 480 152 480H64C54.47 480 45.84 474.4 42.02 465.6C38.19 456.9 39.9 446.7 46.36 439.7L118.4 361.7C123.7 355.9 123.8 347.1 118.7 341.2L118.7 341.2zM512 64C529.7 64 544 78.33 544 96C544 113.7 529.7 128 512 128H256C238.3 128 224 113.7 224 96C224 78.33 238.3 64 256 64H512zM512 224C529.7 224 544 238.3 544 256C544 273.7 529.7 288 512 288H256C238.3 288 224 273.7 224 256C224 238.3 238.3 224 256 224H512zM512 384C529.7 384 544 398.3 544 416C544 433.7 529.7 448 512 448H256C238.3 448 224 433.7 224 416C224 398.3 238.3 384 256 384H512z"></path></svg>
+                                            ])}}" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="list-ol" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M55.1 56.04C55.1 42.78 66.74 32.04 79.1 32.04H111.1C125.3 32.04 135.1 42.78 135.1 56.04V176H151.1C165.3 176 175.1 186.8 175.1 200C175.1 213.3 165.3 224 151.1 224H71.1C58.74 224 47.1 213.3 47.1 200C47.1 186.8 58.74 176 71.1 176H87.1V80.04H79.1C66.74 80.04 55.1 69.29 55.1 56.04V56.04zM118.7 341.2C112.1 333.8 100.4 334.3 94.65 342.4L83.53 357.9C75.83 368.7 60.84 371.2 50.05 363.5C39.26 355.8 36.77 340.8 44.47 330.1L55.59 314.5C79.33 281.2 127.9 278.8 154.8 309.6C176.1 333.1 175.6 370.5 153.7 394.3L118.8 432H152C165.3 432 176 442.7 176 456C176 469.3 165.3 480 152 480H64C54.47 480 45.84 474.4 42.02 465.6C38.19 456.9 39.9 446.7 46.36 439.7L118.4 361.7C123.7 355.9 123.8 347.1 118.7 341.2L118.7 341.2zM512 64C529.7 64 544 78.33 544 96C544 113.7 529.7 128 512 128H256C238.3 128 224 113.7 224 96C224 78.33 238.3 64 256 64H512zM512 224C529.7 224 544 238.3 544 256C544 273.7 529.7 288 512 288H256C238.3 288 224 273.7 224 256C224 238.3 238.3 224 256 224H512zM512 384C529.7 384 544 398.3 544 416C544 433.7 529.7 448 512 448H256C238.3 448 224 433.7 224 416C224 398.3 238.3 384 256 384H512z"></path></svg>
                                         </md-ordered-list>
                                     </x-forms::markdown-editor.toolbar-button>
                                 @endif
@@ -131,10 +131,10 @@
                                         title="{{ __('forms::components.markdown_editor.toolbar_buttons.attach_files') }}"
                                     >
                                         <md-image class="w-full h-full" x-ref="imageTrigger">
-                                            <svg {{ \Illuminate\Support\Arr::toCssClasses([
+                                            <svg class="{{ \Illuminate\Support\Arr::toCssClasses([
                                                 'h-4',
                                                 'dark:fill-current' => config('forms.dark_mode'),
-                                            ])}} aria-hidden="true" focusable="false" data-prefix="fas" data-icon="image" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M447.1 32h-484C28.64 32-.0091 60.65-.0091 96v320c0 35.35 28.65 64 63.1 64h384c35.35 0 64-28.65 64-64V96C511.1 60.65 483.3 32 447.1 32zM111.1 96c26.51 0 48 21.49 48 48S138.5 192 111.1 192s-48-21.49-48-48S85.48 96 111.1 96zM446.1 407.6C443.3 412.8 437.9 416 432 416H82.01c-6.021 0-11.53-3.379-14.26-8.75c-2.73-5.367-2.215-11.81 1.334-16.68l70-96C142.1 290.4 146.9 288 152 288s9.916 2.441 12.93 6.574l32.46 44.51l93.3-139.1C293.7 194.7 298.7 192 304 192s10.35 2.672 13.31 7.125l128 192C448.6 396 448.9 402.3 446.1 407.6z"></path></svg>
+                                            ])}}" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="image" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M447.1 32h-484C28.64 32-.0091 60.65-.0091 96v320c0 35.35 28.65 64 63.1 64h384c35.35 0 64-28.65 64-64V96C511.1 60.65 483.3 32 447.1 32zM111.1 96c26.51 0 48 21.49 48 48S138.5 192 111.1 192s-48-21.49-48-48S85.48 96 111.1 96zM446.1 407.6C443.3 412.8 437.9 416 432 416H82.01c-6.021 0-11.53-3.379-14.26-8.75c-2.73-5.367-2.215-11.81 1.334-16.68l70-96C142.1 290.4 146.9 288 152 288s9.916 2.441 12.93 6.574l32.46 44.51l93.3-139.1C293.7 194.7 298.7 192 304 192s10.35 2.672 13.31 7.125l128 192C448.6 396 448.9 402.3 446.1 407.6z"></path></svg>
                                         </md-image>
                                     </x-forms::markdown-editor.toolbar-button>
                                 @endif
@@ -158,10 +158,10 @@
                                 <button
                                     x-on:click.prevent="tab = 'preview'"
                                     x-bind:class="{ 'text-gray-400 @if (config('forms.dark_mode')) dark:text-gray-400 @endif': tab !== 'preview' }"
-                                    {{ \Illuminate\Support\Arr::toCssClasses([
+                                    class="{{ \Illuminate\Support\Arr::toCssClasses([
                                         'text-sm hover:underline',
                                         'text-gray-400' . (config('forms.dark_mode') ? ' dark:text-gray-400' : null),
-                                    ]) }}
+                                    ]) }}"
                                 >
                                     {{ __('forms::components.markdown_editor.toolbar_buttons.preview') }}
                                 </button>
@@ -210,13 +210,13 @@
                             })
                         "
                         x-ref="textarea"
-                        {{ \Illuminate\Support\Arr::toCssClasses([
+                        class="{{ \Illuminate\Support\Arr::toCssClasses([
                             'tracking-normal whitespace-pre-wrap overflow-y-hidden font-mono block absolute bg-transparent top-0 text-sm left-0 block z-1 w-full h-full min-h-full resize-none transition duration-75 rounded-lg shadow-sm focus:border-primary-500 focus:ring-1 focus:ring-inset focus:ring-primary-600 caret-black',
                             'dark:caret-white' => config('forms.dark_mode'),
                             'border-gray-300' => ! $errors->has($getStatePath()),
                             'dark:border-gray-600' => (! $errors->has($getStatePath())) && config('forms.dark_mode'),
                             'border-danger-600 ring-danger-600' => $errors->has($getStatePath()),
-                        ]) }}
+                        ]) }}"
                     ></textarea>
                 </file-attachment>
 
@@ -224,21 +224,21 @@
                     x-ref="overlay"
                     x-html="overlay"
                     style="min-height: 150px;"
-                    {{ \Illuminate\Support\Arr::toCssClasses([
+                    class="{{ \Illuminate\Support\Arr::toCssClasses([
                         'w-full h-full rounded-lg px-3 py-2 border border-transparent font-mono tracking-normal bg-white text-sm text-gray-900 break-words whitespace-pre-wrap',
                         'dark:bg-gray-700 dark:border-gray-600 dark:text-white' => config('forms.dark_mode'),
-                    ]) }}
+                    ]) }}"
                 ></div>
             </div>
 
-            <div {{ \Illuminate\Support\Arr::toCssClasses([
+            <div class="{{ \Illuminate\Support\Arr::toCssClasses([
                 'block w-full h-full min-h-full px-3 py-2 bg-white border border-gray-300 rounded-lg shadow-sm focus:border-primary-300',
                 'dark:bg-gray-700 dark:border-gray-600' => config('forms.dark_mode'),
-            ]) }} x-show="tab === 'preview'" x-cloak style="min-height: 150px;">
-                <div {{ \Illuminate\Support\Arr::toCssClasses([
+            ]) }}" x-show="tab === 'preview'" x-cloak style="min-height: 150px;">
+                <div class="{{ \Illuminate\Support\Arr::toCssClasses([
                     'prose',
                     'dark:prose-invert' => config('forms.dark_mode'),
-                ]) }} x-html="preview"></div>
+                ]) }}" x-html="preview"></div>
             </div>
         </div>
     </div>

@@ -12,10 +12,10 @@
     <div
         {!! $getLabel() ? 'aria-label="' . $getLabel() . '"' : null !!}
         role="tablist"
-        {{ \Illuminate\Support\Arr::toCssClasses([
+        class="{{ \Illuminate\Support\Arr::toCssClasses([
             'rounded-t-xl flex overflow-y-auto bg-gray-100',
             'dark:bg-gray-800' => config('forms.dark_mode'),
-        ]) }}
+        ]) }}"
     >
         @foreach ($getTabsConfig() as $tabId => $tabLabel)
             <button

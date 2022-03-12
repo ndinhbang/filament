@@ -10,7 +10,7 @@
     <button
         @if ($disabled || $separator) disabled @endif
         type="button"
-        {{ \Illuminate\Support\Arr::toCssClasses([
+        class="{{ \Illuminate\Support\Arr::toCssClasses([
             'relative flex items-center justify-center font-medium min-w-[2rem] px-1.5 h-8 -my-3 rounded-md focus:outline-none filament-tables-pagination-item',
             'hover:bg-gray-500/5 focus:bg-primary-500/10 focus:ring-2 focus:ring-primary-500' => (! $active) && (! $disabled) && (! $separator),
             'dark:hover:bg-gray-400/5' => (! $active) && (! $disabled) && (! $separator) && config('tables.dark_mode'),
@@ -20,7 +20,7 @@
             'focus:underline bg-primary-500/10 ring-2 ring-primary-500' => $active,
             'cursor-not-allowed opacity-70' => $disabled,
             'cursor-default' => $separator,
-        ]) }}
+        ]) }}"
     >
         @if ($icon)
             <x-dynamic-component :component="$icon" class="w-5 h-5 rtl:rotate-180" />

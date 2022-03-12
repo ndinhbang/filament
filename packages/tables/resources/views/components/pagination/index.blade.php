@@ -53,10 +53,10 @@
                     </x-tables::button>
                 @endif
             @else
-                <div {{ \Illuminate\Support\Arr::toCssClasses([
+                <div class="{{ \Illuminate\Support\Arr::toCssClasses([
                     'pl-2 text-sm font-medium',
                     'dark:text-white' => config('tables.dark_mode'),
-                ]) }}>
+                ]) }}">
                     @if ($paginator->total() > 1)
                         {{ __('tables::table.pagination.overview', [
                             'first' => $paginator->firstItem(),
@@ -88,14 +88,14 @@
                 @endif
             @else
                 @if ($paginator->hasPages())
-                    <div {{ \Illuminate\Support\Arr::toCssClasses([
+                    <div class="{{ \Illuminate\Support\Arr::toCssClasses([
                         'py-3 border rounded-lg',
                         'dark:border-gray-600' => config('tables.dark_mode'),
-                    ]) }}>
-                        <ol {{ \Illuminate\Support\Arr::toCssClasses([
+                    ]) }}">
+                        <ol class="{{ \Illuminate\Support\Arr::toCssClasses([
                             'flex items-center text-sm text-gray-500 divide-x divide-gray-300',
                             'dark:text-gray-400' => config('tables.dark_mode'),
-                        ]) }}>
+                        ]) }}">
                             @if (! $paginator->onFirstPage())
                                 <x-tables::pagination.item
                                     :wire:click="'previousPage(\'' . $paginator->getPageName() . '\')'"
