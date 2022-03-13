@@ -93,11 +93,11 @@
                 @endphp
 
                 @foreach ($getOptions() as $value => $label)
-                    <div {{ \Illuminate\Support\Arr::toCssClasses([
+                    <div class="{{ \Illuminate\Support\Arr::toCssClasses([
                         'flex items-start',
                         'gap-3' => ! $isInline(),
                         'gap-2' => $isInline(),
-                    ]) }}>
+                    ]) }}">
                         <div class="flex items-center h-5">
                             <input
                                 name="{{ $getId() }}"
@@ -117,20 +117,20 @@
                         </div>
 
                         <div class="text-sm">
-                            <label for="{{ $getId() }}-{{ $value }}" {{ \Illuminate\Support\Arr::toCssClasses([
+                            <label for="{{ $getId() }}-{{ $value }}" class="{{ \Illuminate\Support\Arr::toCssClasses([
                                 'font-medium',
                                 'text-gray-700' => ! $errors->has($getStatePath()),
                                 'dark:text-gray-200' => (! $errors->has($getStatePath())) && config('forms.dark_mode'),
                                 'text-danger-600' => $errors->has($getStatePath()),
-                            ]) }}>
+                            ]) }}">
                                 {{ $label }}
                             </label>
 
                             @if ($hasDescription($value))
-                                <p {{ \Illuminate\Support\Arr::toCssClasses([
+                                <p class="{{ \Illuminate\Support\Arr::toCssClasses([
                                     'text-gray-500',
                                     'dark:text-gray-400' => config('forms.dark_mode'),
-                                ]) }}>
+                                ]) }}">
                                     {{ $getDescription($value) }}
                                 </p>
                             @endif

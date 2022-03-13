@@ -2,10 +2,10 @@
     'icon' => null,
 ])
 
-<div {{ \Illuminate\Support\Arr::toCssClasses([
+<div class="{{ \Illuminate\Support\Arr::toCssClasses([
     'flex space-x-2 rtl:space-x-reverse text-gray-500 filament-forms-field-wrapper-hint',
     'dark:text-gray-300' => config('forms.dark_mode'),
-]) }}>
+]) }}">
     @if (!$slot->isEmpty())
         <span class="text-xs leading-tight">
             {{ $slot }}

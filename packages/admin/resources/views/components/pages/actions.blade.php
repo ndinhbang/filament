@@ -26,10 +26,10 @@
 
     @if (count($actions))
         <div
-            {{ \Illuminate\Support\Arr::toCssClasses([
+            class="{{ \Illuminate\Support\Arr::toCssClasses([
                 'flex flex-wrap items-center gap-4 filament-page-actions',
                $class,
-            ]) }}
+            ]) }}"
         >
             @foreach ($actions as $action)
                 {{ $action }}

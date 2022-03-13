@@ -5,15 +5,15 @@
     'suffix' => null,
 ])
 
-<label {{ \Illuminate\Support\Arr::toCssClasses(['inline-flex items-center space-x-3 rtl:space-x-reverse filament-forms-field-wrapper-label']) }}>
+<label class="{{ \Illuminate\Support\Arr::toCssClasses(['inline-flex items-center space-x-3 rtl:space-x-reverse filament-forms-field-wrapper-label']) }}">
     {{ $prefix }}
 
-    <span {{ \Illuminate\Support\Arr::toCssClasses([
+    <span class="{{ \Illuminate\Support\Arr::toCssClasses([
         'text-sm font-medium leading-4',
         'text-gray-700' => ! $error,
         'dark:text-gray-300' => (! $error) && config('forms.dark_mode'),
         'text-danger-700' => $error,
-    ]) }}>
+    ]) }}">
         {{ $slot }}
 
         @if ($required)

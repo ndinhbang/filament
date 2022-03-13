@@ -11,7 +11,7 @@
     'statePath',
 ])
 
-<div {{ \Illuminate\Support\Arr::toCssClasses(['filament-forms-field-wrapper']) }}>
+<div class="{{ \Illuminate\Support\Arr::toCssClasses(['filament-forms-field-wrapper']) }}">
     @if ($label && $labelSrOnly)
         <label for="{{ $id }}" class="sr-only">
             {{ $label }}

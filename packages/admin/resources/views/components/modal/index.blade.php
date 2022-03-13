@@ -59,10 +59,10 @@
             x-transition:leave-start="translate-y-0"
             x-transition:leave-end="translate-y-8"
             x-cloak
-            {{ \Illuminate\Support\Arr::toCssClasses(['relative w-full mt-auto md:mb-auto cursor-pointer']) }}
+            class="{{ \Illuminate\Support\Arr::toCssClasses(['relative w-full mt-auto md:mb-auto cursor-pointer']) }}"
         >
             <div
-                {{ \Illuminate\Support\Arr::toCssClasses([
+                class="{{ \Illuminate\Support\Arr::toCssClasses([
                     'w-full mx-auto p-2 space-y-2 bg-white rounded-xl cursor-default filament-modal-window',
                     'dark:bg-gray-800' => config('filament.dark_mode'),
                     'max-w-xs' => $width === 'xs',
@@ -76,7 +76,7 @@
                     'max-w-5xl' => $width === '5xl',
                     'max-w-6xl' => $width === '6xl',
                     'max-w-7xl' => $width === '7xl',
-                ]) }}
+                ]) }}"
             >
                 @if ($header)
                     <div class="px-4 py-2 filament-modal-header">
@@ -90,10 +90,10 @@
 
                 <div class="space-y-2 filament-modal-content">
                     @if ($heading || $subheading)
-                        <div {{ \Illuminate\Support\Arr::toCssClasses([
+                        <div class="{{ \Illuminate\Support\Arr::toCssClasses([
                             'p-4 space-y-2 text-center',
                             'dark:text-white' => config('filament.dark_mode'),
-                        ])}} >
+                        ])}}" >
                             @if ($heading)
                                 <x-filament::modal.heading :id="$id . '.heading'">
                                     {{ $heading }}
