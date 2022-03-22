@@ -4,7 +4,10 @@ namespace Filament\Forms\Components;
 
 class Group extends Component
 {
-    protected string $view = 'forms::components.group';
+    /**
+     * @var string
+     */
+    protected $view = 'forms::components.group';
 
     final public function __construct(array $schema = [])
     {

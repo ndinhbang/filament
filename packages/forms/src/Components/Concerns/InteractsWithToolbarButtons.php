@@ -24,7 +24,9 @@ trait InteractsWithToolbarButtons
     public function disableToolbarButtons(array $buttonsToDisable = [])
     {
         $this->toolbarButtons = collect($this->getToolbarButtons())
-            ->filter(fn ($button) => ! in_array($button, $buttonsToDisable))
+            ->filter(function ($button) use ($buttonsToDisable) {
+                return ! in_array($button, $buttonsToDisable);
+            })
             ->toArray();
 
         return $this;

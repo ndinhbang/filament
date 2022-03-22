@@ -13,11 +13,20 @@ class Select extends Field
     use Concerns\HasOptions;
     use Concerns\HasPlaceholder;
 
-    protected string $view = 'forms::components.select';
+    /**
+     * @var string
+     */
+    protected $view = 'forms::components.select';
 
-    protected ?Closure $getOptionLabelUsing = null;
+    /**
+     * @var \Closure|null
+     */
+    protected $getOptionLabelUsing;
 
-    protected ?Closure $getSearchResultsUsing = null;
+    /**
+     * @var \Closure|null
+     */
+    protected $getSearchResultsUsing;
 
     /**
      * @var bool|\Closure|null
@@ -34,7 +43,10 @@ class Select extends Field
      */
     protected $isSearchable = false;
 
-    protected ?array $searchColumns = null;
+    /**
+     * @var mixed[]|null
+     */
+    protected $searchColumns;
 
     /**
      * @var \Closure|\Illuminate\Support\HtmlString|string|null

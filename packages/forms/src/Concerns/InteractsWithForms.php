@@ -12,11 +12,20 @@ trait InteractsWithForms
 {
     use WithFileUploads;
 
-    public array $componentFileAttachments = [];
+    /**
+     * @var mixed[]
+     */
+    public $componentFileAttachments = [];
 
-    protected ?array $cachedForms = null;
+    /**
+     * @var mixed[]|null
+     */
+    protected $cachedForms;
 
-    protected bool $isCachingForms = false;
+    /**
+     * @var bool
+     */
+    protected $isCachingForms = false;
 
     public function __get($property)
     {

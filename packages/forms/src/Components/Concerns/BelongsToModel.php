@@ -12,7 +12,10 @@ trait BelongsToModel
      */
     protected $model = null;
 
-    protected ?Closure $saveRelationshipsUsing = null;
+    /**
+     * @var \Closure|null
+     */
+    protected $saveRelationshipsUsing;
 
     /**
      * @param \Closure|\Illuminate\Database\Eloquent\Model|string|null $model

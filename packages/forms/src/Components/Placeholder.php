@@ -10,7 +10,10 @@ class Placeholder extends Component
     use Concerns\HasHint;
     use Concerns\HasName;
 
-    protected string $view = 'forms::components.placeholder';
+    /**
+     * @var string
+     */
+    protected $view = 'forms::components.placeholder';
 
     protected $content = null;
 
@@ -53,12 +56,12 @@ class Placeholder extends Component
         return false;
     }
 
-    public function getId(): string
+    public function getId(): ?string
     {
         return parent::getId() ?? $this->getStatePath();
     }
 
-    public function getLabel(): string
+    public function getLabel(): ?string
     {
         return parent::getLabel() ?? (string) Str::of($this->getName())
             ->kebab()

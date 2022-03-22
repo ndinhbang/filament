@@ -37,7 +37,9 @@ class BelongsToManyCheckboxList extends CheckboxList
                 // https://github.com/laravel-filament/filament/issues/1111
                 $relatedModels
                     ->pluck($relationship->getRelatedKeyName())
-                    ->map(fn ($key): string => strval($key))
+                    ->map(function ($key) : string {
+                        return strval($key);
+                    })
                     ->toArray()
             );
         });
@@ -83,7 +85,7 @@ class BelongsToManyCheckboxList extends CheckboxList
         return $this->evaluate($this->displayColumnName);
     }
 
-    public function getLabel(): string
+    public function getLabel(): ?string
     {
         if ($this->label === null) {
             return (string) Str::of($this->getRelationshipName())

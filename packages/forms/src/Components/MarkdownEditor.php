@@ -11,7 +11,10 @@ class MarkdownEditor extends Field implements Contracts\HasFileAttachments
     use Concerns\HasPlaceholder;
     use Concerns\InteractsWithToolbarButtons;
 
-    protected string $view = 'forms::components.markdown-editor';
+    /**
+     * @var string
+     */
+    protected $view = 'forms::components.markdown-editor';
 
     /**
      * @var mixed[]|\Closure

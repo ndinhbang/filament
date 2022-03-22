@@ -6,7 +6,10 @@ use Illuminate\Support\Arr;
 
 trait HasMeta
 {
-    protected array $meta = [];
+    /**
+     * @var mixed[]
+     */
+    protected $meta = [];
 
     /**
      * @return $this

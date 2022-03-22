@@ -8,7 +8,10 @@ class Tabs extends Component
 {
     use Concerns\HasExtraAlpineAttributes;
 
-    protected string $view = 'forms::components.tabs';
+    /**
+     * @var string
+     */
+    protected $view = 'forms::components.tabs';
 
     final public function __construct(string $label)
     {
@@ -39,8 +42,12 @@ class Tabs extends Component
     public function getTabsConfig(): array
     {
         return collect($this->getChildComponentContainer()->getComponents())
-            ->filter(fn (Tab $tab): bool => ! $tab->isHidden())
-            ->mapWithKeys(fn (Tab $tab): array => [$tab->getId() => $tab->getLabel()])
+            ->filter(function (Tab $tab) : bool {
+                return ! $tab->isHidden();
+            })
+            ->mapWithKeys(function (Tab $tab) : array {
+                return [$tab->getId() => $tab->getLabel()];
+            })
             ->toArray();
     }
 }

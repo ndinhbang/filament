@@ -4,7 +4,10 @@ namespace Filament\Forms\Components\Concerns;
 
 trait HasName
 {
-    protected string $name;
+    /**
+     * @var string
+     */
+    protected $name;
 
     /**
      * @return $this

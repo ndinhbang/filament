@@ -10,7 +10,10 @@ class FileUpload extends BaseFileUpload
     use Concerns\HasExtraInputAttributes;
     use Concerns\HasPlaceholder;
 
-    protected string $view = 'forms::components.file-upload';
+    /**
+     * @var string
+     */
+    protected $view = 'forms::components.file-upload';
 
     /**
      * @var \Closure|string|null

@@ -6,7 +6,10 @@ use Filament\Forms\Contracts\HasForms;
 
 trait BelongsToLivewire
 {
-    protected HasForms $livewire;
+    /**
+     * @var \Filament\Forms\Contracts\HasForms
+     */
+    protected $livewire;
 
     /**
      * @return $this

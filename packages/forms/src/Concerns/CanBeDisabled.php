@@ -4,7 +4,10 @@ namespace Filament\Forms\Concerns;
 
 trait CanBeDisabled
 {
-    protected bool $isDisabled = false;
+    /**
+     * @var bool
+     */
+    protected $isDisabled = false;
 
     /**
      * @return $this

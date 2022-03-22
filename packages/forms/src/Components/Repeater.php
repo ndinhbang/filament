@@ -12,7 +12,10 @@ class Repeater extends Field
 {
     use Concerns\CanLimitItemsLength;
 
-    protected string $view = 'forms::components.repeater';
+    /**
+     * @var string
+     */
+    protected $view = 'forms::components.repeater';
 
     /**
      * @var \Closure|string|null
@@ -42,7 +45,9 @@ class Repeater extends Field
 
         $this->afterStateHydrated(function (Repeater $component, ?array $state): void {
             $items = collect($state ?? [])
-                ->mapWithKeys(fn ($itemData) => [(string) Str::uuid() => $itemData])
+                ->mapWithKeys(function ($itemData) {
+                    return [(string) Str::uuid() => $itemData];
+                })
                 ->toArray();
 
             $component->state($items);

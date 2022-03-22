@@ -20,9 +20,15 @@ trait HasFileAttachments
      */
     protected $fileAttachmentsDiskName = null;
 
-    protected ?Closure $getUploadedAttachmentUrlUsing = null;
+    /**
+     * @var \Closure|null
+     */
+    protected $getUploadedAttachmentUrlUsing;
 
-    protected ?Closure $saveUploadedFileAttachmentsUsing = null;
+    /**
+     * @var \Closure|null
+     */
+    protected $saveUploadedFileAttachmentsUsing;
 
     /**
      * @var \Closure|string

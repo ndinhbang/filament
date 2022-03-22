@@ -13,7 +13,10 @@ class Textarea extends Field
     use Concerns\HasExtraInputAttributes;
     use Concerns\HasPlaceholder;
 
-    protected string $view = 'forms::components.textarea';
+    /**
+     * @var string
+     */
+    protected $view = 'forms::components.textarea';
 
     /**
      * @var \Closure|int|null

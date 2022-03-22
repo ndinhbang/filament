@@ -29,7 +29,9 @@ class MakeLayoutComponentCommand extends Command
         $view = Str::of($component)
             ->prepend('forms\\components\\')
             ->explode('\\')
-            ->map(fn ($segment) => Str::kebab($segment))
+            ->map(function ($segment) {
+                return Str::kebab($segment);
+            })
             ->implode('.');
 
         $path = app_path(

@@ -4,7 +4,10 @@ namespace Filament\Forms\Components\Concerns;
 
 trait ListensToEvents
 {
-    protected array $listeners = [];
+    /**
+     * @var mixed[]
+     */
+    protected $listeners = [];
 
     /**
      * @return $this

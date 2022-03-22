@@ -14,7 +14,10 @@ class Builder extends Field
 {
     use Concerns\CanLimitItemsLength;
 
-    protected string $view = 'forms::components.builder';
+    /**
+     * @var string
+     */
+    protected $view = 'forms::components.builder';
 
     /**
      * @var \Closure|string|null
@@ -49,7 +52,9 @@ class Builder extends Field
 
         $this->afterStateHydrated(function (Builder $component, ?array $state): void {
             $items = collect($state ?? [])
-                ->mapWithKeys(fn ($itemData) => [(string) Str::uuid() => $itemData])
+                ->mapWithKeys(function ($itemData) {
+                    return [(string) Str::uuid() => $itemData];
+                })
                 ->toArray();
 
             $component->state($items);
@@ -250,7 +255,9 @@ class Builder extends Field
     {
         return Arr::first(
             $this->getBlocks(),
-            fn (Block $block) => $block->getName() === $name
+            function (Block $block) use ($name) {
+                return $block->getName() === $name;
+            }
         );
     }
 

@@ -4,7 +4,10 @@ namespace Filament\Forms\Components\Concerns;
 
 trait HasView
 {
-    protected string $view;
+    /**
+     * @var string
+     */
+    protected $view;
 
     /**
      * @return $this

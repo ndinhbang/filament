@@ -42,7 +42,9 @@ trait HasComponents
     {
         $callback = $callback instanceof Closure
              ? $callback
-             : fn (Component $component): bool => $component instanceof Field && $component->getStatePath() === $callback;
+             : function (Component $component) use ($callback) : bool {
+                 return $component instanceof Field && $component->getStatePath() === $callback;
+             };
 
         return collect($this->getFlatComponents($withHidden))->first($callback);
     }
@@ -65,9 +67,11 @@ trait HasComponents
     {
         return collect($this->getFlatComponents($withHidden))
             ->whereInstanceOf(Field::class)
-            ->mapWithKeys(fn (Field $field) => [
-                $field->getName() => $field,
-            ])
+            ->mapWithKeys(function (Field $field) {
+                return [
+                    $field->getName() => $field,
+                ];
+            })
             ->all();
     }
 
@@ -85,7 +89,9 @@ trait HasComponents
 
         return array_filter(
             $components,
-            fn (Component $component) => ! $component->isHidden()
+            function (Component $component) {
+                return ! $component->isHidden();
+            }
         );
     }
 }

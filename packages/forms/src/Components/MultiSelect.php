@@ -12,11 +12,20 @@ class MultiSelect extends Field
     use Concerns\HasOptions;
     use Concerns\HasPlaceholder;
 
-    protected string $view = 'forms::components.multi-select';
+    /**
+     * @var string
+     */
+    protected $view = 'forms::components.multi-select';
 
-    protected ?Closure $getOptionLabelsUsing = null;
+    /**
+     * @var \Closure|null
+     */
+    protected $getOptionLabelsUsing;
 
-    protected ?Closure $getSearchResultsUsing = null;
+    /**
+     * @var \Closure|null
+     */
+    protected $getSearchResultsUsing;
 
     /**
      * @var \Closure|\Illuminate\Support\HtmlString|string|null
@@ -46,7 +55,9 @@ class MultiSelect extends Field
             $options = $component->getOptions();
 
             return collect($values)
-                ->mapWithKeys(fn ($value) => [$value => $options[$value] ?? $value])
+                ->mapWithKeys(function ($value) use ($options) {
+                    return [$value => $options[$value] ?? $value];
+                })
                 ->toArray();
         });
 

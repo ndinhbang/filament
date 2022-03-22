@@ -7,7 +7,10 @@ use Illuminate\Contracts\Support\Arrayable;
 
 class CheckboxList extends Field
 {
-    protected string $view = 'forms::components.checkbox-list';
+    /**
+     * @var string
+     */
+    protected $view = 'forms::components.checkbox-list';
 
     /**
      * @var mixed[]|\Closure

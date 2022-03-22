@@ -11,7 +11,10 @@ class TagsInput extends Field
     use Concerns\HasExtraInputAttributes;
     use Concerns\HasPlaceholder;
 
-    protected string $view = 'forms::components.tags-input';
+    /**
+     * @var string
+     */
+    protected $view = 'forms::components.tags-input';
 
     /**
      * @var \Closure|string|null

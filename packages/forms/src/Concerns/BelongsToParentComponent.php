@@ -6,7 +6,10 @@ use Filament\Forms\Components\Component;
 
 trait BelongsToParentComponent
 {
-    protected ?Component $parentComponent = null;
+    /**
+     * @var \Filament\Forms\Components\Component|null
+     */
+    protected $parentComponent;
 
     /**
      * @return $this

@@ -29,12 +29,12 @@ class Field extends Component implements Contracts\HasValidationRules
         return $static;
     }
 
-    public function getId(): string
+    public function getId(): ?string
     {
         return parent::getId() ?? $this->getStatePath();
     }
 
-    public function getLabel(): string
+    public function getLabel(): ?string
     {
         return parent::getLabel() ?? (string) Str::of($this->getName())
             ->afterLast('.')

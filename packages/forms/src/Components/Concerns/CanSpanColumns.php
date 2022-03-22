@@ -6,7 +6,10 @@ use Closure;
 
 trait CanSpanColumns
 {
-    protected array $columnSpan = [
+    /**
+     * @var mixed[]
+     */
+    protected $columnSpan = [
         'default' => 1,
         'sm' => null,
         'md' => null,
@@ -44,7 +47,9 @@ trait CanSpanColumns
         }
 
         return array_map(
-            fn ($value) => $this->evaluate($value),
+            function ($value) {
+                return $this->evaluate($value);
+            },
             $span
         );
     }

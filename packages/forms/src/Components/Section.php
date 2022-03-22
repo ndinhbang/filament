@@ -9,7 +9,10 @@ class Section extends Component implements Contracts\CanConcealComponents
 {
     use Concerns\HasExtraAlpineAttributes;
 
-    protected string $view = 'forms::components.section';
+    /**
+     * @var string
+     */
+    protected $view = 'forms::components.section';
 
     /**
      * @var bool|\Closure

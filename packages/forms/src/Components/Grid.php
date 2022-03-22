@@ -4,7 +4,10 @@ namespace Filament\Forms\Components;
 
 class Grid extends Component
 {
-    protected string $view = 'forms::components.grid';
+    /**
+     * @var string
+     */
+    protected $view = 'forms::components.grid';
 
     /**
      * @param mixed[]|int|null $columns

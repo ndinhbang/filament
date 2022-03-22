@@ -74,13 +74,25 @@ class BaseFileUpload extends Field
      */
     protected $visibility = 'public';
 
-    protected ?Closure $deleteUploadedFileUsing = null;
+    /**
+     * @var \Closure|null
+     */
+    protected $deleteUploadedFileUsing;
 
-    protected ?Closure $getUploadedFileUrlUsing = null;
+    /**
+     * @var \Closure|null
+     */
+    protected $getUploadedFileUrlUsing;
 
-    protected ?Closure $reorderUploadedFilesUsing = null;
+    /**
+     * @var \Closure|null
+     */
+    protected $reorderUploadedFilesUsing;
 
-    protected ?Closure $saveUploadedFileUsing = null;
+    /**
+     * @var \Closure|null
+     */
+    protected $saveUploadedFileUsing;
 
     protected function setUp(): void
     {
@@ -94,7 +106,9 @@ class BaseFileUpload extends Field
             }
 
             $files = collect(Arr::wrap($state))
-                ->mapWithKeys(fn (string $file): array => [(string) Str::uuid() => $file])
+                ->mapWithKeys(function (string $file) : array {
+                    return [(string) Str::uuid() => $file];
+                })
                 ->toArray();
 
             $component->state($files);
@@ -414,7 +428,9 @@ class BaseFileUpload extends Field
         }
 
         $rules[] = function (string $attribute, array $value, Closure $fail): void {
-            $files = array_filter($value, fn ($file): bool => $file instanceof TemporaryUploadedFile);
+            $files = array_filter($value, function ($file) : bool {
+                return $file instanceof TemporaryUploadedFile;
+            });
 
             $name = $this->getName();
 
@@ -490,7 +506,9 @@ class BaseFileUpload extends Field
         $fileKeys = array_flip($fileKeys);
 
         $state = collect($this->getState())
-            ->sortBy(fn ($file, $fileKey) => $fileKeys[$fileKey] ?? null) // $fileKey may not be present in $fileKeys if it was added to the state during the reorder call
+            ->sortBy(function ($file, $fileKey) use ($fileKeys) {
+                return $fileKeys[$fileKey] ?? null;
+            }) // $fileKey may not be present in $fileKeys if it was added to the state during the reorder call
             ->toArray();
 
         $this->state($state);

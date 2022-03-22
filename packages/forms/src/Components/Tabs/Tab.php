@@ -8,7 +8,10 @@ use Illuminate\Support\Str;
 
 class Tab extends Component implements CanConcealComponents
 {
-    protected string $view = 'forms::components.tabs.tab';
+    /**
+     * @var string
+     */
+    protected $view = 'forms::components.tabs.tab';
 
     final public function __construct(string $label)
     {
@@ -27,7 +30,7 @@ class Tab extends Component implements CanConcealComponents
         return $static;
     }
 
-    public function getId(): string
+    public function getId(): ?string
     {
         return $this->getContainer()->getParentComponent()->getId() . '-' . parent::getId() . '-tab';
     }

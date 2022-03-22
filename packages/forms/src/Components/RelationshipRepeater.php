@@ -11,7 +11,10 @@ use Illuminate\Support\Str;
 
 class RelationshipRepeater extends Repeater
 {
-    protected ?Collection $cachedExistingRecords = null;
+    /**
+     * @var \Illuminate\Database\Eloquent\Collection|null
+     */
+    protected $cachedExistingRecords;
 
     /**
      * @var \Closure|string|null
@@ -50,7 +53,9 @@ class RelationshipRepeater extends Repeater
                 $recordsToDelete[] = $keyToCheckForDeletion;
             }
 
-            $relationship->whereIn($localKeyName, $recordsToDelete)->get()->each(fn (Model $record) => $record->delete());
+            $relationship->whereIn($localKeyName, $recordsToDelete)->get()->each(function (Model $record) {
+                return $record->delete();
+            });
 
             $childComponentContainers = $component->getChildComponentContainers();
 
@@ -110,7 +115,7 @@ class RelationshipRepeater extends Repeater
             ->toArray();
     }
 
-    public function getLabel(): string
+    public function getLabel(): ?string
     {
         if ($this->label === null) {
             return (string) Str::of($this->getRelationshipName())
@@ -123,7 +128,10 @@ class RelationshipRepeater extends Repeater
         return parent::getLabel();
     }
 
-    public function getRelationship(): HasOneOrMany
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOneOrMany
+     */
+    public function getRelationship()
     {
         return $this->getModelInstance()->{$this->getRelationshipName()}();
     }

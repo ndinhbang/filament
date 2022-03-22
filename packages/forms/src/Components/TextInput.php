@@ -16,9 +16,15 @@ class TextInput extends Field
     use Concerns\HasExtraInputAttributes;
     use Concerns\HasPlaceholder;
 
-    protected string $view = 'forms::components.text-input';
+    /**
+     * @var string
+     */
+    protected $view = 'forms::components.text-input';
 
-    protected ?Closure $configureMaskUsing = null;
+    /**
+     * @var \Closure|null
+     */
+    protected $configureMaskUsing;
 
     /**
      * @var mixed[]|\Closure|\Illuminate\Contracts\Support\Arrayable|null
@@ -122,8 +128,12 @@ class TextInput extends Field
     public function integer($condition = true)
     {
         $this->numeric($condition);
-        $this->inputMode(fn (): ?string => $condition ? 'numeric' : null);
-        $this->step(fn (): ?int => $condition ? 1 : null);
+        $this->inputMode(function () use ($condition) : ?string {
+            return $condition ? 'numeric' : null;
+        });
+        $this->step(function () use ($condition) : ?int {
+            return $condition ? 1 : null;
+        });
 
         return $this;
     }
@@ -178,9 +188,13 @@ class TextInput extends Field
     {
         $this->isNumeric = $condition;
 
-        $this->inputMode(fn (): ?string => $condition ? 'decimal' : null);
+        $this->inputMode(function () use ($condition) : ?string {
+            return $condition ? 'decimal' : null;
+        });
         $this->rule('numeric', $condition);
-        $this->step(fn (): ?string => $condition ? 'any' : null);
+        $this->step(function () use ($condition) : ?string {
+            return $condition ? 'any' : null;
+        });
 
         return $this;
     }

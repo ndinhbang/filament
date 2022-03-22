@@ -9,7 +9,10 @@ use Closure;
  */
 class MultipleFileUpload extends Field
 {
-    protected string $view = 'forms::components.multiple-file-upload';
+    /**
+     * @var string
+     */
+    protected $view = 'forms::components.multiple-file-upload';
 
     /**
      * @var \Closure|int|null

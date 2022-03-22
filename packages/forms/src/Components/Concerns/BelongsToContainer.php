@@ -7,7 +7,10 @@ use Filament\Forms\Contracts\HasForms;
 
 trait BelongsToContainer
 {
-    protected ComponentContainer $container;
+    /**
+     * @var \Filament\Forms\ComponentContainer
+     */
+    protected $container;
 
     /**
      * @return $this

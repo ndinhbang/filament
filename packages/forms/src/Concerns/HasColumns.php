@@ -6,7 +6,10 @@ use Filament\Forms\ComponentContainer;
 
 trait HasColumns
 {
-    protected array $columns = [
+    /**
+     * @var mixed[]
+     */
+    protected $columns = [
         'default' => 1,
         'sm' => null,
         'md' => null,

@@ -7,26 +7,47 @@ use Filament\Forms\Components\Component;
 
 trait HasState
 {
-    protected ?Closure $afterStateHydrated = null;
+    /**
+     * @var \Closure|null
+     */
+    protected $afterStateHydrated;
 
-    protected ?Closure $afterStateUpdated = null;
+    /**
+     * @var \Closure|null
+     */
+    protected $afterStateUpdated;
 
-    protected ?Closure $beforeStateDehydrated = null;
+    /**
+     * @var \Closure|null
+     */
+    protected $beforeStateDehydrated;
 
     protected $defaultState = null;
 
-    protected ?Closure $dehydrateStateUsing = null;
+    /**
+     * @var \Closure|null
+     */
+    protected $dehydrateStateUsing;
 
-    protected ?Closure $mutateDehydratedStateUsing = null;
+    /**
+     * @var \Closure|null
+     */
+    protected $mutateDehydratedStateUsing;
 
-    protected bool $hasDefaultState = false;
+    /**
+     * @var bool
+     */
+    protected $hasDefaultState = false;
 
     /**
      * @var bool|\Closure
      */
     protected $isDehydrated = true;
 
-    protected ?string $statePath = null;
+    /**
+     * @var string|null
+     */
+    protected $statePath;
 
     /**
      * @return $this

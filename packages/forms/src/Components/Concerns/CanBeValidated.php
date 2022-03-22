@@ -15,7 +15,10 @@ trait CanBeValidated
      */
     protected $isRequired = false;
 
-    protected array $rules = [];
+    /**
+     * @var mixed[]
+     */
+    protected $rules = [];
 
     /**
      * @var \Closure|string|null
@@ -42,7 +45,9 @@ trait CanBeValidated
             }
 
             return $rule;
-        }, fn (Field $component, ?string $model): bool => (bool) ($component->evaluate($table) ?? $model));
+        }, function (Field $component, ?string $model) use ($table) : bool {
+            return (bool) ($component->evaluate($table) ?? $model);
+        });
 
         return $this;
     }
@@ -99,7 +104,9 @@ trait CanBeValidated
 
         $this->rules = array_merge(
             $this->rules,
-            array_map(fn ($rule) => [$rule, $condition], $rules)
+            array_map(function ($rule) use ($condition) {
+                return [$rule, $condition];
+            }, $rules)
         );
 
         return $this;
@@ -211,10 +218,12 @@ trait CanBeValidated
             $rule = Rule::unique($table, $column)
                 ->when(
                     $ignorable,
-                    fn (Unique $rule) => $rule->ignore(
-                        $ignorable->getOriginal($ignorable->getKeyName()),
-                        $ignorable->getKeyName()
-                    )
+                    function (Unique $rule) use ($ignorable) {
+                        return $rule->ignore(
+                            $ignorable->getOriginal($ignorable->getKeyName()),
+                            $ignorable->getKeyName()
+                        );
+                    }
                 );
 
             if ($callback) {
@@ -224,7 +233,9 @@ trait CanBeValidated
             }
 
             return $rule;
-        }, fn (Field $component, ?String $model): bool => (bool) ($component->evaluate($table) ?? $model));
+        }, function (Field $component, ?String $model) use ($table) : bool {
+            return (bool) ($component->evaluate($table) ?? $model);
+        });
 
         return $this;
     }
@@ -290,7 +301,9 @@ trait CanBeValidated
             }
 
             return "{$rule}:{$date}";
-        }, fn (Field $component): bool => (bool) $component->evaluate($date));
+        }, function (Field $component) use ($date) : bool {
+            return (bool) $component->evaluate($date);
+        });
 
         return $this;
     }
@@ -313,7 +326,9 @@ trait CanBeValidated
             }
 
             return "{$rule}:{$statePath}";
-        }, fn (Field $component): bool => (bool) $component->evaluate($statePath));
+        }, function (Field $component) use ($statePath) : bool {
+            return (bool) $component->evaluate($statePath);
+        });
 
         return $this;
     }

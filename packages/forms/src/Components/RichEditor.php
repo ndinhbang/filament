@@ -11,7 +11,10 @@ class RichEditor extends Field implements Contracts\HasFileAttachments
     use Concerns\HasPlaceholder;
     use Concerns\InteractsWithToolbarButtons;
 
-    protected string $view = 'forms::components.rich-editor';
+    /**
+     * @var string
+     */
+    protected $view = 'forms::components.rich-editor';
 
     /**
      * @var mixed[]|\Closure

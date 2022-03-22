@@ -9,7 +9,10 @@ class Radio extends Field
 {
     use Concerns\HasExtraInputAttributes;
 
-    protected string $view = 'forms::components.radio';
+    /**
+     * @var string
+     */
+    protected $view = 'forms::components.radio';
 
     /**
      * @var bool|\Closure

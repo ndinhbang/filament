@@ -11,7 +11,10 @@ class Block extends Component
 {
     use Concerns\HasName;
 
-    protected string $view = 'forms::components.builder.block';
+    /**
+     * @var string
+     */
+    protected $view = 'forms::components.builder.block';
 
     /**
      * @var \Closure|string|null
@@ -47,7 +50,7 @@ class Block extends Component
         return $this->evaluate($this->icon);
     }
 
-    public function getLabel(): string
+    public function getLabel(): ?string
     {
         return parent::getLabel() ?? (string) Str::of($this->getName())
                 ->kebab()

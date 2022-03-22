@@ -7,51 +7,117 @@ use Illuminate\Contracts\Support\Jsonable;
 
 class Mask implements Jsonable
 {
-    protected ?int $decimalPlaces = 2;
+    /**
+     * @var int|null
+     */
+    protected $decimalPlaces = 2;
 
-    protected ?string $decimalSeparator = '.';
+    /**
+     * @var string|null
+     */
+    protected $decimalSeparator = '.';
 
-    protected array $enum = [];
+    /**
+     * @var mixed[]
+     */
+    protected $enum = [];
 
-    protected ?int $fromValue = null;
+    /**
+     * @var int|null
+     */
+    protected $fromValue;
 
-    protected bool $hasLazyPlaceholder = true;
+    /**
+     * @var bool
+     */
+    protected $hasLazyPlaceholder = true;
 
-    protected bool $isNumeric = false;
+    /**
+     * @var bool
+     */
+    protected $isNumeric = false;
 
-    protected bool $isRange = false;
+    /**
+     * @var bool
+     */
+    protected $isRange = false;
 
-    protected bool $isSigned = true;
+    /**
+     * @var bool
+     */
+    protected $isSigned = true;
 
-    protected ?string $jsonOptions = null;
+    /**
+     * @var string|null
+     */
+    protected $jsonOptions;
 
-    protected array $mapToDecimalSeparator = [','];
+    /**
+     * @var mixed[]
+     */
+    protected $mapToDecimalSeparator = [','];
 
-    protected ?int $maxLength = null;
+    /**
+     * @var int|null
+     */
+    protected $maxLength;
 
-    protected ?int $maxValue = null;
+    /**
+     * @var int|null
+     */
+    protected $maxValue;
 
-    protected ?int $minValue = null;
+    /**
+     * @var int|null
+     */
+    protected $minValue;
 
     protected $pattern = null;
 
-    protected array $patternBlocks = [];
+    /**
+     * @var mixed[]
+     */
+    protected $patternBlocks = [];
 
-    protected array $patternDefinitions = [];
+    /**
+     * @var mixed[]
+     */
+    protected $patternDefinitions = [];
 
-    protected string $placeholderCharacter = '_';
+    /**
+     * @var string
+     */
+    protected $placeholderCharacter = '_';
 
-    protected bool $shouldAutofix = false;
+    /**
+     * @var bool
+     */
+    protected $shouldAutofix = false;
 
-    protected bool $shouldNormalizeZeros = true;
+    /**
+     * @var bool
+     */
+    protected $shouldNormalizeZeros = true;
 
-    protected bool $shouldOverwrite = false;
+    /**
+     * @var bool
+     */
+    protected $shouldOverwrite = false;
 
-    protected bool $shouldPadFractionalZeros = false;
+    /**
+     * @var bool
+     */
+    protected $shouldPadFractionalZeros = false;
 
-    protected ?string $thousandsSeparator = null;
+    /**
+     * @var string|null
+     */
+    protected $thousandsSeparator;
 
-    protected ?int $toValue = null;
+    /**
+     * @var int|null
+     */
+    protected $toValue;
 
     final public function __construct()
     {
@@ -184,12 +250,14 @@ class Mask implements Jsonable
     {
         $this
             ->patternBlocks([
-                'money' => fn (Mask $mask) => $mask
-                    ->numeric()
-                    ->thousandsSeparator($thousandsSeparator)
-                    ->decimalPlaces($decimalPlaces)
-                    ->padFractionalZeros()
-                    ->normalizeZeros(false),
+                'money' => function (Mask $mask) use ($thousandsSeparator, $decimalPlaces) {
+                    return $mask
+                        ->numeric()
+                        ->thousandsSeparator($thousandsSeparator)
+                        ->decimalPlaces($decimalPlaces)
+                        ->padFractionalZeros()
+                        ->normalizeZeros(false);
+                },
             ])
             ->pattern("{$prefix}money")
             ->lazyPlaceholder(false);
@@ -348,7 +416,9 @@ class Mask implements Jsonable
 
         if ($this->patternBlocks !== []) {
             $configuration['blocks'] = array_map(
-                fn (Closure $configuration): array => $configuration(app(static::class))->getArrayableConfiguration(),
+                function (Closure $configuration) : array {
+                    return $configuration(app(static::class))->getArrayableConfiguration();
+                },
                 $this->patternBlocks
             );
         }

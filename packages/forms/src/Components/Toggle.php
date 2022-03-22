@@ -10,7 +10,10 @@ class Toggle extends Field
     use Concerns\CanBeInline;
     use Concerns\HasExtraAlpineAttributes;
 
-    protected string $view = 'forms::components.toggle';
+    /**
+     * @var string
+     */
+    protected $view = 'forms::components.toggle';
 
     /**
      * @var \Closure|string|null

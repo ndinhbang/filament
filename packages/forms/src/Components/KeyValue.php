@@ -8,7 +8,10 @@ class KeyValue extends Field
 {
     use Concerns\HasExtraAlpineAttributes;
 
-    protected string $view = 'forms::components.key-value';
+    /**
+     * @var string
+     */
+    protected $view = 'forms::components.key-value';
 
     /**
      * @var \Closure|string|null
@@ -68,8 +71,12 @@ class KeyValue extends Field
 
         $this->dehydrateStateUsing(function (?array $state) {
             return collect($state ?? [])
-                ->filter(fn (?string $value, ?string $key): bool => filled($key))
-                ->map(fn (?string $value): ?string => filled($value) ? $value : null)
+                ->filter(function (?string $value, ?string $key) : bool {
+                    return filled($key);
+                })
+                ->map(function (?string $value) : ?string {
+                    return filled($value) ? $value : null;
+                })
                 ->toArray();
         });
 

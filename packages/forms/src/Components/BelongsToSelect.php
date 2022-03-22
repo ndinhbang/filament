@@ -66,7 +66,10 @@ class BelongsToSelect extends Select
         return $this;
     }
 
-    public function getSearchColumns(): array
+    /**
+     * @return mixed[]
+     */
+    public function getSearchColumns(): ?array
     {
         return $this->searchColumns ?? [$this->getDisplayColumnName()];
     }
@@ -129,8 +132,12 @@ class BelongsToSelect extends Select
         });
 
         $this->exists(
-            fn (BelongsToSelect $component): ?string => ($relationship = $component->getRelationship()) ? get_class($relationship->getModel()) : null,
-            fn (BelongsToSelect $component): string => $component->getRelationship()->getOwnerKeyName()
+            function (BelongsToSelect $component) : ?string {
+                return ($relationship = $component->getRelationship()) ? get_class($relationship->getModel()) : null;
+            },
+            function (BelongsToSelect $component) : string {
+                return $component->getRelationship()->getOwnerKeyName();
+            }
         );
 
         return $this;
@@ -172,7 +179,7 @@ class BelongsToSelect extends Select
         return $this->evaluate($this->displayColumnName);
     }
 
-    public function getLabel(): string
+    public function getLabel(): ?string
     {
         if ($this->label === null) {
             return (string) Str::of($this->getRelationshipName())

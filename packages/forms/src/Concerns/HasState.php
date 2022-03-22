@@ -6,7 +6,10 @@ use Illuminate\Support\Arr;
 
 trait HasState
 {
-    protected ?string $statePath = null;
+    /**
+     * @var string|null
+     */
+    protected $statePath;
 
     public function callAfterStateHydrated(): void
     {

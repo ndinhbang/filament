@@ -4,7 +4,10 @@ namespace Filament\Forms\Components;
 
 class Fieldset extends Component
 {
-    protected string $view = 'forms::components.fieldset';
+    /**
+     * @var string
+     */
+    protected $view = 'forms::components.fieldset';
 
     final public function __construct(string $label)
     {

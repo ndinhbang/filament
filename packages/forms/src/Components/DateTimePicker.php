@@ -12,7 +12,10 @@ class DateTimePicker extends Field
     use Concerns\HasExtraAlpineAttributes;
     use Concerns\HasPlaceholder;
 
-    protected string $view = 'forms::components.date-time-picker';
+    /**
+     * @var string
+     */
+    protected $view = 'forms::components.date-time-picker';
 
     /**
      * @var \Closure|string|null
@@ -140,7 +143,9 @@ class DateTimePicker extends Field
             }
 
             return "before_or_equal:{$date}";
-        }, fn (): bool => (bool) $this->evaluate($date));
+        }, function () use ($date) : bool {
+            return (bool) $this->evaluate($date);
+        });
 
         return $this;
     }
@@ -161,7 +166,9 @@ class DateTimePicker extends Field
             }
 
             return "after_or_equal:{$date}";
-        }, fn (): bool => (bool) $this->evaluate($date));
+        }, function () use ($date) : bool {
+            return (bool) $this->evaluate($date);
+        });
 
         return $this;
     }
