@@ -4,7 +4,13 @@ namespace Filament\Widgets;
 
 class FilamentInfoWidget extends Widget
 {
-    protected static ?int $sort = -2;
+    /**
+     * @var int|null
+     */
+    protected static $sort = -2;
 
-    protected static string $view = 'filament::widgets.filament-info-widget';
+    /**
+     * @var string
+     */
+    protected static $view = 'filament::widgets.filament-info-widget';
 }

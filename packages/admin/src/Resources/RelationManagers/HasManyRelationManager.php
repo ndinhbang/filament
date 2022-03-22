@@ -10,7 +10,10 @@ class HasManyRelationManager extends RelationManager
     use Concerns\CanDeleteRecords;
     use Concerns\CanEditRecords;
 
-    protected static string $view = 'filament::resources.relation-managers.has-many-relation-manager';
+    /**
+     * @var string
+     */
+    protected static $view = 'filament::resources.relation-managers.has-many-relation-manager';
 
     protected function getResourceTable(): Table
     {

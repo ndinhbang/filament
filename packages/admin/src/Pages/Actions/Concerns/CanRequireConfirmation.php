@@ -4,7 +4,10 @@ namespace Filament\Pages\Actions\Concerns;
 
 trait CanRequireConfirmation
 {
-    protected bool $isConfirmationRequired = false;
+    /**
+     * @var bool
+     */
+    protected $isConfirmationRequired = false;
 
     /**
      * @return $this

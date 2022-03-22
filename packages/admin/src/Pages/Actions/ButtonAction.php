@@ -8,9 +8,15 @@ class ButtonAction extends Action
     use Concerns\CanSubmitForm;
     use Concerns\HasIcon;
 
-    protected string $view = 'filament::pages.actions.button-action';
+    /**
+     * @var string
+     */
+    protected $view = 'filament::pages.actions.button-action';
 
-    protected ?string $iconPosition = null;
+    /**
+     * @var string|null
+     */
+    protected $iconPosition;
 
     /**
      * @return $this

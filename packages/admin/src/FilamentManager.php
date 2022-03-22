@@ -18,31 +18,70 @@ use Livewire\Component;
 
 class FilamentManager
 {
-    protected string $globalSearchProvider = DefaultGlobalSearchProvider::class;
+    /**
+     * @var string
+     */
+    protected $globalSearchProvider = DefaultGlobalSearchProvider::class;
 
-    protected bool $isNavigationMounted = false;
+    /**
+     * @var bool
+     */
+    protected $isNavigationMounted = false;
 
-    protected array $navigationGroups = [];
+    /**
+     * @var mixed[]
+     */
+    protected $navigationGroups = [];
 
-    protected array $navigationItems = [];
+    /**
+     * @var mixed[]
+     */
+    protected $navigationItems = [];
 
-    protected array $pages = [];
+    /**
+     * @var mixed[]
+     */
+    protected $pages = [];
 
-    protected array $resources = [];
+    /**
+     * @var mixed[]
+     */
+    protected $resources = [];
 
-    protected array $beforeCoreScripts = [];
+    /**
+     * @var mixed[]
+     */
+    protected $beforeCoreScripts = [];
 
-    protected array $scripts = [];
+    /**
+     * @var mixed[]
+     */
+    protected $scripts = [];
 
-    protected array $scriptData = [];
+    /**
+     * @var mixed[]
+     */
+    protected $scriptData = [];
 
-    protected array $styles = [];
+    /**
+     * @var mixed[]
+     */
+    protected $styles = [];
 
-    protected ?string $themeUrl = null;
+    /**
+     * @var string|null
+     */
+    protected $themeUrl;
 
-    protected array $widgets = [];
+    /**
+     * @var mixed[]
+     */
+    protected $widgets = [];
 
-    protected ?Closure $navigationBuilder = null;
+    /**
+     * @var \Closure|null
+     */
+    protected $navigationBuilder;
 
     public function auth(): Guard
     {
@@ -174,8 +213,12 @@ class FilamentManager
         }
 
         $groupedItems = collect($this->navigationItems)
-            ->sortBy(fn (Navigation\NavigationItem $item): int => $item->getSort())
-            ->groupBy(fn (Navigation\NavigationItem $item): ?string => $item->getGroup());
+            ->sortBy(function (Navigation\NavigationItem $item) : int {
+                return $item->getSort();
+            })
+            ->groupBy(function (Navigation\NavigationItem $item) : ?string {
+                return $item->getGroup();
+            });
 
         $sortedGroups = $groupedItems
             ->keys()
@@ -311,7 +354,9 @@ class FilamentManager
     {
         return collect($this->widgets)
             ->unique()
-            ->sortBy(fn (string $widget): int => $widget::getSort())
+            ->sortBy(function (string $widget) : int {
+                return $widget::getSort();
+            })
             ->toArray();
     }
 }

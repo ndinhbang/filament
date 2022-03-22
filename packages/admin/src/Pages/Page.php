@@ -18,23 +18,50 @@ class Page extends Component implements Forms\Contracts\HasForms
     use Concerns\HasActions;
     use Forms\Concerns\InteractsWithForms;
 
-    protected static string $layout = 'filament::components.layouts.app';
+    /**
+     * @var string
+     */
+    protected static $layout = 'filament::components.layouts.app';
 
-    protected static ?string $navigationGroup = null;
+    /**
+     * @var string|null
+     */
+    protected static $navigationGroup;
 
-    protected static ?string $navigationIcon = null;
+    /**
+     * @var string|null
+     */
+    protected static $navigationIcon;
 
-    protected static ?string $navigationLabel = null;
+    /**
+     * @var string|null
+     */
+    protected static $navigationLabel;
 
-    protected static ?int $navigationSort = null;
+    /**
+     * @var int|null
+     */
+    protected static $navigationSort;
 
-    protected static bool $shouldRegisterNavigation = true;
+    /**
+     * @var bool
+     */
+    protected static $shouldRegisterNavigation = true;
 
-    protected static ?string $slug = null;
+    /**
+     * @var string|null
+     */
+    protected static $slug;
 
-    protected static ?string $title = null;
+    /**
+     * @var string|null
+     */
+    protected static $title;
 
-    protected static string $view;
+    /**
+     * @var string
+     */
+    protected static $view;
 
     public static function registerNavigationItems(): void
     {
@@ -51,7 +78,9 @@ class Page extends Component implements Forms\Contracts\HasForms
             NavigationItem::make()
                 ->group(static::getNavigationGroup())
                 ->icon(static::getNavigationIcon())
-                ->isActiveWhen(fn (): bool => request()->routeIs(static::getRouteName()))
+                ->isActiveWhen(function () : bool {
+                    return request()->routeIs(static::getRouteName());
+                })
                 ->label(static::getNavigationLabel())
                 ->sort(static::getNavigationSort())
                 ->url(static::getNavigationUrl()),

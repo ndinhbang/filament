@@ -5,10 +5,10 @@ namespace Filament\Navigation;
 class NavigationBuilder
 {
     /** @var array<string, \Filament\Navigation\NavigationItem[]> */
-    protected array $groups = [];
+    protected $groups = [];
 
     /** @var \Filament\Navigation\NavigationItem[] */
-    protected array $items = [];
+    protected $items = [];
 
     /**
      * @return $this
@@ -16,7 +16,9 @@ class NavigationBuilder
     public function group(string $name, array $items = [])
     {
         $this->groups[$name] = collect($items)->map(
-            fn (NavigationItem $item, int $index) => $item->group($name)->sort($index)
+            function (NavigationItem $item, int $index) use ($name) {
+                return $item->group($name)->sort($index);
+            }
         )->toArray();
 
         return $this;

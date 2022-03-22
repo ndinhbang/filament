@@ -4,7 +4,10 @@ namespace Filament\Pages\Actions\Modal\Actions\Concerns;
 
 trait HasIcon
 {
-    protected ?string $icon = null;
+    /**
+     * @var string|null
+     */
+    protected $icon;
 
     /**
      * @return $this

@@ -91,7 +91,9 @@ trait CanCreateRecords
         return Tables\Actions\ButtonAction::make('create')
             ->label(__('filament::resources/relation-managers/create.action.label'))
             ->form($this->getCreateFormSchema())
-            ->mountUsing(fn () => $this->fillCreateForm())
+            ->mountUsing(function () {
+                return $this->fillCreateForm();
+            })
             ->modalActions([
                 ButtonAction::make('create')
                     ->label(__('filament::resources/relation-managers/create.action.modal.actions.create.label'))
@@ -107,6 +109,8 @@ trait CanCreateRecords
                     ->color('secondary'),
             ])
             ->modalHeading(__('filament::resources/relation-managers/create.action.modal.heading', ['label' => static::getRecordLabel()]))
-            ->action(fn () => $this->create());
+            ->action(function () {
+                return $this->create();
+            });
     }
 }

@@ -12,7 +12,9 @@ trait HasRelationManagers
 
         return array_values(array_filter(
             $managers,
-            fn (string $manager): bool => $manager::canViewForRecord($this->record)
+            function (string $manager) : bool {
+                return $manager::canViewForRecord($this->record);
+            }
         ));
     }
 

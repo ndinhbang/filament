@@ -9,7 +9,10 @@ trait UsesResourceForm
 {
     use HasFormActions;
 
-    protected ?Form $resourceForm = null;
+    /**
+     * @var \Filament\Resources\Form|null
+     */
+    protected $resourceForm;
 
     protected function getResourceForm(): Form
     {

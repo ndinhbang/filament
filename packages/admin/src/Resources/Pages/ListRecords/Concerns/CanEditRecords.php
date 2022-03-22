@@ -23,11 +23,19 @@ trait CanEditRecords
         return parent::getEditAction()
             ->url(null)
             ->form($this->getEditFormSchema())
-            ->mountUsing(fn () => $this->fillEditForm())
+            ->mountUsing(function () {
+                return $this->fillEditForm();
+            })
             ->modalButton(__('filament::resources/pages/list-records.table.actions.edit.modal.actions.save.label'))
-            ->modalHeading(fn (Model $record) => __('filament::resources/pages/list-records.table.actions.edit.modal.heading', ['label' => $resource::hasRecordTitle() ? $resource::getRecordTitle($record) : Str::title($resource::getLabel())]))
-            ->action(fn () => $this->save())
-            ->hidden(fn (Model $record) => ! $resource::canEdit($record));
+            ->modalHeading(function (Model $record) use ($resource) {
+                return __('filament::resources/pages/list-records.table.actions.edit.modal.heading', ['label' => $resource::hasRecordTitle() ? $resource::getRecordTitle($record) : Str::title($resource::getLabel())]);
+            })
+            ->action(function () {
+                return $this->save();
+            })
+            ->hidden(function (Model $record) use ($resource) {
+                return ! $resource::canEdit($record);
+            });
     }
 
     protected function getEditFormSchema(): array

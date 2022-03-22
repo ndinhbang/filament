@@ -14,7 +14,10 @@ use Illuminate\Support\Arr;
 
 trait CanAttachRecords
 {
-    protected ?Form $resourceAttachForm = null;
+    /**
+     * @var \Filament\Resources\Form|null
+     */
+    protected $resourceAttachForm;
 
     protected function canAttach(): bool
     {
@@ -86,7 +89,9 @@ trait CanAttachRecords
                     ->pluck($displayColumnName, $relationship->getRelated()->getKeyName())
                     ->toArray();
             })
-            ->getOptionLabelUsing(fn (RelationManager $livewire, $value): ?string => static::getRecordTitle($livewire->getRelationship()->getRelated()->query()->find($value)))
+            ->getOptionLabelUsing(function (RelationManager $livewire, $value) : ?string {
+                return static::getRecordTitle($livewire->getRelationship()->getRelated()->query()->find($value));
+            })
             ->disableLabel();
     }
 
@@ -154,7 +159,9 @@ trait CanAttachRecords
         return Tables\Actions\ButtonAction::make('attach')
             ->label(__('filament::resources/relation-managers/attach.action.label'))
             ->form($this->getAttachFormSchema())
-            ->mountUsing(fn () => $this->fillAttachForm())
+            ->mountUsing(function () {
+                return $this->fillAttachForm();
+            })
             ->modalActions([
                 ButtonAction::make('attach')
                     ->label(__('filament::resources/relation-managers/attach.action.modal.actions.attach.label'))
@@ -171,7 +178,9 @@ trait CanAttachRecords
             ])
             ->modalHeading(__('filament::resources/relation-managers/attach.action.modal.heading', ['label' => static::getRecordLabel()]))
             ->modalWidth('lg')
-            ->action(fn () => $this->attach())
+            ->action(function () {
+                return $this->attach();
+            })
             ->color('secondary');
     }
 }

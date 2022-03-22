@@ -4,7 +4,10 @@ namespace Filament\Pages\Actions\Concerns;
 
 trait HasFormSchema
 {
-    protected array $formSchema = [];
+    /**
+     * @var mixed[]
+     */
+    protected $formSchema = [];
 
     /**
      * @return $this

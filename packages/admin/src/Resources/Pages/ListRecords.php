@@ -15,9 +15,15 @@ class ListRecords extends Page implements Tables\Contracts\HasTable
 {
     use Tables\Concerns\InteractsWithTable;
 
-    protected static string $view = 'filament::resources.pages.list-records';
+    /**
+     * @var string
+     */
+    protected static $view = 'filament::resources.pages.list-records';
 
-    protected ?Table $resourceTable = null;
+    /**
+     * @var \Filament\Resources\Table|null
+     */
+    protected $resourceTable;
 
     protected $queryString = [
         'tableSortColumn',
@@ -84,9 +90,13 @@ class ListRecords extends Page implements Tables\Contracts\HasTable
 
         return config('filament.layout.tables.actions.type')::make('view')
             ->label(__('filament::resources/pages/list-records.table.actions.view.label'))
-            ->url(fn (Model $record): string => $resource::getUrl('view', ['record' => $record]))
+            ->url(function (Model $record) use ($resource) : string {
+                return $resource::getUrl('view', ['record' => $record]);
+            })
             ->icon('heroicon-o-eye')
-            ->hidden(fn (Model $record): bool => ! $resource::canView($record));
+            ->hidden(function (Model $record) use ($resource) : bool {
+                return ! $resource::canView($record);
+            });
     }
 
     protected function getEditAction(): Tables\Actions\Action
@@ -95,9 +105,13 @@ class ListRecords extends Page implements Tables\Contracts\HasTable
 
         return config('filament.layout.tables.actions.type')::make('edit')
             ->label(__('filament::resources/pages/list-records.table.actions.edit.label'))
-            ->url(fn (Model $record): string => $resource::getUrl('edit', ['record' => $record]))
+            ->url(function (Model $record) use ($resource) : string {
+                return $resource::getUrl('edit', ['record' => $record]);
+            })
             ->icon('heroicon-o-pencil')
-            ->hidden(fn (Model $record): bool => ! $resource::canEdit($record));
+            ->hidden(function (Model $record) use ($resource) : bool {
+                return ! $resource::canEdit($record);
+            });
     }
 
     protected function getDeleteAction(): ?Tables\Actions\Action
@@ -109,7 +123,9 @@ class ListRecords extends Page implements Tables\Contracts\HasTable
     {
         return Tables\Actions\BulkAction::make('delete')
             ->label(__('filament::resources/pages/list-records.table.bulk_actions.delete.label'))
-            ->action(fn () => $this->bulkDelete())
+            ->action(function () {
+                return $this->bulkDelete();
+            })
             ->requiresConfirmation()
             ->deselectRecordsAfterCompletion()
             ->color('danger')
@@ -136,7 +152,9 @@ class ListRecords extends Page implements Tables\Contracts\HasTable
 
     protected function handleRecordBulkDeletion(Collection $records): void
     {
-        $records->each(fn (Model $record) => $record->delete());
+        $records->each(function (Model $record) {
+            return $record->delete();
+        });
     }
 
     protected function getTitle(): string
@@ -173,7 +191,9 @@ class ListRecords extends Page implements Tables\Contracts\HasTable
 
         return ButtonAction::make('create')
             ->label(__('filament::resources/pages/list-records.actions.create.label', ['label' => $label]))
-            ->url(fn () => $resource::getUrl('create'));
+            ->url(function () use ($resource) {
+                return $resource::getUrl('create');
+            });
     }
 
     protected function getDefaultTableSortColumn(): ?string

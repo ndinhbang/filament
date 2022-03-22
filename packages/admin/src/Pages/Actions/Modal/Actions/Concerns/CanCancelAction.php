@@ -4,7 +4,10 @@ namespace Filament\Pages\Actions\Modal\Actions\Concerns;
 
 trait CanCancelAction
 {
-    protected bool $canCancelAction = false;
+    /**
+     * @var bool
+     */
+    protected $canCancelAction = false;
 
     /**
      * @return $this

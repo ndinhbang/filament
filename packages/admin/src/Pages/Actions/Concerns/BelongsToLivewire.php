@@ -6,7 +6,10 @@ use Filament\Pages\Page;
 
 trait BelongsToLivewire
 {
-    protected Page $livewire;
+    /**
+     * @var \Filament\Pages\Page
+     */
+    protected $livewire;
 
     /**
      * @return $this

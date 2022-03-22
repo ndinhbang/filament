@@ -4,14 +4,20 @@ namespace Filament\Widgets;
 
 class StatsOverviewWidget extends Widget
 {
-    protected ?array $cachedCards = null;
+    /**
+     * @var mixed[]|null
+     */
+    protected $cachedCards;
 
     /**
      * @var mixed[]|int|string
      */
     protected $columnSpan = 'full';
 
-    protected static string $view = 'filament::widgets.stats-overview-widget';
+    /**
+     * @var string
+     */
+    protected static $view = 'filament::widgets.stats-overview-widget';
 
     protected function getColumns(): int
     {
@@ -33,7 +39,7 @@ class StatsOverviewWidget extends Widget
 
     protected function getCachedCards(): array
     {
-        return $this->cachedCards ??= $this->getCards();
+        return $this->cachedCards = $this->cachedCards ?? $this->getCards();
     }
 
     protected function getCards(): array

@@ -4,19 +4,40 @@ namespace Filament\Widgets;
 
 class ChartWidget extends Widget
 {
-    protected ?array $cachedData = null;
+    /**
+     * @var mixed[]|null
+     */
+    protected $cachedData;
 
-    public string $dataChecksum;
+    /**
+     * @var string
+     */
+    public $dataChecksum;
 
-    public ?string $filter = null;
+    /**
+     * @var string|null
+     */
+    public $filter;
 
-    protected static ?string $heading = null;
+    /**
+     * @var string|null
+     */
+    protected static $heading;
 
-    protected static ?array $options = null;
+    /**
+     * @var mixed[]|null
+     */
+    protected static $options;
 
-    protected static ?string $pollingInterval = '5s';
+    /**
+     * @var string|null
+     */
+    protected static $pollingInterval = '5s';
 
-    protected static string $view = 'filament::widgets.chart-widget';
+    /**
+     * @var string
+     */
+    protected static $view = 'filament::widgets.chart-widget';
 
     public function mount()
     {
@@ -30,7 +51,7 @@ class ChartWidget extends Widget
 
     protected function getCachedData(): array
     {
-        return $this->cachedData ??= $this->getData();
+        return $this->cachedData = $this->cachedData ?? $this->getData();
     }
 
     protected function getData(): array

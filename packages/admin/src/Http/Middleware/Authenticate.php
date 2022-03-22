@@ -31,7 +31,7 @@ class Authenticate extends Middleware
         abort_if(config('app.env') !== 'local', 404);
     }
 
-    protected function redirectTo($request): string
+    protected function redirectTo($request): ?string
     {
         return route('filament.auth.login');
     }

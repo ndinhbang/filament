@@ -4,7 +4,13 @@ namespace Filament\Widgets;
 
 class AccountWidget extends Widget
 {
-    protected static ?int $sort = -3;
+    /**
+     * @var int|null
+     */
+    protected static $sort = -3;
 
-    protected static string $view = 'filament::widgets.account-widget';
+    /**
+     * @var string
+     */
+    protected static $view = 'filament::widgets.account-widget';
 }

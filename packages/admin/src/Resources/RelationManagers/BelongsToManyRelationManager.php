@@ -16,7 +16,10 @@ class BelongsToManyRelationManager extends RelationManager
     use Concerns\CanDetachRecords;
     use Concerns\CanEditRecords;
 
-    protected static string $view = 'filament::resources.relation-managers.belongs-to-many-relation-manager';
+    /**
+     * @var string
+     */
+    protected static $view = 'filament::resources.relation-managers.belongs-to-many-relation-manager';
 
     protected function getResourceTable(): Table
     {

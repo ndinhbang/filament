@@ -4,9 +4,18 @@ namespace Filament\GlobalSearch;
 
 class GlobalSearchResult
 {
-    public string $title;
-    public string $url;
-    public array $details = [];
+    /**
+     * @var string
+     */
+    public $title;
+    /**
+     * @var string
+     */
+    public $url;
+    /**
+     * @var mixed[]
+     */
+    public $details = [];
     public function __construct(string $title, string $url, array $details = [])
     {
         $this->title = $title;

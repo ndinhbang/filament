@@ -39,7 +39,9 @@ trait CanDeleteRecords
     {
         $this->callHook('beforeBulkDelete');
 
-        $this->getSelectedTableRecords()->each(fn (Model $record) => $record->delete());
+        $this->getSelectedTableRecords()->each(function (Model $record) {
+            return $record->delete();
+        });
 
         $this->callHook('afterBulkDelete');
 
@@ -59,17 +61,23 @@ trait CanDeleteRecords
             ->label(__('filament::resources/relation-managers/delete.action.label'))
             ->requiresConfirmation()
             ->modalHeading(__('filament::resources/relation-managers/delete.action.modal.heading', ['label' => static::getRecordLabel()]))
-            ->action(fn () => $this->delete())
+            ->action(function () {
+                return $this->delete();
+            })
             ->color('danger')
             ->icon('heroicon-o-trash')
-            ->hidden(fn (Model $record): bool => ! static::canDelete($record));
+            ->hidden(function (Model $record) : bool {
+                return ! static::canDelete($record);
+            });
     }
 
     protected function getDeleteBulkAction(): Tables\Actions\BulkAction
     {
         return Tables\Actions\BulkAction::make('delete')
             ->label(__('filament::resources/relation-managers/delete.bulk_action.label'))
-            ->action(fn () => $this->bulkDelete())
+            ->action(function () {
+                return $this->bulkDelete();
+            })
             ->requiresConfirmation()
             ->modalHeading(__('filament::resources/relation-managers/delete.bulk_action.modal.heading', ['label' => static::getPluralRecordLabel()]))
             ->deselectRecordsAfterCompletion()

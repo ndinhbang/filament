@@ -8,14 +8,20 @@ class SelectAction extends Action
 {
     use Concerns\HasId;
 
-    protected string $view = 'filament::pages.actions.select-action';
+    /**
+     * @var string
+     */
+    protected $view = 'filament::pages.actions.select-action';
 
     /**
      * @var mixed[]|\Illuminate\Contracts\Support\Arrayable
      */
     protected $options = [];
 
-    protected ?string $placeholder = null;
+    /**
+     * @var string|null
+     */
+    protected $placeholder;
 
     /**
      * @param mixed[]|\Illuminate\Contracts\Support\Arrayable $options

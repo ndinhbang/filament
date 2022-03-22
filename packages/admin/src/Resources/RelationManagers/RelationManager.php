@@ -20,25 +20,55 @@ class RelationManager extends Component implements Tables\Contracts\HasTable
     use CanNotify;
     use Tables\Concerns\InteractsWithTable;
 
-    public Model $ownerRecord;
+    /**
+     * @var \Illuminate\Database\Eloquent\Model
+     */
+    public $ownerRecord;
 
-    protected static ?string $recordTitleAttribute = null;
+    /**
+     * @var string|null
+     */
+    protected static $recordTitleAttribute;
 
-    protected static string $relationship;
+    /**
+     * @var string
+     */
+    protected static $relationship;
 
-    protected static ?string $inverseRelationship = null;
+    /**
+     * @var string|null
+     */
+    protected static $inverseRelationship;
 
-    protected ?Form $resourceForm = null;
+    /**
+     * @var \Filament\Resources\Form|null
+     */
+    protected $resourceForm;
 
-    protected ?Table $resourceTable = null;
+    /**
+     * @var \Filament\Resources\Table|null
+     */
+    protected $resourceTable;
 
-    protected static ?string $label = null;
+    /**
+     * @var string|null
+     */
+    protected static $label;
 
-    protected static ?string $pluralLabel = null;
+    /**
+     * @var string|null
+     */
+    protected static $pluralLabel;
 
-    protected static ?string $title = null;
+    /**
+     * @var string|null
+     */
+    protected static $title;
 
-    protected static string $view;
+    /**
+     * @var string
+     */
+    protected static $view;
 
     protected function getTableQueryStringIdentifier(): ?string
     {

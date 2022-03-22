@@ -4,9 +4,15 @@ namespace Filament\Pages\Actions\Concerns;
 
 trait CanSubmitForm
 {
-    protected bool $canSubmitForm = false;
+    /**
+     * @var bool
+     */
+    protected $canSubmitForm = false;
 
-    protected ?string $form = null;
+    /**
+     * @var string|null
+     */
+    protected $form;
 
     /**
      * @return $this

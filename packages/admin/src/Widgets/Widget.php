@@ -7,9 +7,15 @@ use Livewire\Component;
 
 class Widget extends Component
 {
-    protected static ?int $sort = null;
+    /**
+     * @var int|null
+     */
+    protected static $sort;
 
-    protected static string $view;
+    /**
+     * @var string
+     */
+    protected static $view;
 
     /**
      * @var mixed[]|int|string

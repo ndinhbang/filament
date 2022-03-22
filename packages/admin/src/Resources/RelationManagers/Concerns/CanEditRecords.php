@@ -82,11 +82,17 @@ trait CanEditRecords
         return config('filament.layout.tables.actions.type')::make('edit')
             ->label(__('filament::resources/relation-managers/edit.action.label'))
             ->form($this->getEditFormSchema())
-            ->mountUsing(fn () => $this->fillEditForm())
+            ->mountUsing(function () {
+                return $this->fillEditForm();
+            })
             ->modalButton(__('filament::resources/relation-managers/edit.action.modal.actions.save.label'))
             ->modalHeading(__('filament::resources/relation-managers/edit.action.modal.heading', ['label' => static::getRecordLabel()]))
-            ->action(fn () => $this->save())
+            ->action(function () {
+                return $this->save();
+            })
             ->icon('heroicon-o-pencil')
-            ->hidden(fn (Model $record): bool => ! static::canEdit($record));
+            ->hidden(function (Model $record) : bool {
+                return ! static::canEdit($record);
+            });
     }
 }

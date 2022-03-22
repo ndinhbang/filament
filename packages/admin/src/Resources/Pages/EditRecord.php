@@ -18,7 +18,10 @@ class EditRecord extends Page implements HasFormActions
     use Concerns\InteractsWithRecord;
     use Concerns\UsesResourceForm;
 
-    protected static string $view = 'filament::resources.pages.edit-record';
+    /**
+     * @var string
+     */
+    protected static $view = 'filament::resources.pages.edit-record';
 
     public $record;
 
@@ -157,7 +160,9 @@ class EditRecord extends Page implements HasFormActions
     {
         return ButtonAction::make('view')
             ->label(__('filament::resources/pages/edit-record.actions.view.label'))
-            ->url(fn () => static::getResource()::getUrl('view', ['record' => $this->record]))
+            ->url(function () {
+                return static::getResource()::getUrl('view', ['record' => $this->record]);
+            })
             ->color('secondary');
     }
 

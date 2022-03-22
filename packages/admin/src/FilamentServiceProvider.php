@@ -91,7 +91,9 @@ class FilamentServiceProvider extends PackageServiceProvider
         ]);
 
         Livewire::listen('component.hydrate', function ($component) {
-            $this->app->singleton(Component::class, fn () => $component);
+            $this->app->singleton(Component::class, function () use ($component) {
+                return $component;
+            });
         });
 
         Livewire::component('filament.core.auth.login', Login::class);
@@ -119,7 +121,9 @@ class FilamentServiceProvider extends PackageServiceProvider
                     ->append('\\', $file->getRelativePathname())
                     ->replace(['/', '.php'], ['\\', '']);
             })
-            ->filter(fn (string $class): bool => is_subclass_of($class, Page::class) && (! (new ReflectionClass($class))->isAbstract()))
+            ->filter(function (string $class) : bool {
+                return is_subclass_of($class, Page::class) && (! (new ReflectionClass($class))->isAbstract());
+            })
             ->toArray());
     }
 
@@ -139,7 +143,9 @@ class FilamentServiceProvider extends PackageServiceProvider
                     ->append('\\', $file->getRelativePathname())
                     ->replace(['/', '.php'], ['\\', '']);
             })
-            ->filter(fn (string $class): bool => is_subclass_of($class, Resource::class) && (! (new ReflectionClass($class))->isAbstract()))
+            ->filter(function (string $class) : bool {
+                return is_subclass_of($class, Resource::class) && (! (new ReflectionClass($class))->isAbstract());
+            })
             ->toArray());
     }
 
@@ -159,7 +165,9 @@ class FilamentServiceProvider extends PackageServiceProvider
                     ->append('\\', $file->getRelativePathname())
                     ->replace(['/', '.php'], ['\\', '']);
             })
-            ->filter(fn ($class): bool => is_subclass_of($class, Widget::class) && (! (new ReflectionClass($class))->isAbstract()))
+            ->filter(function ($class) : bool {
+                return is_subclass_of($class, Widget::class) && (! (new ReflectionClass($class))->isAbstract());
+            })
             ->toArray());
     }
 
@@ -211,7 +219,9 @@ class FilamentServiceProvider extends PackageServiceProvider
                     ->append('\\', $file->getRelativePathname())
                     ->replace(['/', '.php'], ['\\', '']);
             })
-            ->filter(fn (string $class): bool => is_subclass_of($class, Component::class) && (! (new ReflectionClass($class))->isAbstract()))
+            ->filter(function (string $class) : bool {
+                return is_subclass_of($class, Component::class) && (! (new ReflectionClass($class))->isAbstract());
+            })
             ->each(function (string $class) use ($namespace, $aliasPrefix): void {
                 $alias = Str::of($class)
                     ->after($namespace . '\\')

@@ -17,31 +17,70 @@ use Illuminate\Support\Str;
 
 class Resource
 {
-    protected static ?string $breadcrumb = null;
+    /**
+     * @var string|null
+     */
+    protected static $breadcrumb;
 
-    protected static bool $isGloballySearchable = true;
+    /**
+     * @var bool
+     */
+    protected static $isGloballySearchable = true;
 
-    protected static ?string $label = null;
+    /**
+     * @var string|null
+     */
+    protected static $label;
 
-    protected static ?string $model = null;
+    /**
+     * @var string|null
+     */
+    protected static $model;
 
-    protected static ?string $navigationGroup = null;
+    /**
+     * @var string|null
+     */
+    protected static $navigationGroup;
 
-    protected static ?string $navigationIcon = null;
+    /**
+     * @var string|null
+     */
+    protected static $navigationIcon;
 
-    protected static ?string $navigationLabel = null;
+    /**
+     * @var string|null
+     */
+    protected static $navigationLabel;
 
-    protected static ?int $navigationSort = null;
+    /**
+     * @var int|null
+     */
+    protected static $navigationSort;
 
-    protected static ?string $recordRouteKeyName = null;
+    /**
+     * @var string|null
+     */
+    protected static $recordRouteKeyName;
 
-    protected static bool $shouldRegisterNavigation = true;
+    /**
+     * @var bool
+     */
+    protected static $shouldRegisterNavigation = true;
 
-    protected static ?string $pluralLabel = null;
+    /**
+     * @var string|null
+     */
+    protected static $pluralLabel;
 
-    protected static ?string $recordTitleAttribute = null;
+    /**
+     * @var string|null
+     */
+    protected static $recordTitleAttribute;
 
-    protected static ?string $slug = null;
+    /**
+     * @var string|null
+     */
+    protected static $slug;
 
     public static function form(Form $form): Form
     {
@@ -69,7 +108,9 @@ class Resource
             NavigationItem::make()
                 ->group(static::getNavigationGroup())
                 ->icon(static::getNavigationIcon())
-                ->isActiveWhen(fn () => request()->routeIs("{$routeBaseName}.*"))
+                ->isActiveWhen(function () use ($routeBaseName) {
+                    return request()->routeIs("{$routeBaseName}.*");
+                })
                 ->label(static::getNavigationLabel())
                 ->sort(static::getNavigationSort())
                 ->url(static::getNavigationUrl()),
@@ -195,11 +236,13 @@ class Resource
         return $query
             ->limit(50)
             ->get()
-            ->map(fn (Model $record): GlobalSearchResult => new GlobalSearchResult(
-                static::getGlobalSearchResultTitle($record),
-                static::getGlobalSearchResultUrl($record),
-                static::getGlobalSearchResultDetails($record)
-            ));
+            ->map(function (Model $record) : GlobalSearchResult {
+                return new GlobalSearchResult(
+                    static::getGlobalSearchResultTitle($record),
+                    static::getGlobalSearchResultUrl($record),
+                    static::getGlobalSearchResultDetails($record)
+                );
+            });
     }
 
     public static function getLabel(): string
@@ -314,17 +357,21 @@ class Resource
 
             $query->when(
                 Str::of($searchAttribute)->contains('.'),
-                fn ($query) => $query->{"{$whereClause}Relation"}(
-                    (string) Str::of($searchAttribute)->beforeLast('.'),
-                    (string) Str::of($searchAttribute)->afterLast('.'),
-                    $searchOperator,
-                    "%{$searchQuery}%"
-                ),
-                fn ($query) => $query->{$whereClause}(
-                    $searchAttribute,
-                    $searchOperator,
-                    "%{$searchQuery}%"
-                )
+                function ($query) use ($whereClause, $searchAttribute, $searchOperator, $searchQuery) {
+                    return $query->{"{$whereClause}Relation"}(
+                        (string) Str::of($searchAttribute)->beforeLast('.'),
+                        (string) Str::of($searchAttribute)->afterLast('.'),
+                        $searchOperator,
+                        "%{$searchQuery}%"
+                    );
+                },
+                function ($query) use ($searchAttribute, $searchOperator, $searchQuery) {
+                    return $query->{$whereClause}(
+                        $searchAttribute,
+                        $searchOperator,
+                        "%{$searchQuery}%"
+                    );
+                }
             );
 
             $isFirst = false;

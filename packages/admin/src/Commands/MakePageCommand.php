@@ -50,7 +50,9 @@ class MakePageCommand extends Command
         $view = Str::of($page)
             ->prepend($resource === null ? 'filament\\pages\\' : "filament\\resources\\{$resource}\\pages\\")
             ->explode('\\')
-            ->map(fn ($segment) => Str::kebab($segment))
+            ->map(function ($segment) {
+                return Str::kebab($segment);
+            })
             ->implode('.');
 
         $path = app_path(

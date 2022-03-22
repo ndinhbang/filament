@@ -50,7 +50,9 @@ class MakeWidgetCommand extends Command
         $view = Str::of($widget)
             ->prepend($resource === null ? 'filament\\widgets\\' : "filament\\resources\\{$resource}\\widgets\\")
             ->explode('\\')
-            ->map(fn ($segment) => Str::kebab($segment))
+            ->map(function ($segment) {
+                return Str::kebab($segment);
+            })
             ->implode('.');
 
         $path = app_path(

@@ -6,17 +6,35 @@ use Filament\Pages\Actions\Modal\Actions\ButtonAction;
 
 trait CanOpenModal
 {
-    protected ?bool $isModalCentered = null;
+    /**
+     * @var bool|null
+     */
+    protected $isModalCentered;
 
-    protected ?array $modalActions = null;
+    /**
+     * @var mixed[]|null
+     */
+    protected $modalActions;
 
-    protected ?string $modalButtonLabel = null;
+    /**
+     * @var string|null
+     */
+    protected $modalButtonLabel;
 
-    protected ?string $modalHeading = null;
+    /**
+     * @var string|null
+     */
+    protected $modalHeading;
 
-    protected ?string $modalSubheading = null;
+    /**
+     * @var string|null
+     */
+    protected $modalSubheading;
 
-    protected ?string $modalWidth = null;
+    /**
+     * @var string|null
+     */
+    protected $modalWidth;
 
     /**
      * @return $this

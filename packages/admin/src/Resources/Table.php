@@ -4,19 +4,40 @@ namespace Filament\Resources;
 
 class Table
 {
-    protected array $actions = [];
+    /**
+     * @var mixed[]
+     */
+    protected $actions = [];
 
-    protected array $bulkActions = [];
+    /**
+     * @var mixed[]
+     */
+    protected $bulkActions = [];
 
-    protected array $columns = [];
+    /**
+     * @var mixed[]
+     */
+    protected $columns = [];
 
-    protected ?string $defaultSortColumn = null;
+    /**
+     * @var string|null
+     */
+    protected $defaultSortColumn;
 
-    protected ?string $defaultSortDirection = null;
+    /**
+     * @var string|null
+     */
+    protected $defaultSortDirection;
 
-    protected array $filters = [];
+    /**
+     * @var mixed[]
+     */
+    protected $filters = [];
 
-    protected array $headerActions = [];
+    /**
+     * @var mixed[]
+     */
+    protected $headerActions = [];
 
     final public function __construct()
     {

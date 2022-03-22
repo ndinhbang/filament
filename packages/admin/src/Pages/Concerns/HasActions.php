@@ -16,7 +16,10 @@ trait HasActions
 
     public $mountedActionData = [];
 
-    protected ?array $cachedActions = null;
+    /**
+     * @var mixed[]|null
+     */
+    protected $cachedActions;
 
     public function callMountedAction()
     {

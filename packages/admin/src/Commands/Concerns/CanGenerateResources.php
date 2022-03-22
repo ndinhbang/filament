@@ -103,8 +103,9 @@ trait CanGenerateResources
 
             // Termination
             $output .= ',';
+            end($components);
 
-            if (! (array_key_last($components) === $componentName)) {
+            if (! (key($components) === $componentName)) {
                 $output .= PHP_EOL;
             }
         }
@@ -188,8 +189,9 @@ trait CanGenerateResources
 
             // Termination
             $output .= ',';
+            end($columns);
 
-            if (! (array_key_last($columns) === $columnName)) {
+            if (! (key($columns) === $columnName)) {
                 $output .= PHP_EOL;
             }
         }
@@ -220,7 +222,9 @@ trait CanGenerateResources
         return implode(
             PHP_EOL,
             array_map(
-                fn (string $line) => "                {$line}",
+                function (string $line) {
+                    return "                {$line}";
+                },
                 explode(PHP_EOL, $string)
             )
         );

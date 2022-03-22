@@ -4,7 +4,10 @@ namespace Filament\Pages\Actions\Concerns;
 
 trait HasId
 {
-    protected ?string $id = null;
+    /**
+     * @var string|null
+     */
+    protected $id;
 
     /**
      * @return $this

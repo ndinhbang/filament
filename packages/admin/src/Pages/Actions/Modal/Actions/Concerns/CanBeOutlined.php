@@ -4,7 +4,10 @@ namespace Filament\Pages\Actions\Modal\Actions\Concerns;
 
 trait CanBeOutlined
 {
-    protected bool $isOutlined = false;
+    /**
+     * @var bool
+     */
+    protected $isOutlined = false;
 
     /**
      * @return $this

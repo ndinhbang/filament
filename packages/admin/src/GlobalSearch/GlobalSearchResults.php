@@ -7,7 +7,10 @@ use Illuminate\Support\Collection;
 
 class GlobalSearchResults
 {
-    protected Collection $categories;
+    /**
+     * @var \Illuminate\Support\Collection
+     */
+    protected $categories;
 
     final public function __construct()
     {

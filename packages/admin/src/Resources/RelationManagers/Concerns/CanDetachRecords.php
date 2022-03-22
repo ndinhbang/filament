@@ -66,17 +66,23 @@ trait CanDetachRecords
             ->label(__('filament::resources/relation-managers/detach.action.label'))
             ->requiresConfirmation()
             ->modalHeading(__('filament::resources/relation-managers/detach.action.modal.heading', ['label' => static::getRecordLabel()]))
-            ->action(fn () => $this->detach())
+            ->action(function () {
+                return $this->detach();
+            })
             ->color('danger')
             ->icon('heroicon-o-x')
-            ->hidden(fn (Model $record): bool => ! static::canDetach($record));
+            ->hidden(function (Model $record) : bool {
+                return ! static::canDetach($record);
+            });
     }
 
     protected function getDetachBulkAction(): Tables\Actions\BulkAction
     {
         return Tables\Actions\BulkAction::make('detach')
             ->label(__('filament::resources/relation-managers/detach.bulk_action.label'))
-            ->action(fn () => $this->bulkDetach())
+            ->action(function () {
+                return $this->bulkDetach();
+            })
             ->requiresConfirmation()
             ->modalHeading(__('filament::resources/relation-managers/detach.bulk_action.modal.heading', ['label' => static::getPluralRecordLabel()]))
             ->deselectRecordsAfterCompletion()

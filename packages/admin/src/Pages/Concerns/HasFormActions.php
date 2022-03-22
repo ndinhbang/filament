@@ -6,7 +6,10 @@ use Filament\Pages\Actions\Action;
 
 trait HasFormActions
 {
-    protected ?array $cachedFormActions = null;
+    /**
+     * @var mixed[]|null
+     */
+    protected $cachedFormActions;
 
     protected function getCachedFormActions(): array
     {

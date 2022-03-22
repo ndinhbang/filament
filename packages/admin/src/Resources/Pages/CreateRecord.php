@@ -15,7 +15,10 @@ class CreateRecord extends Page implements HasFormActions
 {
     use Concerns\UsesResourceForm;
 
-    protected static string $view = 'filament::resources.pages.create-record';
+    /**
+     * @var string
+     */
+    protected static $view = 'filament::resources.pages.create-record';
 
     public $record;
 

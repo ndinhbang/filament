@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 if (! function_exists('Filament\get_asset_id')) {
     function get_asset_id(string $file, string $manifestPath = null): ?string
     {
-        $manifestPath ??= __DIR__ . '/../dist/mix-manifest.json';
+        $manifestPath = $manifestPath ?? __DIR__ . '/../dist/mix-manifest.json';
 
         if (! file_exists($manifestPath)) {
             return null;

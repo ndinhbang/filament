@@ -16,11 +16,15 @@ trait CanDeleteRecords
     {
         return config('filament.layout.tables.actions.type')::make('delete')
             ->label(__('filament::resources/pages/list-records.table.actions.delete.label'))
-            ->action(fn () => $this->delete())
+            ->action(function () {
+                return $this->delete();
+            })
             ->requiresConfirmation()
             ->color('danger')
             ->icon('heroicon-o-trash')
-            ->hidden(fn (Model $record): bool => ! static::getResource()::canDelete($record));
+            ->hidden(function (Model $record) : bool {
+                return ! static::getResource()::canDelete($record);
+            });
     }
 
     public function delete(): void

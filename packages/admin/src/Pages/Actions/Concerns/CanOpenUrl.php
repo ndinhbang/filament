@@ -6,7 +6,10 @@ use Closure;
 
 trait CanOpenUrl
 {
-    protected bool $shouldOpenUrlInNewTab = false;
+    /**
+     * @var bool
+     */
+    protected $shouldOpenUrlInNewTab = false;
 
     /**
      * @var \Closure|string|null

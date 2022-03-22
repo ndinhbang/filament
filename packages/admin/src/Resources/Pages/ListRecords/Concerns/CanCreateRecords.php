@@ -22,7 +22,9 @@ trait CanCreateRecords
         return parent::getCreateAction()
             ->url(null)
             ->form($this->getCreateFormSchema())
-            ->mountUsing(fn () => $this->fillCreateForm())
+            ->mountUsing(function () {
+                return $this->fillCreateForm();
+            })
             ->modalActions([
                 Modal\Actions\ButtonAction::make('create')
                     ->label(__('filament::resources/pages/list-records.actions.create.modal.actions.create.label'))
@@ -38,7 +40,9 @@ trait CanCreateRecords
                     ->color('secondary'),
             ])
             ->modalHeading(__('filament::resources/pages/list-records.actions.create.modal.heading', ['label' => Str::title(static::getResource()::getLabel())]))
-            ->action(fn () => $this->create());
+            ->action(function () {
+                return $this->create();
+            });
     }
 
     protected function getCreateFormSchema(): array

@@ -17,7 +17,10 @@ class ViewRecord extends Page
     use Concerns\InteractsWithRecord;
     use Concerns\UsesResourceForm;
 
-    protected static string $view = 'filament::resources.pages.view-record';
+    /**
+     * @var string
+     */
+    protected static $view = 'filament::resources.pages.view-record';
 
     public $record;
 
@@ -71,7 +74,9 @@ class ViewRecord extends Page
     {
         return ButtonAction::make('edit')
             ->label(__('filament::resources/pages/view-record.actions.edit.label'))
-            ->url(fn () => static::getResource()::getUrl('edit', ['record' => $this->record]));
+            ->url(function () {
+                return static::getResource()::getUrl('edit', ['record' => $this->record]);
+            });
     }
 
     protected function getTitle(): string

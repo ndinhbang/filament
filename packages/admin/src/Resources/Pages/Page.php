@@ -6,9 +6,15 @@ use Filament\Pages\Page as BasePage;
 
 class Page extends BasePage
 {
-    protected static ?string $breadcrumb = null;
+    /**
+     * @var string|null
+     */
+    protected static $breadcrumb;
 
-    protected static string $resource;
+    /**
+     * @var string
+     */
+    protected static $resource;
 
     public static function route(string $path): array
     {

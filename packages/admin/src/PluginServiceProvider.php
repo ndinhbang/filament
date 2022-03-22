@@ -8,21 +8,45 @@ use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 abstract class PluginServiceProvider extends PackageServiceProvider
 {
-    public static string $name;
+    /**
+     * @var string
+     */
+    public static $name;
 
-    protected array $pages = [];
+    /**
+     * @var mixed[]
+     */
+    protected $pages = [];
 
-    protected array $relationManagers = [];
+    /**
+     * @var mixed[]
+     */
+    protected $relationManagers = [];
 
-    protected array $resources = [];
+    /**
+     * @var mixed[]
+     */
+    protected $resources = [];
 
-    protected array $beforeCoreScripts = [];
+    /**
+     * @var mixed[]
+     */
+    protected $beforeCoreScripts = [];
 
-    protected array $scripts = [];
+    /**
+     * @var mixed[]
+     */
+    protected $scripts = [];
 
-    protected array $styles = [];
+    /**
+     * @var mixed[]
+     */
+    protected $styles = [];
 
-    protected array $widgets = [];
+    /**
+     * @var mixed[]
+     */
+    protected $widgets = [];
 
     public function configurePackage(Package $package): void
     {
@@ -61,7 +85,9 @@ abstract class PluginServiceProvider extends PackageServiceProvider
     {
         $this->app->singletonIf(
             'filament',
-            fn (): FilamentManager => app(FilamentManager::class)
+            function () : FilamentManager {
+                return app(FilamentManager::class);
+            }
         );
 
         Facades\Filament::registerPages($this->getPages());

@@ -27,9 +27,15 @@ class MakeUserCommand extends Command
         $userModel = $userProvider->getModel();
 
         $user = $userModel::create([
-            'name' => $this->validateInput(fn () => $this->ask('Name'), 'name', ['required']),
-            'email' => $this->validateInput(fn () => $this->ask('Email address'), 'email', ['required', 'email', 'unique:' . $userModel]),
-            'password' => Hash::make($this->validateInput(fn () => $this->secret('Password'), 'password', ['required', 'min:8'])),
+            'name' => $this->validateInput(function () {
+                return $this->ask('Name');
+            }, 'name', ['required']),
+            'email' => $this->validateInput(function () {
+                return $this->ask('Email address');
+            }, 'email', ['required', 'email', 'unique:' . $userModel]),
+            'password' => Hash::make($this->validateInput(function () {
+                return $this->secret('Password');
+            }, 'password', ['required', 'min:8'])),
         ]);
 
         $loginUrl = route('filament.auth.login');

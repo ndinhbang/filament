@@ -6,17 +6,35 @@ use Closure;
 
 class NavigationItem
 {
-    protected ?string $group = null;
+    /**
+     * @var string|null
+     */
+    protected $group;
 
-    protected ?Closure $isActiveWhen = null;
+    /**
+     * @var \Closure|null
+     */
+    protected $isActiveWhen;
 
-    protected string $icon;
+    /**
+     * @var string
+     */
+    protected $icon;
 
-    protected string $label;
+    /**
+     * @var string
+     */
+    protected $label;
 
-    protected ?int $sort = null;
+    /**
+     * @var int|null
+     */
+    protected $sort;
 
-    protected ?string $url = null;
+    /**
+     * @var string|null
+     */
+    protected $url;
 
     final public function __construct()
     {

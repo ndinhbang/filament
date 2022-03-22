@@ -9,21 +9,45 @@ use Illuminate\View\Component;
 
 class Card extends Component implements Htmlable
 {
-    protected ?array $chart = null;
+    /**
+     * @var mixed[]|null
+     */
+    protected $chart;
 
-    protected ?string $chartColor = null;
+    /**
+     * @var string|null
+     */
+    protected $chartColor;
 
-    protected ?string $color = null;
+    /**
+     * @var string|null
+     */
+    protected $color;
 
-    protected ?string $description = null;
+    /**
+     * @var string|null
+     */
+    protected $description;
 
-    protected ?string $descriptionIcon = null;
+    /**
+     * @var string|null
+     */
+    protected $descriptionIcon;
 
-    protected ?string $descriptionColor = null;
+    /**
+     * @var string|null
+     */
+    protected $descriptionColor;
 
-    protected ?string $id = null;
+    /**
+     * @var string|null
+     */
+    protected $id;
 
-    protected string $label;
+    /**
+     * @var string
+     */
+    protected $label;
 
     protected $value;
 
