@@ -9,7 +9,9 @@ trait CanValidateInput
 {
     protected function askRequired(string $question, string $field): string
     {
-        return $this->validateInput(fn () => $this->ask($question), $field, ['required']);
+        return $this->validateInput(function () use ($question) {
+            return $this->ask($question);
+        }, $field, ['required']);
     }
 
     protected function validateInput(Closure $callback, string $field, array $rules): string

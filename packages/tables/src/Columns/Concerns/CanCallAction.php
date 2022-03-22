@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 
 trait CanCallAction
 {
-    protected ?Closure $action = null;
+    /**
+     * @var \Closure|null
+     */
+    protected $action;
 
     /**
      * @param \Closure|string|null $action

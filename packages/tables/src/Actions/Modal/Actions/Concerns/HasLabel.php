@@ -6,7 +6,10 @@ use Illuminate\Support\Str;
 
 trait HasLabel
 {
-    protected ?string $label = null;
+    /**
+     * @var string|null
+     */
+    protected $label;
 
     /**
      * @return $this

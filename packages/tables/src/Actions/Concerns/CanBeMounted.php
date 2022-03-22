@@ -7,7 +7,10 @@ use Filament\Forms\ComponentContainer;
 
 trait CanBeMounted
 {
-    protected ?Closure $mountUsing = null;
+    /**
+     * @var \Closure|null
+     */
+    protected $mountUsing;
 
     /**
      * @return $this

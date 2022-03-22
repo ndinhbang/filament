@@ -17,7 +17,10 @@ trait HasActions
 
     public $mountedTableActionRecord = null;
 
-    protected array $cachedTableActions;
+    /**
+     * @var mixed[]
+     */
+    protected $cachedTableActions;
 
     public function cacheTableActions(): void
     {

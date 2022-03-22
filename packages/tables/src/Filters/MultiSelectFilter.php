@@ -51,10 +51,12 @@ class MultiSelectFilter extends Filter
 
             return $query->whereHas(
                 $this->getRelationshipName(),
-                fn (Builder $query) => $query->whereIn(
-                    $relationship->getOwnerKeyName(),
-                    $data['values']
-                )
+                function (Builder $query) use ($relationship, $data) {
+                    return $query->whereIn(
+                        $relationship->getOwnerKeyName(),
+                        $data['values']
+                    );
+                }
             );
         }
 

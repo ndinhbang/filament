@@ -4,7 +4,10 @@ namespace Filament\Tables\Actions\Modal\Actions\Concerns;
 
 trait HasColor
 {
-    protected ?string $color = null;
+    /**
+     * @var string|null
+     */
+    protected $color;
 
     /**
      * @return $this

@@ -6,7 +6,10 @@ use Filament\Tables\Contracts\HasTable;
 
 trait BelongsToLivewire
 {
-    protected HasTable $livewire;
+    /**
+     * @var \Filament\Tables\Contracts\HasTable
+     */
+    protected $livewire;
 
     /**
      * @return $this

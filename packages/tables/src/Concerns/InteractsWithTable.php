@@ -27,7 +27,10 @@ trait InteractsWithTable
     use HasRecordUrl;
     use Forms\Concerns\InteractsWithForms;
 
-    protected Table $table;
+    /**
+     * @var \Filament\Tables\Table
+     */
+    protected $table;
 
     public function bootedInteractsWithTable(): void
     {
@@ -50,8 +53,8 @@ trait InteractsWithTable
             $this->tableRecordsPerPage = $this->getDefaultTableRecordsPerPageSelectOption();
         }
 
-        $this->tableSortColumn ??= $this->getDefaultTableSortColumn();
-        $this->tableSortDirection ??= $this->getDefaultTableSortDirection();
+        $this->tableSortColumn = $this->tableSortColumn ?? $this->getDefaultTableSortColumn();
+        $this->tableSortDirection = $this->tableSortDirection ?? $this->getDefaultTableSortDirection();
     }
 
     protected function getCachedTable(): Table

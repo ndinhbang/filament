@@ -13,7 +13,10 @@ trait HasState
 {
     protected $defaultState = null;
 
-    protected ?Closure $getStateUsing = null;
+    /**
+     * @var \Closure|null
+     */
+    protected $getStateUsing;
 
     /**
      * @return $this

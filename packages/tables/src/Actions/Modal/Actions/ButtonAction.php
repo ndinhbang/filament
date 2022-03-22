@@ -7,9 +7,15 @@ class ButtonAction extends Action
     use Concerns\CanBeOutlined;
     use Concerns\HasIcon;
 
-    protected string $view = 'tables::actions.modal.actions.button-action';
+    /**
+     * @var string
+     */
+    protected $view = 'tables::actions.modal.actions.button-action';
 
-    protected ?string $iconPosition = null;
+    /**
+     * @var string|null
+     */
+    protected $iconPosition;
 
     /**
      * @return $this

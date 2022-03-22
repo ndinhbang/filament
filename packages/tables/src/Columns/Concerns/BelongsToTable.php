@@ -7,7 +7,10 @@ use Filament\Tables\Table;
 
 trait BelongsToTable
 {
-    protected Table $table;
+    /**
+     * @var \Filament\Tables\Table
+     */
+    protected $table;
 
     /**
      * @return $this

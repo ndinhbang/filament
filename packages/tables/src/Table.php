@@ -22,38 +22,80 @@ class Table extends ViewComponent implements Htmlable
     use Macroable;
     use Tappable;
 
-    protected ?View $contentFooter = null;
+    /**
+     * @var \Illuminate\Contracts\View\View|null
+     */
+    protected $contentFooter;
 
-    protected ?string $description = null;
+    /**
+     * @var string|null
+     */
+    protected $description;
 
-    protected ?View $emptyState = null;
+    /**
+     * @var \Illuminate\Contracts\View\View|null
+     */
+    protected $emptyState;
 
-    protected ?string $emptyStateDescription = null;
+    /**
+     * @var string|null
+     */
+    protected $emptyStateDescription;
 
-    protected ?string $emptyStateHeading = null;
+    /**
+     * @var string|null
+     */
+    protected $emptyStateHeading;
 
-    protected ?string $emptyStateIcon = null;
+    /**
+     * @var string|null
+     */
+    protected $emptyStateIcon;
 
-    protected ?string $filtersFormWidth = null;
+    /**
+     * @var string|null
+     */
+    protected $filtersFormWidth;
 
-    protected ?string $recordAction = null;
+    /**
+     * @var string|null
+     */
+    protected $recordAction;
 
-    protected ?Closure $getRecordUrlUsing = null;
+    /**
+     * @var \Closure|null
+     */
+    protected $getRecordUrlUsing;
 
-    protected ?View $header = null;
+    /**
+     * @var \Illuminate\Contracts\View\View|null
+     */
+    protected $header;
 
     /**
      * @var \Closure|string|null
      */
     protected $heading = null;
 
-    protected bool $isPaginationEnabled = true;
+    /**
+     * @var bool
+     */
+    protected $isPaginationEnabled = true;
 
-    protected array $meta = [];
+    /**
+     * @var mixed[]
+     */
+    protected $meta = [];
 
-    protected string $model;
+    /**
+     * @var string
+     */
+    protected $model;
 
-    protected ?array $recordsPerPageSelectOptions = null;
+    /**
+     * @var mixed[]|null
+     */
+    protected $recordsPerPageSelectOptions;
 
     final public function __construct(HasTable $livewire)
     {

@@ -14,7 +14,10 @@ trait HasBulkActions
 
     public $mountedTableBulkActionData = [];
 
-    protected array $cachedTableBulkActions;
+    /**
+     * @var mixed[]
+     */
+    protected $cachedTableBulkActions;
 
     public function cacheTableBulkActions(): void
     {
@@ -87,7 +90,9 @@ trait HasBulkActions
     public function getCachedTableBulkActions(): array
     {
         return collect($this->cachedTableBulkActions)
-            ->filter(fn (BulkAction $action): bool => ! $action->isHidden())
+            ->filter(function (BulkAction $action) : bool {
+                return ! $action->isHidden();
+            })
             ->toArray();
     }
 

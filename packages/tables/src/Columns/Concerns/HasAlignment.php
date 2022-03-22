@@ -28,7 +28,9 @@ trait HasAlignment
      */
     public function alignLeft($condition = true)
     {
-        return $this->alignment(fn (): ?string => $condition ? 'left' : null);
+        return $this->alignment(function () use ($condition) : ?string {
+            return $condition ? 'left' : null;
+        });
     }
 
     /**
@@ -37,7 +39,9 @@ trait HasAlignment
      */
     public function alignCenter($condition = true)
     {
-        return $this->alignment(fn (): ?string => $condition ? 'center' : null);
+        return $this->alignment(function () use ($condition) : ?string {
+            return $condition ? 'center' : null;
+        });
     }
 
     /**
@@ -46,7 +50,9 @@ trait HasAlignment
      */
     public function alignRight($condition = true)
     {
-        return $this->alignment(fn (): ?string => $condition ? 'right' : null);
+        return $this->alignment(function () use ($condition) : ?string {
+            return $condition ? 'right' : null;
+        });
     }
 
     public function getAlignment(): ?string

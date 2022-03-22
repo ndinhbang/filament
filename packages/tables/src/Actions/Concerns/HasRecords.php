@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Collection;
 
 trait HasRecords
 {
-    protected ?Collection $records = null;
+    /**
+     * @var \Illuminate\Database\Eloquent\Collection|null
+     */
+    protected $records;
 
     /**
      * @return $this

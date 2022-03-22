@@ -32,7 +32,9 @@ trait HasOptions
         }
 
         if (is_string($options) && function_exists('enum_exists') && enum_exists($options)) {
-            $options = collect($options::cases())->mapWithKeys(fn ($case) => [((($case2 = $case) ? $case2->value : null) ?? $case->name) => $case->name]);
+            $options = collect($options::cases())->mapWithKeys(function ($case) {
+                return [((($case2 = $case) ? $case2->value : null) ?? $case->name) => $case->name];
+            });
         }
 
         if ($options instanceof Arrayable) {

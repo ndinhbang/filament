@@ -6,9 +6,15 @@ use Illuminate\Support\Str;
 
 trait CanBeSearchable
 {
-    protected bool $isSearchable = false;
+    /**
+     * @var bool
+     */
+    protected $isSearchable = false;
 
-    protected ?array $searchColumns = null;
+    /**
+     * @var mixed[]|null
+     */
+    protected $searchColumns;
 
     /**
      * @param mixed[]|bool $condition

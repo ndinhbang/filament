@@ -6,9 +6,15 @@ use Illuminate\Support\Str;
 
 trait CanBeSortable
 {
-    protected bool $isSortable = false;
+    /**
+     * @var bool
+     */
+    protected $isSortable = false;
 
-    protected ?array $sortColumns = [];
+    /**
+     * @var mixed[]|null
+     */
+    protected $sortColumns = [];
 
     /**
      * @param mixed[]|bool $condition

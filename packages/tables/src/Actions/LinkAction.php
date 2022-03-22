@@ -4,5 +4,8 @@ namespace Filament\Tables\Actions;
 
 class LinkAction extends Action
 {
-    protected string $view = 'tables::actions.link-action';
+    /**
+     * @var string
+     */
+    protected $view = 'tables::actions.link-action';
 }

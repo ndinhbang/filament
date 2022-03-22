@@ -4,7 +4,10 @@ namespace Filament\Tables\Actions\Modal\Actions\Concerns;
 
 trait HasName
 {
-    protected string $name;
+    /**
+     * @var string
+     */
+    protected $name;
 
     /**
      * @return $this

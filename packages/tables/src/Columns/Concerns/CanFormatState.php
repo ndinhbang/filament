@@ -10,16 +10,21 @@ use Illuminate\Support\Str;
 
 trait CanFormatState
 {
-    protected ?Closure $formatStateUsing = null;
+    /**
+     * @var \Closure|null
+     */
+    protected $formatStateUsing;
 
     /**
      * @return $this
      */
     public function date(?string $format = null)
     {
-        $format ??= config('tables.date_format');
+        $format = $format ?? config('tables.date_format');
 
-        $this->formatStateUsing(fn ($state): ?string => $state ? Carbon::parse($state)->translatedFormat($format) : null);
+        $this->formatStateUsing(function ($state) use ($format) : ?string {
+            return $state ? Carbon::parse($state)->translatedFormat($format) : null;
+        });
 
         return $this;
     }
@@ -29,7 +34,7 @@ trait CanFormatState
      */
     public function dateTime(?string $format = null)
     {
-        $format ??= config('tables.date_time_format');
+        $format = $format ?? config('tables.date_time_format');
 
         $this->date($format);
 
@@ -41,7 +46,9 @@ trait CanFormatState
      */
     public function enum(array $options, $default = null)
     {
-        $this->formatStateUsing(fn ($state): string => $options[$state] ?? ($default ?? $state));
+        $this->formatStateUsing(function ($state) use ($options, $default) : string {
+            return $options[$state] ?? ($default ?? $state);
+        });
 
         return $this;
     }
@@ -111,7 +118,7 @@ trait CanFormatState
      */
     public function time(?string $format = null)
     {
-        $format ??= config('tables.time_format');
+        $format = $format ?? config('tables.time_format');
 
         $this->date($format);
 

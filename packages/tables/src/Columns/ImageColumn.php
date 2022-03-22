@@ -9,7 +9,10 @@ use Illuminate\Support\Facades\Storage;
 
 class ImageColumn extends Column
 {
-    protected string $view = 'tables::columns.image-column';
+    /**
+     * @var string
+     */
+    protected $view = 'tables::columns.image-column';
 
     /**
      * @var \Closure|string|null

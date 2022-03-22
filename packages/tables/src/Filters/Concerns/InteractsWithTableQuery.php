@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Builder;
 
 trait InteractsWithTableQuery
 {
-    protected ?Closure $modifyQueryUsing = null;
+    /**
+     * @var \Closure|null
+     */
+    protected $modifyQueryUsing;
 
     public function apply(Builder $query, array $data = []): Builder
     {

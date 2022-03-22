@@ -4,7 +4,10 @@ namespace Filament\Tables\Actions\Modal\Actions\Concerns;
 
 trait HasAction
 {
-    protected ?string $action = null;
+    /**
+     * @var string|null
+     */
+    protected $action;
 
     /**
      * @param string|null $action

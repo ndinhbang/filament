@@ -12,7 +12,10 @@ use Illuminate\Database\Eloquent\Builder;
  */
 trait HasFilters
 {
-    protected array $cachedTableFilters;
+    /**
+     * @var mixed[]
+     */
+    protected $cachedTableFilters;
 
     public $tableFilters = null;
 
@@ -30,7 +33,9 @@ trait HasFilters
     public function getCachedTableFilters(): array
     {
         return collect($this->cachedTableFilters)
-            ->filter(fn (Filter $filter): bool => ! $filter->isHidden())
+            ->filter(function (Filter $filter) : bool {
+                return ! $filter->isHidden();
+            })
             ->toArray();
     }
 
@@ -86,9 +91,11 @@ trait HasFilters
     protected function getTableFiltersFormSchema(): array
     {
         return array_map(
-            fn (Filter $filter) => Forms\Components\Group::make()
-                ->schema($filter->getFormSchema())
-                ->statePath($filter->getName()),
+            function (Filter $filter) {
+                return Forms\Components\Group::make()
+                    ->schema($filter->getFormSchema())
+                    ->statePath($filter->getName());
+            },
             $this->getCachedTableFilters()
         );
     }

@@ -7,7 +7,10 @@ use Illuminate\Contracts\View\View;
 
 trait HasEmptyState
 {
-    protected array $cachedTableEmptyStateActions;
+    /**
+     * @var mixed[]
+     */
+    protected $cachedTableEmptyStateActions;
 
     public function cacheTableEmptyStateActions(): void
     {
@@ -23,7 +26,9 @@ trait HasEmptyState
     public function getCachedTableEmptyStateActions(): array
     {
         return collect($this->cachedTableEmptyStateActions)
-            ->filter(fn (Action $action): bool => ! $action->isHidden())
+            ->filter(function (Action $action) : bool {
+                return ! $action->isHidden();
+            })
             ->toArray();
     }
 

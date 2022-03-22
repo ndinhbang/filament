@@ -6,7 +6,10 @@ use Closure;
 
 class TagsColumn extends Column
 {
-    protected string $view = 'tables::columns.tags-column';
+    /**
+     * @var string
+     */
+    protected $view = 'tables::columns.tags-column';
 
     /**
      * @var \Closure|string|null

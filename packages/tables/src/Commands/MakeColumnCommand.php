@@ -29,7 +29,9 @@ class MakeColumnCommand extends Command
         $view = Str::of($column)
             ->prepend('tables\\columns\\')
             ->explode('\\')
-            ->map(fn ($segment) => Str::kebab($segment))
+            ->map(function ($segment) {
+                return Str::kebab($segment);
+            })
             ->implode('.');
 
         $path = app_path(

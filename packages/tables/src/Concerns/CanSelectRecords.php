@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Collection;
 
 trait CanSelectRecords
 {
-    public array $selectedTableRecords = [];
+    /**
+     * @var mixed[]
+     */
+    public $selectedTableRecords = [];
 
     public function deselectAllTableRecords(): void
     {

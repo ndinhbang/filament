@@ -6,7 +6,10 @@ use Filament\Tables\Columns\Column;
 
 trait HasColumns
 {
-    protected array $cachedTableColumns;
+    /**
+     * @var mixed[]
+     */
+    protected $cachedTableColumns;
 
     public function cacheTableColumns(): void
     {
@@ -43,7 +46,9 @@ trait HasColumns
     public function getCachedTableColumns(): array
     {
         return collect($this->cachedTableColumns)
-            ->filter(fn (Column $column): bool => ! $column->isHidden())
+            ->filter(function (Column $column) : bool {
+                return ! $column->isHidden();
+            })
             ->toArray();
     }
 

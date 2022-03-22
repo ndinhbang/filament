@@ -8,7 +8,10 @@ use Illuminate\Contracts\View\View;
 
 trait HasHeader
 {
-    protected array $cachedTableHeaderActions;
+    /**
+     * @var mixed[]
+     */
+    protected $cachedTableHeaderActions;
 
     public function cacheTableHeaderActions(): void
     {
@@ -24,7 +27,9 @@ trait HasHeader
     public function getCachedTableHeaderActions(): array
     {
         return collect($this->cachedTableHeaderActions)
-            ->filter(fn (Action $action): bool => ! $action->isHidden())
+            ->filter(function (Action $action) : bool {
+                return ! $action->isHidden();
+            })
             ->toArray();
     }
 

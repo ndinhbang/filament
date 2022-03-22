@@ -7,5 +7,8 @@ class BadgeColumn extends TextColumn
     use Concerns\CanFormatState;
     use Concerns\HasColors;
 
-    protected string $view = 'tables::columns.badge-column';
+    /**
+     * @var string
+     */
+    protected $view = 'tables::columns.badge-column';
 }

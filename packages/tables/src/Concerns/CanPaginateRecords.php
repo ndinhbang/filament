@@ -15,7 +15,10 @@ trait CanPaginateRecords
 
     public $tableRecordsPerPage;
 
-    protected int $defaultTableRecordsPerPageSelectOption = 10;
+    /**
+     * @var int
+     */
+    protected $defaultTableRecordsPerPageSelectOption = 10;
 
     public function updatedTableRecordsPerPage(): void
     {

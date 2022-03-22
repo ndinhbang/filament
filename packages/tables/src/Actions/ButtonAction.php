@@ -8,7 +8,10 @@ class ButtonAction extends Action
 {
     use Concerns\CanBeOutlined;
 
-    protected string $view = 'tables::actions.button-action';
+    /**
+     * @var string
+     */
+    protected $view = 'tables::actions.button-action';
 
     /**
      * @var \Closure|string|null

@@ -8,7 +8,10 @@ class TextColumn extends Column
 {
     use Concerns\CanFormatState;
 
-    protected string $view = 'tables::columns.text-column';
+    /**
+     * @var string
+     */
+    protected $view = 'tables::columns.text-column';
 
     /**
      * @var bool|\Closure

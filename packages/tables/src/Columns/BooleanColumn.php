@@ -6,7 +6,10 @@ use Closure;
 
 class BooleanColumn extends Column
 {
-    protected string $view = 'tables::columns.boolean-column';
+    /**
+     * @var string
+     */
+    protected $view = 'tables::columns.boolean-column';
 
     /**
      * @var \Closure|string|null

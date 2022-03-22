@@ -9,7 +9,10 @@ class IconColumn extends Column
 {
     use Concerns\HasColors;
 
-    protected string $view = 'tables::columns.icon-column';
+    /**
+     * @var string
+     */
+    protected $view = 'tables::columns.icon-column';
 
     /**
      * @var mixed[]|\Closure|\Illuminate\Contracts\Support\Arrayable
